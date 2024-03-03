@@ -1,5 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Repositories;
+using ExpenseGuardBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
@@ -8,16 +8,61 @@ namespace ExpenseGuardBackend.Controllers
 	[ApiController]
 	public class ExpenseController : ControllerBase
 	{
-		private readonly IExpenseRepository _expenseRepository;
-		public ExpenseController(IExpenseRepository expenseRepository)
+		private readonly IExpenseService _expenseService;
+		public ExpenseController(IExpenseService expenseService)
 		{
-			_expenseRepository = expenseRepository;
+			_expenseService = expenseService;
 		}
 
 		[HttpGet]
 		public ActionResult<List<Expense>> Get()
 		{
-			return _expenseRepository.GetAll();
+			var expenses = _expenseService.GetAll();
+			return Ok(expenses);
+		}
+
+		[HttpGet("{id}")]
+		public ActionResult<Expense> Get(int id)
+		{
+			var expense = _expenseService.Get(id);
+			if (expense is null)
+			{
+				return NotFound();
+			}
+			return Ok(expense);
+		}
+
+		[HttpPost]
+		public ActionResult<Expense> Create([FromBody] Expense expense)
+		{
+			var newExpense = _expenseService.Create(expense);
+			if (newExpense is null)
+			{
+				return BadRequest();
+			}
+			return Created("todo complete URI", newExpense);
+		}
+
+		[HttpPut("{id}")]
+		public ActionResult<Expense> Put([FromBody] Expense expense, int id)
+		{
+			var updatedExpense = _expenseService.Update(expense, id);
+			if (updatedExpense is null)
+			{
+				return NotFound();
+			}
+			return Ok(updatedExpense);
+		}
+
+		[HttpDelete("{id}")]
+		public ActionResult<bool> Delete(int id)
+		{
+			var isDeleted = _expenseService.Delete(id);
+			if (!isDeleted)
+			{
+				return NotFound();
+			}
+			return Ok(isDeleted);
 		}
 	}
 }
