@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 // Data Access
 builder.Services.AddSingleton<IExpenseRepository,  ExpenseRepository>();
+builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
 
 // Business
 builder.Services.AddScoped<IExpenseService, ExpenseService>();

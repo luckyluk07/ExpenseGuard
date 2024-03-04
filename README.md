@@ -17,6 +17,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 1**: Init backend solution, start writing readme, start planning models and functions
 - **Day 2**: Create "in-code" repository for expanses and connect it with controller using DI
 - **Day 3**: Create crud controller and service for expenses
+- **Day 4**: Create "in-code" repository for incomes
 
 ## Technical goals
 
