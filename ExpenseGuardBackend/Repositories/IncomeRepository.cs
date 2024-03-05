@@ -23,8 +23,8 @@ namespace ExpenseGuardBackend.Repositories
 				Amount = 300,
 				ReceivedDate = DateTime.UtcNow.AddDays(-10),
 			};
-			_incomes.Add(income1);
-			_incomes.Add(income2);
+			Create(income1);
+			Create(income2);
 		}
 
 		public List<Income> GetAll()

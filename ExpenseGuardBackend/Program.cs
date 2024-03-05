@@ -17,6 +17,7 @@ builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
 
 // Business
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<IIncomeService, IncomeService>();
 
 var app = builder.Build();
 
