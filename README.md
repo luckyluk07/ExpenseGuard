@@ -19,6 +19,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 3**: Create crud controller and service for expenses
 - **Day 4**: Create "in-code" repository for incomes
 - **Day 5**: Create crud controller and service for incomes
+- **Day 6**: Add dtos for expense controller
 
 ## Technical goals
 

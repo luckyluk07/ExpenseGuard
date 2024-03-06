@@ -1,10 +1,11 @@
-﻿using ExpenseGuardBackend.Models;
+﻿using ExpenseGuardBackend.DTOs.Expense;
+using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class ExpenseController : ControllerBase
 	{
@@ -33,7 +34,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult<Expense> Create([FromBody] Expense expense)
+		public ActionResult<Expense> Create([FromBody] CreateExpenseDto expense)
 		{
 			var newExpense = _expenseService.Create(expense);
 			if (newExpense is null)
@@ -44,7 +45,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public ActionResult<Expense> Put([FromBody] Expense expense, int id)
+		public ActionResult<Expense> Put([FromBody] UpdateExpenseDto expense, int id)
 		{
 			var updatedExpense = _expenseService.Update(expense, id);
 			if (updatedExpense is null)
