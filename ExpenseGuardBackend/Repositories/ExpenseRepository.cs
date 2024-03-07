@@ -32,9 +32,7 @@ namespace ExpenseGuardBackend.Repositories
 
 		public List<Expense> GetAll()
 		{
-			return _expenses
-				.Select(x => (Expense)x.Clone())
-				.ToList();
+			return _expenses;
 		}
 
 		public Expense? Get(int id)
@@ -42,7 +40,7 @@ namespace ExpenseGuardBackend.Repositories
 			var selectedExpense = GetExpense(id);
 			if (selectedExpense is not null)
 			{
-				return (Expense)selectedExpense.Clone();
+				return selectedExpense;
 			}
 			return null;
 		}
@@ -69,7 +67,7 @@ namespace ExpenseGuardBackend.Repositories
 				Price = expenseToAdd.Price
 			};
 			_expenses.Add(newExpense);
-			return (Expense)newExpense.Clone();
+			return newExpense;
 		}
 
 		public Expense? Update(Expense expenseToUpdate, int id)
@@ -83,9 +81,8 @@ namespace ExpenseGuardBackend.Repositories
 			expense.SpendDate = expenseToUpdate.SpendDate;
 			expense.Category = expenseToUpdate.Category;
 			expense.Price = expenseToUpdate.Price;
-			expense.Name = expenseToUpdate.Name;
 
-			return (Expense)expense.Clone();
+			return expense;
 		}
 
 		private Expense? GetExpense(int id)

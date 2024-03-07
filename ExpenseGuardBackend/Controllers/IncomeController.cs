@@ -1,4 +1,4 @@
-﻿using ExpenseGuardBackend.Models;
+﻿using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +16,13 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<Income>> Get()
+		public ActionResult<List<IncomeDto>> Get()
 		{
 			return Ok(_incomeService.GetAll());
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<Income> Get(int id)
+		public ActionResult<IncomeDto> Get(int id)
 		{
 			var income = _incomeService.Get(id);
 			if (income is null)
@@ -33,14 +33,14 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult<Income> Create(Income income)
+		public ActionResult<IncomeDto> Create(CreateIncomeDto income)
 		{
 			var newIncome = _incomeService.Create(income);
 			return Created("todo uri to new element", newIncome);
 		}
 
 		[HttpPut("{id}")]
-		public ActionResult<Income> Update([FromBody] Income income, int id) 
+		public ActionResult<IncomeDto> Update([FromBody] UpdateIncomeDto income, int id) 
 		{
 			var updatedIncome = _incomeService.Update(income, id);
 			if (updatedIncome is null)

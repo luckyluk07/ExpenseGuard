@@ -29,9 +29,7 @@ namespace ExpenseGuardBackend.Repositories
 
 		public List<Income> GetAll()
 		{
-			return _incomes
-				.Select(x => (Income)x.Clone())
-				.ToList();
+			return _incomes;
 		}
 
 		public Income? Get(int id)
@@ -41,7 +39,7 @@ namespace ExpenseGuardBackend.Repositories
 			{
 				return null;
 			}
-			return (Income)income.Clone();
+			return income;
 		}
 
 		public Income Create(Income income)
@@ -54,7 +52,7 @@ namespace ExpenseGuardBackend.Repositories
 				ReceivedDate = income.ReceivedDate,
 			};
 			_incomes.Add(newIncome);
-			return (Income)newIncome.Clone();
+			return newIncome;
 		}
 
 		public Income? Update(Income income, int id)
@@ -66,7 +64,6 @@ namespace ExpenseGuardBackend.Repositories
 			}
 
 			incomeToUpdate.ReceivedDate = income.ReceivedDate;
-			incomeToUpdate.Name = income.Name;
 			incomeToUpdate.Amount = income.Amount;
 			return incomeToUpdate;
 		}

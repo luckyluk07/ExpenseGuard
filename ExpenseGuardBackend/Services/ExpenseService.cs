@@ -17,8 +17,8 @@ namespace ExpenseGuardBackend.Services
         {
             return _expenseRepository
                 .GetAll()
-                .Select(x => new ExpenseDto(x.Id, x.Name, x.Category, x.Price, x.SpendDate))
-                .ToList(); ;
+                .Select(ExpenseToDto)
+                .ToList();
         }
 
         public ExpenseDto? Get(int id)
@@ -28,7 +28,7 @@ namespace ExpenseGuardBackend.Services
             {
                 return null;
             }
-            return new ExpenseDto(expense.Id, expense.Name, expense.Category, expense.Price, expense.SpendDate);
+            return ExpenseToDto(expense);
 
         }
 
@@ -42,7 +42,7 @@ namespace ExpenseGuardBackend.Services
                 SpendDate = expense.SpendDate,
             };
             var createdExpense =  _expenseRepository.Create(expenseToCreate);
-			return new ExpenseDto(createdExpense.Id, createdExpense.Name, createdExpense.Category, createdExpense.Price, createdExpense.SpendDate);
+			return ExpenseToDto(createdExpense);
 		}
 
         public ExpenseDto? Update(UpdateExpenseDto expense, int id)
@@ -60,12 +60,17 @@ namespace ExpenseGuardBackend.Services
                 return null;
             }
 
-			return new ExpenseDto(updatedExpense.Id, updatedExpense.Name, updatedExpense.Category, updatedExpense.Price, updatedExpense.SpendDate);
+			return ExpenseToDto(updatedExpense);
 		}
 
         public bool Delete(int id)
         {
             return _expenseRepository.Delete(id);
         }
-    }
+
+        private ExpenseDto ExpenseToDto(Expense expense)
+        {
+			return new ExpenseDto(expense.Id, expense.Name, expense.Category, expense.Price, expense.SpendDate);
+		}
+	}
 }

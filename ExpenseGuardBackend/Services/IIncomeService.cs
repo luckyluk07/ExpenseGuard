@@ -1,13 +1,13 @@
-﻿using ExpenseGuardBackend.Models;
+﻿using ExpenseGuardBackend.DTOs.Income;
 
 namespace ExpenseGuardBackend.Services
 {
 	public interface IIncomeService
 	{
-		Income Create(Income income);
+		IncomeDto Create(CreateIncomeDto income);
 		bool Delete(int id);
-		Income? Get(int id);
-		List<Income> GetAll();
-		Income? Update(Income income, int id);
+		IncomeDto? Get(int id);
+		List<IncomeDto> GetAll();
+		IncomeDto? Update(UpdateIncomeDto income, int id);
 	}
 }
