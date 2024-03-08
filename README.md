@@ -21,6 +21,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 5**: Create crud controller and service for incomes
 - **Day 6**: Add dtos for expense controller
 - **Day 7**: Add dtos for income controller, remove Cloning of expenses and incomes
+- **Day 8**: Add category model with repository, implement gets and delete controller and service methods
 
 ## Technical goals
 

@@ -1,5 +1,7 @@
 using ExpenseGuardBackend.Repositories;
+using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Services;
+using ExpenseGuardBackend.Services.Categories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +16,12 @@ builder.Services.AddSwaggerGen();
 // Data Access
 builder.Services.AddSingleton<IExpenseRepository,  ExpenseRepository>();
 builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
+builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
 
 // Business
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IIncomeService, IncomeService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
