@@ -36,6 +36,10 @@ namespace ExpenseGuardBackend.Controllers
 		public ActionResult<IncomeDto> Create(CreateIncomeDto income)
 		{
 			var newIncome = _incomeService.Create(income);
+			if (newIncome is null)
+			{
+				return BadRequest();
+			}
 			return Created("todo uri to new element", newIncome);
 		}
 

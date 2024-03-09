@@ -7,5 +7,7 @@ namespace ExpenseGuardBackend.Services.Categories
 		bool Delete(int id);
 		List<CategoryDto> GetAll();
 		CategoryDto? GetById(int id);
+		CategoryDto Create(CreateCategoryDto createCategoryDto);
+		CategoryDto Update(UpdateCategoryDto updateCategoryDto, int id);
 	}
 }

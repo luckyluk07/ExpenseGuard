@@ -32,6 +32,28 @@ namespace ExpenseGuardBackend.Controllers
 			return Ok(category);
 		}
 
+		[HttpPost]
+		public ActionResult<CategoryDto> Create(CreateCategoryDto category)
+		{
+			var createdCategory = _categoryService.Create(category);
+			if (createdCategory is null)
+			{
+				return BadRequest();
+			}
+			return Created("todo add path", createdCategory);
+		}
+
+		[HttpPut("{id}")]
+		public ActionResult<CategoryDto> Update(UpdateCategoryDto category, int id) 
+		{
+			var updatedCategory = _categoryService.Update(category, id);
+			if (updatedCategory is null)
+			{
+				return NotFound();
+			}
+			return Ok(updatedCategory);
+		}
+
 		[HttpDelete("{id}")]
 		public ActionResult<bool> Delete(int id)
 		{

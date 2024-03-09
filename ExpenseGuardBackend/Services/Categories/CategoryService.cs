@@ -31,6 +31,34 @@ namespace ExpenseGuardBackend.Services.Categories
 			return CategoryToDto(category);
 		}
 
+		public CategoryDto Create(CreateCategoryDto createCategoryDto)
+		{
+			var category = new Category()
+			{
+				Name = createCategoryDto.Name,
+				Description = createCategoryDto.Description
+			};
+			
+			var createdCategory = _categoryRepository.Create(category);
+			return CategoryToDto(createdCategory);
+		}
+
+		public CategoryDto Update(UpdateCategoryDto updateCategoryDto, int id)
+		{
+			var category = new Category()
+			{
+				Name = updateCategoryDto.Name,
+				Description = updateCategoryDto.Description
+			};
+
+			var updatedCategory = _categoryRepository.Updated(category, id);
+			if (updatedCategory is null)
+			{
+				return null;
+			}
+			return CategoryToDto(updatedCategory);
+		}
+
 		public bool Delete(int id)
 		{
 			return _categoryRepository.Remove(id);
