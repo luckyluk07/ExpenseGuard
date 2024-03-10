@@ -1,8 +1,11 @@
-﻿namespace ExpenseGuardBackend.DTOs.Income
+﻿using ExpenseGuardBackend.Models;
+
+namespace ExpenseGuardBackend.DTOs.Income
 {
 	public record UpdateIncomeDto
 	(
 		DateTime ReceivedDate,
-		decimal Amount
+		decimal Amount,
+		int CategoryId
 	);
 }

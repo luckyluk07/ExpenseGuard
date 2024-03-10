@@ -1,10 +1,13 @@
-﻿namespace ExpenseGuardBackend.DTOs.Income
+﻿using ExpenseGuardBackend.DTOs.Categories;
+
+namespace ExpenseGuardBackend.DTOs.Income
 {
 	public record IncomeDto
 	(
 		int Id,
 		string Name,
 		DateTime ReceivedDate,
-		decimal Amount
+		decimal Amount,
+		CategoryDto Category
 	);
 }

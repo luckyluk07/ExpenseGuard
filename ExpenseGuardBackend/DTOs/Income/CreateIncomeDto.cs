@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ExpenseGuardBackend.Models;
 
 namespace ExpenseGuardBackend.DTOs.Income
 {
@@ -6,6 +7,7 @@ namespace ExpenseGuardBackend.DTOs.Income
 	(
 		[Required] string Name,
 		[Required] DateTime ReceivedDate,
-		[Required] decimal Amount
+		[Required] decimal Amount,
+		[Required] int CategoryId
 	);
 }

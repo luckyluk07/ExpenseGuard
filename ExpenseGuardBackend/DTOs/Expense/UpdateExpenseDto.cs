@@ -2,7 +2,7 @@
 {
 	public record UpdateExpenseDto
 	(
-		string Category,
+		int CategoryId,
 		decimal Price,
 		DateTime SpendDate
 	);

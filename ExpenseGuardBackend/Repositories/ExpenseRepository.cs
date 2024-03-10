@@ -1,20 +1,24 @@
 ﻿using ExpenseGuardBackend.Models;
+using ExpenseGuardBackend.Repositories.Categories;
 
 namespace ExpenseGuardBackend.Repositories
 {
 	public class ExpenseRepository : IExpenseRepository
 	{
+		private readonly ICategoryRepository _categoryRepository;
+
 		private int _lastElementId = 1;
 		private readonly List<Expense> _expenses;
-		public ExpenseRepository()
+		public ExpenseRepository(ICategoryRepository categoryRepository)
 		{
+			_categoryRepository = categoryRepository;
 			_expenses = new List<Expense>();
 
 			var expense1 = new Expense()
 			{
 				Name = "name1",
 				Price = 10.1m,
-				Category = "text",
+				Category = _categoryRepository.Get(1),
 				SpendDate = DateTime.Now
 			};
 
@@ -22,7 +26,7 @@ namespace ExpenseGuardBackend.Repositories
 			{
 				Name = "name2",
 				Price = 20.1m,
-				Category = "text2",
+				Category = _categoryRepository.Get(2),
 				SpendDate = DateTime.Now
 			};
 

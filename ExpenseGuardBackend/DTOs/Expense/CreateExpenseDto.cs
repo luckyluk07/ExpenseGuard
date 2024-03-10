@@ -5,7 +5,7 @@ namespace ExpenseGuardBackend.DTOs.Expense
 	public record CreateExpenseDto
 	(
 		[Required] string Name,
-		[Required] string Category,
+		[Required] int CategoryId,
 		[Required] decimal Price,
 		[Required] DateTime SpendDate
 	);

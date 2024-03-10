@@ -1,16 +1,20 @@
-﻿using ExpenseGuardBackend.DTOs.Expense;
+﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories;
+using ExpenseGuardBackend.Repositories.Categories;
 
 namespace ExpenseGuardBackend.Services
 {
     public class ExpenseService : IExpenseService
     {
         private readonly IExpenseRepository _expenseRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public ExpenseService(IExpenseRepository expenseRepository)
+        public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository)
         {
             _expenseRepository = expenseRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public List<ExpenseDto> GetAll()
@@ -37,7 +41,7 @@ namespace ExpenseGuardBackend.Services
             var expenseToCreate = new Expense()
             {
                 Name = expense.Name,
-                Category = expense.Category,
+                Category = _categoryRepository.Get(expense.CategoryId),
                 Price = expense.Price,
                 SpendDate = expense.SpendDate,
             };
@@ -49,7 +53,7 @@ namespace ExpenseGuardBackend.Services
         {
 			var expenseToUpdate = new Expense()
 			{
-				Category = expense.Category,
+				Category = _categoryRepository.Get(expense.CategoryId),
 				Price = expense.Price,
 				SpendDate = expense.SpendDate,
 			};
@@ -70,7 +74,8 @@ namespace ExpenseGuardBackend.Services
 
         private ExpenseDto ExpenseToDto(Expense expense)
         {
-			return new ExpenseDto(expense.Id, expense.Name, expense.Category, expense.Price, expense.SpendDate);
+            var categoryDto = new CategoryDto(expense.Category.Id, expense.Category.Name, expense.Category.Description);
+			return new ExpenseDto(expense.Id, expense.Name, categoryDto, expense.Price, expense.SpendDate);
 		}
 	}
 }

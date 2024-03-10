@@ -1,10 +1,12 @@
-﻿namespace ExpenseGuardBackend.DTOs.Expense
+﻿using ExpenseGuardBackend.DTOs.Categories;
+
+namespace ExpenseGuardBackend.DTOs.Expense
 {
 	public record ExpenseDto
 	(
 		int Id,
 		string Name,
-		string Category,
+		CategoryDto Category,
 		decimal Price,
 		DateTime SpendDate
 	);

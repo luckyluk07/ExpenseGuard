@@ -1,14 +1,19 @@
 ﻿using ExpenseGuardBackend.Models;
+using ExpenseGuardBackend.Repositories.Categories;
 
 namespace ExpenseGuardBackend.Repositories
 {
 	public class IncomeRepository : IIncomeRepository
 	{
+		private readonly ICategoryRepository _categoryRepository;
+
 		private int _lastAddedId = 1;
 		private readonly List<Income> _incomes;
 
-		public IncomeRepository()
+		public IncomeRepository(ICategoryRepository categoryRepository)
 		{
+			_categoryRepository = categoryRepository;
+
 			_incomes = new List<Income>();
 
 			var income1 = new Income()
@@ -16,12 +21,14 @@ namespace ExpenseGuardBackend.Repositories
 				Name = "FirstIncome",
 				Amount = 100,
 				ReceivedDate = DateTime.Now.AddDays(-5),
+				Category = _categoryRepository.Get(1)
 			};
 			var income2 = new Income()
 			{
 				Name = "SecondIncome",
 				Amount = 300,
 				ReceivedDate = DateTime.UtcNow.AddDays(-10),
+				Category = _categoryRepository.Get(2)
 			};
 			Create(income1);
 			Create(income2);
@@ -50,6 +57,7 @@ namespace ExpenseGuardBackend.Repositories
 				Name = income.Name,
 				Amount = income.Amount,
 				ReceivedDate = income.ReceivedDate,
+				Category = income.Category
 			};
 			_incomes.Add(newIncome);
 			return newIncome;
@@ -65,6 +73,7 @@ namespace ExpenseGuardBackend.Repositories
 
 			incomeToUpdate.ReceivedDate = income.ReceivedDate;
 			incomeToUpdate.Amount = income.Amount;
+			incomeToUpdate.Category = income.Category;
 			return incomeToUpdate;
 		}
 
