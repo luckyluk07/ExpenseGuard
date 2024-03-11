@@ -1,10 +1,10 @@
 ﻿using ExpenseGuardBackend.DTOs.Income;
-using ExpenseGuardBackend.Services;
+using ExpenseGuardBackend.Services.Incomes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class IncomeController : ControllerBase
 	{

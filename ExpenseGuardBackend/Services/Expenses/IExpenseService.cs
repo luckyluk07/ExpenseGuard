@@ -1,14 +1,14 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
 
-namespace ExpenseGuardBackend.Services
+namespace ExpenseGuardBackend.Services.Expenses
 {
     public interface IExpenseService
     {
-		ExpenseDto Create(CreateExpenseDto expense);
+        ExpenseDto Create(CreateExpenseDto expense);
         bool Delete(int id);
         ExpenseDto? Get(int id);
         List<ExpenseDto> GetAll();
-		ExpenseDto? Update(UpdateExpenseDto expense, int id);
+        ExpenseDto? Update(UpdateExpenseDto expense, int id);
     }
 }

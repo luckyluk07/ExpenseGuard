@@ -1,5 +1,6 @@
 using ExpenseGuardBackend.Repositories;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Expenses;
 using ExpenseGuardBackend.Services;
 using ExpenseGuardBackend.Services.Categories;
 

@@ -1,10 +1,10 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
 using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Repositories;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Expenses;
 
-namespace ExpenseGuardBackend.Services
+namespace ExpenseGuardBackend.Services.Expenses
 {
     public class ExpenseService : IExpenseService
     {
@@ -45,27 +45,27 @@ namespace ExpenseGuardBackend.Services
                 Price = expense.Price,
                 SpendDate = expense.SpendDate,
             };
-            var createdExpense =  _expenseRepository.Create(expenseToCreate);
-			return ExpenseToDto(createdExpense);
-		}
+            var createdExpense = _expenseRepository.Create(expenseToCreate);
+            return ExpenseToDto(createdExpense);
+        }
 
         public ExpenseDto? Update(UpdateExpenseDto expense, int id)
         {
-			var expenseToUpdate = new Expense()
-			{
-				Category = _categoryRepository.Get(expense.CategoryId),
-				Price = expense.Price,
-				SpendDate = expense.SpendDate,
-			};
+            var expenseToUpdate = new Expense()
+            {
+                Category = _categoryRepository.Get(expense.CategoryId),
+                Price = expense.Price,
+                SpendDate = expense.SpendDate,
+            };
 
-			var updatedExpense =  _expenseRepository.Update(expenseToUpdate, id);
-            if (updatedExpense is null) 
+            var updatedExpense = _expenseRepository.Update(expenseToUpdate, id);
+            if (updatedExpense is null)
             {
                 return null;
             }
 
-			return ExpenseToDto(updatedExpense);
-		}
+            return ExpenseToDto(updatedExpense);
+        }
 
         public bool Delete(int id)
         {
@@ -75,7 +75,7 @@ namespace ExpenseGuardBackend.Services
         private ExpenseDto ExpenseToDto(Expense expense)
         {
             var categoryDto = new CategoryDto(expense.Category.Id, expense.Category.Name, expense.Category.Description);
-			return new ExpenseDto(expense.Id, expense.Name, categoryDto, expense.Price, expense.SpendDate);
-		}
-	}
+            return new ExpenseDto(expense.Id, expense.Name, categoryDto, expense.Price, expense.SpendDate);
+        }
+    }
 }

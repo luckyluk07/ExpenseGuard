@@ -1,6 +1,6 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Services;
+using ExpenseGuardBackend.Services.Expenses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
