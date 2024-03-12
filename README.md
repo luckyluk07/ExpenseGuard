@@ -24,6 +24,8 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 8**: Add category model with repository, implement gets and delete controller and service methods
 - **Day 9**: Implement create and update for categories controller and service
 - **Day 10**: Implement usage of new Category class instead of category as string in other classes
+- **Day 11**: Restructure folders structure
+- **Day 12**: Add get method for currencies controller, services and repository
 
 ## Technical goals
 
