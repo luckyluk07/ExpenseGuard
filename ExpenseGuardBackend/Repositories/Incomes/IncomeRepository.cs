@@ -1,40 +1,52 @@
 ﻿using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Currencies;
 
 namespace ExpenseGuardBackend.Repositories.Incomes
 {
     public class IncomeRepository : IIncomeRepository
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
         private int _lastAddedId = 1;
         private readonly List<Income> _incomes;
 
-        public IncomeRepository(ICategoryRepository categoryRepository)
-        {
-            _categoryRepository = categoryRepository;
+		public IncomeRepository(ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		{
+			_categoryRepository = categoryRepository;
+            _currencyRepository = currencyRepository;
 
-            _incomes = new List<Income>();
+			_incomes = new List<Income>();
 
-            var income1 = new Income()
-            {
-                Name = "FirstIncome",
-                Amount = 100,
-                ReceivedDate = DateTime.Now.AddDays(-5),
-                Category = _categoryRepository.Get(1)
-            };
-            var income2 = new Income()
-            {
-                Name = "SecondIncome",
-                Amount = 300,
-                ReceivedDate = DateTime.UtcNow.AddDays(-10),
-                Category = _categoryRepository.Get(2)
-            };
-            Create(income1);
-            Create(income2);
-        }
+			var income1 = new Income()
+			{
+				Name = "FirstIncome",
+				Money = new Money()
+				{
+					Amount = 100,
+					Currency = _currencyRepository.Get(1)
+				},
+				ReceivedDate = DateTime.Now.AddDays(-5),
+				Category = _categoryRepository.Get(1)
+			};
+			var income2 = new Income()
+			{
+				Name = "SecondIncome",
+				Money = new Money()
+				{
+					Amount = 300,
+					Currency = _currencyRepository.Get(1)
+				},
+				ReceivedDate = DateTime.UtcNow.AddDays(-10),
+				Category = _categoryRepository.Get(2)
+			};
+			Create(income1);
+			Create(income2);
+			_currencyRepository = currencyRepository;
+		}
 
-        public List<Income> GetAll()
+		public List<Income> GetAll()
         {
             return _incomes;
         }
@@ -55,7 +67,7 @@ namespace ExpenseGuardBackend.Repositories.Incomes
             {
                 Id = _lastAddedId++,
                 Name = income.Name,
-                Amount = income.Amount,
+                Money = income.Money,
                 ReceivedDate = income.ReceivedDate,
                 Category = income.Category
             };
@@ -72,7 +84,7 @@ namespace ExpenseGuardBackend.Repositories.Incomes
             }
 
             incomeToUpdate.ReceivedDate = income.ReceivedDate;
-            incomeToUpdate.Amount = income.Amount;
+            incomeToUpdate.Money = income.Money;
             incomeToUpdate.Category = income.Category;
             return incomeToUpdate;
         }

@@ -1,7 +1,10 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.DTOs.Income;
+using ExpenseGuardBackend.DTOs.Money;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Incomes;
 
 namespace ExpenseGuardBackend.Services.Incomes
@@ -10,14 +13,16 @@ namespace ExpenseGuardBackend.Services.Incomes
     {
         private readonly IIncomeRepository _incomeRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
-        public IncomeService(IIncomeRepository incomeRepository, ICategoryRepository categoryRepository)
-        {
-            _incomeRepository = incomeRepository;
-            _categoryRepository = categoryRepository;
-        }
+		public IncomeService(IIncomeRepository incomeRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		{
+			_incomeRepository = incomeRepository;
+			_categoryRepository = categoryRepository;
+			_currencyRepository = currencyRepository;
+		}
 
-        public List<IncomeDto> GetAll()
+		public List<IncomeDto> GetAll()
         {
             var allIncomes = _incomeRepository.GetAll();
             return _incomeRepository.GetAll()
@@ -39,8 +44,12 @@ namespace ExpenseGuardBackend.Services.Incomes
         {
             var incomeToCreate = new Income()
             {
-                Amount = income.Amount,
-                Name = income.Name,
+				Money = new Money()
+				{
+					Amount = income.Amount,
+					Currency = _currencyRepository.Get(income.CurrencyId)
+				},
+				Name = income.Name,
                 ReceivedDate = income.ReceivedDate,
                 Category = _categoryRepository.Get(income.CategoryId)
             };
@@ -58,7 +67,11 @@ namespace ExpenseGuardBackend.Services.Incomes
         {
             var incomeToUpdate = new Income()
             {
-                Amount = income.Amount,
+                Money = new Money()
+                {
+                    Amount = income.Amount,
+                    Currency = _currencyRepository.Get(income.CurrencyId)
+                },
                 ReceivedDate = income.ReceivedDate,
                 Category = _categoryRepository.Get(income.CategoryId)
             };
@@ -72,8 +85,10 @@ namespace ExpenseGuardBackend.Services.Incomes
 
         private IncomeDto IncomeToDto(Income income)
         {
+            var currencyDto = new CurrencyDto(income.Money.Currency.Id, income.Money.Currency.Name, income.Money.Currency.Code, income.Money.Currency.Country);
+            var moneyDto = new MoneyDto(income.Money.Amount, currencyDto);
             var categoryDto = new CategoryDto(income.Category.Id, income.Category.Name, income.Category.Description);
-            return new IncomeDto(income.Id, income.Name, income.ReceivedDate, income.Amount, categoryDto);
+            return new IncomeDto(income.Id, income.Name, income.ReceivedDate, moneyDto, categoryDto);
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.DTOs.Expense;
+using ExpenseGuardBackend.DTOs.Money;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
 
 namespace ExpenseGuardBackend.Services.Expenses
@@ -10,14 +13,16 @@ namespace ExpenseGuardBackend.Services.Expenses
     {
         private readonly IExpenseRepository _expenseRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
-        public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository)
-        {
-            _expenseRepository = expenseRepository;
-            _categoryRepository = categoryRepository;
-        }
+		public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		{
+			_expenseRepository = expenseRepository;
+			_categoryRepository = categoryRepository;
+			_currencyRepository = currencyRepository;
+		}
 
-        public List<ExpenseDto> GetAll()
+		public List<ExpenseDto> GetAll()
         {
             return _expenseRepository
                 .GetAll()
@@ -42,8 +47,12 @@ namespace ExpenseGuardBackend.Services.Expenses
             {
                 Name = expense.Name,
                 Category = _categoryRepository.Get(expense.CategoryId),
-                Price = expense.Price,
-                SpendDate = expense.SpendDate,
+				Money = new Money()
+				{
+					Amount = expense.Price,
+					Currency = _currencyRepository.Get(expense.CurrencyId)
+				},
+				SpendDate = expense.SpendDate,
             };
             var createdExpense = _expenseRepository.Create(expenseToCreate);
             return ExpenseToDto(createdExpense);
@@ -54,7 +63,11 @@ namespace ExpenseGuardBackend.Services.Expenses
             var expenseToUpdate = new Expense()
             {
                 Category = _categoryRepository.Get(expense.CategoryId),
-                Price = expense.Price,
+                Money = new Money()
+                {
+                    Amount = expense.Price,
+                    Currency = _currencyRepository.Get(expense.CurrencyId)
+                },
                 SpendDate = expense.SpendDate,
             };
 
@@ -74,8 +87,10 @@ namespace ExpenseGuardBackend.Services.Expenses
 
         private ExpenseDto ExpenseToDto(Expense expense)
         {
-            var categoryDto = new CategoryDto(expense.Category.Id, expense.Category.Name, expense.Category.Description);
-            return new ExpenseDto(expense.Id, expense.Name, categoryDto, expense.Price, expense.SpendDate);
+			var currencyDto = new CurrencyDto(expense.Money.Currency.Id, expense.Money.Currency.Name, expense.Money.Currency.Code, expense.Money.Currency.Country);
+			var moneyDto = new MoneyDto(expense.Money.Amount, currencyDto);
+			var categoryDto = new CategoryDto(expense.Category.Id, expense.Category.Name, expense.Category.Description);
+            return new ExpenseDto(expense.Id, expense.Name, categoryDto, moneyDto, expense.SpendDate);
         }
     }
 }

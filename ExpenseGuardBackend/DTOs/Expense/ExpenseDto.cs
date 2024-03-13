@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Money;
 
 namespace ExpenseGuardBackend.DTOs.Expense
 {
@@ -7,7 +8,7 @@ namespace ExpenseGuardBackend.DTOs.Expense
 		int Id,
 		string Name,
 		CategoryDto Category,
-		decimal Price,
+		MoneyDto Money,
 		DateTime SpendDate
 	);
 }

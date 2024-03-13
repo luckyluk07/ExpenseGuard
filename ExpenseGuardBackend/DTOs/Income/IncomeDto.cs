@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Money;
 
 namespace ExpenseGuardBackend.DTOs.Income
 {
@@ -7,7 +8,7 @@ namespace ExpenseGuardBackend.DTOs.Income
 		int Id,
 		string Name,
 		DateTime ReceivedDate,
-		decimal Amount,
+		MoneyDto Money,
 		CategoryDto Category
 	);
 }

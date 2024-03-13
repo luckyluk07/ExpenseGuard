@@ -7,6 +7,7 @@ namespace ExpenseGuardBackend.DTOs.Expense
 		[Required] string Name,
 		[Required] int CategoryId,
 		[Required] decimal Price,
+		[Required] int CurrencyId,
 		[Required] DateTime SpendDate
 	);
 }

@@ -26,6 +26,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 10**: Implement usage of new Category class instead of category as string in other classes
 - **Day 11**: Restructure folders structure
 - **Day 12**: Add get method for currencies controller, services and repository
+- **Day 13**: Introduce Money class, add usage of it in other classes
 
 ## Technical goals
 

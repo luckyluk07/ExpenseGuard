@@ -1,40 +1,52 @@
 ﻿using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Repositories.Currencies;
 
 namespace ExpenseGuardBackend.Repositories.Expenses
 {
     public class ExpenseRepository : IExpenseRepository
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
         private int _lastElementId = 1;
         private readonly List<Expense> _expenses;
-        public ExpenseRepository(ICategoryRepository categoryRepository)
-        {
-            _categoryRepository = categoryRepository;
-            _expenses = new List<Expense>();
+		public ExpenseRepository(ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		{
+			_categoryRepository = categoryRepository;
+            _currencyRepository = currencyRepository;
+			_expenses = new List<Expense>();
 
             var expense1 = new Expense()
             {
                 Name = "name1",
-                Price = 10.1m,
-                Category = _categoryRepository.Get(1),
-                SpendDate = DateTime.Now
-            };
+                Money = new Money()
+                {
+                    Amount = 10.1m,
+                    Currency = _currencyRepository.Get(1)
+                },
+				Category = _categoryRepository.Get(1),
+				SpendDate = DateTime.Now
+			};
 
-            var expense2 = new Expense()
-            {
-                Name = "name2",
-                Price = 20.1m,
-                Category = _categoryRepository.Get(2),
-                SpendDate = DateTime.Now
-            };
+			var expense2 = new Expense()
+			{
+				Name = "name2",
+				Money = new Money()
+				{
+					Amount = 20.1m,
+					Currency = _currencyRepository.Get(1)
+				},
+				Category = _categoryRepository.Get(2),
+				SpendDate = DateTime.Now
+			};
 
-            Create(expense1);
-            Create(expense2);
-        }
+			Create(expense1);
+			Create(expense2);
+			_currencyRepository = currencyRepository;
+		}
 
-        public List<Expense> GetAll()
+		public List<Expense> GetAll()
         {
             return _expenses;
         }
@@ -68,7 +80,7 @@ namespace ExpenseGuardBackend.Repositories.Expenses
                 Name = expenseToAdd.Name,
                 SpendDate = expenseToAdd.SpendDate,
                 Category = expenseToAdd.Category,
-                Price = expenseToAdd.Price
+                Money = expenseToAdd.Money
             };
             _expenses.Add(newExpense);
             return newExpense;
@@ -84,7 +96,7 @@ namespace ExpenseGuardBackend.Repositories.Expenses
 
             expense.SpendDate = expenseToUpdate.SpendDate;
             expense.Category = expenseToUpdate.Category;
-            expense.Price = expenseToUpdate.Price;
+            expense.Money = expenseToUpdate.Money;
 
             return expense;
         }
