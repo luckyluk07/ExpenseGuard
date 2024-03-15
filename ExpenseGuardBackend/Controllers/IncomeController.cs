@@ -40,7 +40,7 @@ namespace ExpenseGuardBackend.Controllers
 			{
 				return BadRequest();
 			}
-			return Created("todo uri to new element", newIncome);
+			return Created($"{Url.Action(nameof(Create))}/{newIncome.Id}", newIncome);
 		}
 
 		[HttpPut("{id}")]

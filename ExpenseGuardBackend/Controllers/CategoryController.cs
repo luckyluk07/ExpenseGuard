@@ -40,7 +40,7 @@ namespace ExpenseGuardBackend.Controllers
 			{
 				return BadRequest();
 			}
-			return Created("todo add path", createdCategory);
+			return Created($"{Url.Action(nameof(Create))}/{createdCategory.Id}", createdCategory);
 		}
 
 		[HttpPut("{id}")]

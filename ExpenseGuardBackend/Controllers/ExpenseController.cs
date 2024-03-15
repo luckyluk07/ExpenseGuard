@@ -41,7 +41,7 @@ namespace ExpenseGuardBackend.Controllers
 			{
 				return BadRequest();
 			}
-			return Created("todo complete URI", newExpense);
+			return Created($"{Url.Action(nameof(Create))}/{newExpense.Id}", newExpense);
 		}
 
 		[HttpPut("{id}")]
