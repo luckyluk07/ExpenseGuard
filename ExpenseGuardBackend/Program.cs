@@ -1,6 +1,7 @@
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
+using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.Incomes;
 using ExpenseGuardBackend.Services.Categories;
 using ExpenseGuardBackend.Services.Currencies;
@@ -22,6 +23,7 @@ builder.Services.AddSingleton<IExpenseRepository,  ExpenseRepository>();
 builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
 builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
 builder.Services.AddSingleton<ICurrencyRepository, CurrencyRepository>();
+builder.Services.AddSingleton<IFinanceRepository, FinanceRepository>();
 
 // Business
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
