@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using ExpenseGuardBackend.Repositories.Currencies;
 
 namespace ExpenseGuardBackend.Repositories.Finances
 {
@@ -7,10 +8,26 @@ namespace ExpenseGuardBackend.Repositories.Finances
 		private int _lastUsedId;
 		private readonly List<Finance> _finances;
 
-		public FinanceRepository()
+		private readonly ICurrencyRepository _currencyRepository;
+
+		public FinanceRepository(ICurrencyRepository currencyRepository)
 		{
 			_lastUsedId = 0;
 			_finances = new List<Finance>();
+			_currencyRepository = currencyRepository;
+			var fin = new Finance()
+			{
+				CurrencySavings = new List<Money>() {
+					new Money()
+					{
+						Amount = 10,
+						Currency = _currencyRepository.Get(0)
+					},
+				},
+				Expenses = new List<Expense>(), 
+				Incomes = new List<Income>()
+			};
+			Create(fin);
 		}
 
 		public List<Finance> GetAll()

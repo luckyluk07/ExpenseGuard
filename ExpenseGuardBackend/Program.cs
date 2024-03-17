@@ -6,6 +6,7 @@ using ExpenseGuardBackend.Repositories.Incomes;
 using ExpenseGuardBackend.Services.Categories;
 using ExpenseGuardBackend.Services.Currencies;
 using ExpenseGuardBackend.Services.Expenses;
+using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Services.Incomes;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IIncomeService, IncomeService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICurrencyService,  CurrencyService>();
+builder.Services.AddScoped<IFinanceService, FinanceService>();
 
 var app = builder.Build();
 

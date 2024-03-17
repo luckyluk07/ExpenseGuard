@@ -1,6 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.Services.Currencies;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
