@@ -1,6 +1,6 @@
 ﻿using ExpenseGuardBackend.DTOs.Currencies;
-using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Currencies;
+using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Currencies
 {
@@ -16,7 +16,7 @@ namespace ExpenseGuardBackend.Services.Currencies
 		public List<CurrencyDto> GetCurrencies()
 		{
 			return _currencyRepository.Get()
-				.Select(MapCurrencyToDto)
+				.Select(DtoMapper.CurrencyToDto)
 				.ToList();
 		}
 
@@ -27,12 +27,7 @@ namespace ExpenseGuardBackend.Services.Currencies
 			{
 				return null;
 			}
-			return MapCurrencyToDto(currency);
-		}
-
-		private CurrencyDto MapCurrencyToDto(Currency currency)
-		{
-			return new CurrencyDto(currency.Id, currency.Name, currency.Code, currency.Country);
+			return DtoMapper.CurrencyToDto(currency);
 		}
 	}
 }

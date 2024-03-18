@@ -1,15 +1,13 @@
-﻿using ExpenseGuardBackend.DTOs.Categories;
-using ExpenseGuardBackend.DTOs.Currencies;
-using ExpenseGuardBackend.DTOs.Expense;
-using ExpenseGuardBackend.DTOs.Money;
+﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
+using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Expenses
 {
-    public class ExpenseService : IExpenseService
+	public class ExpenseService : IExpenseService
     {
         private readonly IExpenseRepository _expenseRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -26,7 +24,7 @@ namespace ExpenseGuardBackend.Services.Expenses
         {
             return _expenseRepository
                 .GetAll()
-                .Select(ExpenseToDto)
+                .Select(DtoMapper.ExpenseToDto)
                 .ToList();
         }
 
@@ -37,7 +35,7 @@ namespace ExpenseGuardBackend.Services.Expenses
             {
                 return null;
             }
-            return ExpenseToDto(expense);
+            return DtoMapper.ExpenseToDto(expense);
 
         }
 
@@ -55,7 +53,7 @@ namespace ExpenseGuardBackend.Services.Expenses
 				SpendDate = expense.SpendDate,
             };
             var createdExpense = _expenseRepository.Create(expenseToCreate);
-            return ExpenseToDto(createdExpense);
+            return DtoMapper.ExpenseToDto(createdExpense);
         }
 
         public ExpenseDto? Update(UpdateExpenseDto expense, int id)
@@ -77,20 +75,12 @@ namespace ExpenseGuardBackend.Services.Expenses
                 return null;
             }
 
-            return ExpenseToDto(updatedExpense);
+            return DtoMapper.ExpenseToDto(updatedExpense);
         }
 
         public bool Delete(int id)
         {
             return _expenseRepository.Delete(id);
-        }
-
-        private ExpenseDto ExpenseToDto(Expense expense)
-        {
-			var currencyDto = new CurrencyDto(expense.Money.Currency.Id, expense.Money.Currency.Name, expense.Money.Currency.Code, expense.Money.Currency.Country);
-			var moneyDto = new MoneyDto(expense.Money.Amount, currencyDto);
-			var categoryDto = new CategoryDto(expense.Category.Id, expense.Category.Name, expense.Category.Description);
-            return new ExpenseDto(expense.Id, expense.Name, categoryDto, moneyDto, expense.SpendDate);
         }
     }
 }

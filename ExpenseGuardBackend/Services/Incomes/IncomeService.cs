@@ -1,15 +1,13 @@
-﻿using ExpenseGuardBackend.DTOs.Categories;
-using ExpenseGuardBackend.DTOs.Currencies;
-using ExpenseGuardBackend.DTOs.Income;
-using ExpenseGuardBackend.DTOs.Money;
+﻿using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Incomes;
+using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Incomes
 {
-    public class IncomeService : IIncomeService
+	public class IncomeService : IIncomeService
     {
         private readonly IIncomeRepository _incomeRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -26,7 +24,7 @@ namespace ExpenseGuardBackend.Services.Incomes
         {
             var allIncomes = _incomeRepository.GetAll();
             return _incomeRepository.GetAll()
-                .Select(IncomeToDto)
+                .Select(DtoMapper.IncomeToDto)
                 .ToList();
         }
 
@@ -37,7 +35,7 @@ namespace ExpenseGuardBackend.Services.Incomes
             {
                 return null;
             }
-            return IncomeToDto(income);
+            return DtoMapper.IncomeToDto(income);
         }
 
         public IncomeDto Create(CreateIncomeDto income)
@@ -55,7 +53,7 @@ namespace ExpenseGuardBackend.Services.Incomes
             };
 
             var createdIncome = _incomeRepository.Create(incomeToCreate);
-            return IncomeToDto(createdIncome);
+            return DtoMapper.IncomeToDto(createdIncome);
         }
 
         public bool Delete(int id)
@@ -80,15 +78,7 @@ namespace ExpenseGuardBackend.Services.Incomes
             {
                 return null;
             }
-            return IncomeToDto(updatedIncome);
-        }
-
-        private IncomeDto IncomeToDto(Income income)
-        {
-            var currencyDto = new CurrencyDto(income.Money.Currency.Id, income.Money.Currency.Name, income.Money.Currency.Code, income.Money.Currency.Country);
-            var moneyDto = new MoneyDto(income.Money.Amount, currencyDto);
-            var categoryDto = new CategoryDto(income.Category.Id, income.Category.Name, income.Category.Description);
-            return new IncomeDto(income.Id, income.Name, income.ReceivedDate, moneyDto, categoryDto);
+            return DtoMapper.IncomeToDto(updatedIncome);
         }
     }
 }

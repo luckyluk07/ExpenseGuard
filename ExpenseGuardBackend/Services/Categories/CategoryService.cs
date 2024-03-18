@@ -1,6 +1,7 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
+using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Categories
 {
@@ -17,7 +18,7 @@ namespace ExpenseGuardBackend.Services.Categories
 		{
 			return _categoryRepository
 				.GetAll()
-				.Select(CategoryToDto)
+				.Select(DtoMapper.CategoryToDto)
 				.ToList();
 		}
 
@@ -28,7 +29,7 @@ namespace ExpenseGuardBackend.Services.Categories
 			{
 				return null;
 			}
-			return CategoryToDto(category);
+			return DtoMapper.CategoryToDto(category);
 		}
 
 		public CategoryDto Create(CreateCategoryDto createCategoryDto)
@@ -40,7 +41,7 @@ namespace ExpenseGuardBackend.Services.Categories
 			};
 			
 			var createdCategory = _categoryRepository.Create(category);
-			return CategoryToDto(createdCategory);
+			return DtoMapper.CategoryToDto(createdCategory);
 		}
 
 		public CategoryDto Update(UpdateCategoryDto updateCategoryDto, int id)
@@ -56,18 +57,12 @@ namespace ExpenseGuardBackend.Services.Categories
 			{
 				return null;
 			}
-			return CategoryToDto(updatedCategory);
+			return DtoMapper.CategoryToDto(updatedCategory);
 		}
 
 		public bool Delete(int id)
 		{
 			return _categoryRepository.Remove(id);
 		}
-
-		private CategoryDto CategoryToDto(Category category)
-		{
-			return new CategoryDto(category.Id, category.Name, category.Description);
-		}
-
 	}
 }
