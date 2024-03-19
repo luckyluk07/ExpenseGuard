@@ -12,9 +12,10 @@ namespace ExpenseGuardBackend.Shared
 	{
 		public static FinanceDto FinanceToDto(Finance finance)
 		{
-			return new FinanceDto(finance.CurrencySavings.Select(x => MoneyToDto(x)).ToList(),
-											finance.Incomes.Select(x => IncomeToDto(x)).ToList(),
-											finance.Expenses.Select(x => ExpenseToDto(x)).ToList());
+			return new FinanceDto(finance.Id,
+									finance.CurrencySavings.Select(x => MoneyToDto(x)).ToList(),
+									finance.Incomes.Select(x => IncomeToDto(x)).ToList(),
+									finance.Expenses.Select(x => ExpenseToDto(x)).ToList());
 		}
 
 		public static CurrencyDto CurrencyToDto(Currency currency)

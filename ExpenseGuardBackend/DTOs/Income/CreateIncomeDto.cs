@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ExpenseGuardBackend.Models;
 
 namespace ExpenseGuardBackend.DTOs.Income
 {

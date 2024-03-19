@@ -6,6 +6,8 @@ namespace ExpenseGuardBackend.Services.Finances
     {
         FinanceDto? GetFinance(int id);
         List<FinanceDto> GetFinances();
-        bool Remove(int id);
+        FinanceDto Create(CreateFinanceDto createFinanceDto);
+        FinanceDto? Update(UpdateFinanceDto finance, int id);
+		bool Remove(int id);
     }
 }
