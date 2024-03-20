@@ -8,6 +8,7 @@ namespace ExpenseGuardBackend.DTOs.Income
 		[Required] DateTime ReceivedDate,
 		[Required] decimal Amount,
 		[Required] int CurrencyId,
-		[Required] int CategoryId
+		[Required] int CategoryId,
+		[Required] int FinanceId
 	);
 }

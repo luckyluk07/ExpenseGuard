@@ -1,8 +1,10 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
+using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
+using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Expenses
@@ -12,12 +14,14 @@ namespace ExpenseGuardBackend.Services.Expenses
         private readonly IExpenseRepository _expenseRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICurrencyRepository _currencyRepository;
+        private readonly IFinanceService _financeService;
 
-		public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository, IFinanceService financeService)
 		{
 			_expenseRepository = expenseRepository;
 			_categoryRepository = categoryRepository;
 			_currencyRepository = currencyRepository;
+			_financeService = financeService;
 		}
 
 		public List<ExpenseDto> GetAll()
@@ -53,7 +57,11 @@ namespace ExpenseGuardBackend.Services.Expenses
 				SpendDate = expense.SpendDate,
             };
             var createdExpense = _expenseRepository.Create(expenseToCreate);
-            return DtoMapper.ExpenseToDto(createdExpense);
+            var expenseDto = DtoMapper.ExpenseToDto(createdExpense);
+
+			_financeService.Update(new DTOs.Finances.UpdateFinanceDto(new List<IncomeDto>(), new List<ExpenseDto>() { expenseDto }), expense.FinanceId);
+
+			return expenseDto;
         }
 
         public ExpenseDto? Update(UpdateExpenseDto expense, int id)

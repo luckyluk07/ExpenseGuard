@@ -76,12 +76,36 @@ namespace ExpenseGuardBackend.Services.Finances
 			var newExpenses = finance.Expenses.Select(x => _expenseRepository.Get(x.Id)).ToList();
 			var newIncomes = finance.Incomes.Select(x => _incomeRepository.Get(x.Id)).ToList();
 
+            // todo refactor below nested loops
+            foreach (var expense in newExpenses)
+            {
+                foreach (var currencyMoney in currentFinance.CurrencySavings)
+                {
+                    if (expense.Money.Currency.Code == currencyMoney.Currency.Code)
+                    {
+                        currencyMoney.Amount -= expense.Money.Amount;
+                    }
+                }
+            }
+
+			// todo refactor below nested loops
+			foreach (var income in newIncomes)
+			{
+				foreach (var currencyMoney in currentFinance.CurrencySavings)
+				{
+					if (income.Money.Currency.Code == currencyMoney.Currency.Code)
+					{
+						currencyMoney.Amount += income.Money.Amount;
+					}
+				}
+			}
+
 			var financeToUpdate = new Finance()
             {
                 Id = id,
                 CurrencySavings = currentFinance.CurrencySavings,
 				Expenses = new List<Expense>(currentFinance.Expenses.Concat(newExpenses)),
-                Incomes = new List<Income>(currentFinance.Incomes.Concat(newIncomes)),
+                Incomes = new List<Income>(currentFinance.Incomes.Concat(newIncomes))
 			};
 
 			var updatedFinance = _financeRepository.Update(financeToUpdate, id);

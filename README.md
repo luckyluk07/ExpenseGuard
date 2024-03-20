@@ -27,6 +27,13 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 11**: Restructure folders structure
 - **Day 12**: Add get method for currencies controller, services and repository
 - **Day 13**: Introduce Money class, add usage of it in other classes
+- **Day 14**: Init React project
+- **Day 15**: Fix returning new resource location from post methods
+- **Day 16**: Add finance repository and model
+- **Day 17**: Add gets and delete for finance controller and service
+- **Day 18**: Create DTO mapper static class
+- **Day 19**: Add create and update for finance controller and service
+- **Day 20**: Update money in finance on adding incomes and expenses
 
 ## Technical goals
 

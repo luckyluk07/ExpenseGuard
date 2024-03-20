@@ -1,8 +1,10 @@
-﻿using ExpenseGuardBackend.DTOs.Income;
+﻿using ExpenseGuardBackend.DTOs.Expense;
+using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Incomes;
+using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Shared;
 
 namespace ExpenseGuardBackend.Services.Incomes
@@ -12,12 +14,14 @@ namespace ExpenseGuardBackend.Services.Incomes
         private readonly IIncomeRepository _incomeRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICurrencyRepository _currencyRepository;
+        private readonly IFinanceService _financeService;
 
-		public IncomeService(IIncomeRepository incomeRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository)
+		public IncomeService(IIncomeRepository incomeRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository, IFinanceService financeService)
 		{
 			_incomeRepository = incomeRepository;
 			_categoryRepository = categoryRepository;
 			_currencyRepository = currencyRepository;
+			_financeService = financeService;
 		}
 
 		public List<IncomeDto> GetAll()
@@ -53,8 +57,13 @@ namespace ExpenseGuardBackend.Services.Incomes
             };
 
             var createdIncome = _incomeRepository.Create(incomeToCreate);
-            return DtoMapper.IncomeToDto(createdIncome);
-        }
+            var incomeDto = DtoMapper.IncomeToDto(createdIncome);
+
+            _financeService.Update(new DTOs.Finances.UpdateFinanceDto(new List<IncomeDto>() { incomeDto }, new List<ExpenseDto>()), income.FinanceId);
+
+            return incomeDto;
+
+		}
 
         public bool Delete(int id)
         {
