@@ -57,7 +57,8 @@ namespace ExpenseGuardBackend.Services.Finances
             {
                 CurrencySavings = currencySaving,
                 Expenses = new List<Expense>(),
-                Incomes = new List<Income>()
+                Incomes = new List<Income>(),
+                Investments = new List<InvestmentDeposit>()
             };
 
             var createdFinance = _financeRepository.Create(financeToCreate);

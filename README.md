@@ -35,6 +35,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 19**: Add create and update for finance controller and service
 - **Day 20**: Update money in finance on adding incomes and expenses
 - **Day 21**: Add investment deposit repository and model, init unit test project
+- **Day 22**: Add gets and delete service methods for investment deposit
 
 ## Technical goals
 

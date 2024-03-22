@@ -8,6 +8,7 @@ namespace ExpenseGuardBackend.Repositories.Finances
 		Finance? Get(int id);
 		List<Finance> GetAll();
 		bool Remove(int id);
+		bool RemoveInvestmentDeposit(int investmentId, int financeId);
 		Finance? Update(Finance updateData, int id);
 	}
 }

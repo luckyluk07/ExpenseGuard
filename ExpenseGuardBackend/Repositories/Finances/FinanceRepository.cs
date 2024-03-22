@@ -25,7 +25,8 @@ namespace ExpenseGuardBackend.Repositories.Finances
 					},
 				},
 				Expenses = new List<Expense>(), 
-				Incomes = new List<Income>()
+				Incomes = new List<Income>(),
+				Investments = new List<InvestmentDeposit>()
 			};
 			Create(fin);
 		}
@@ -47,7 +48,8 @@ namespace ExpenseGuardBackend.Repositories.Finances
 				Id = _lastUsedId++,
 				CurrencySavings = newFinance.CurrencySavings,
 				Expenses = new List<Expense>(),
-				Incomes = new List<Income>()
+				Incomes = new List<Income>(),
+				Investments = new List<InvestmentDeposit>()
 			};
 			_finances.Add(newFinance);
 			return financeToAdd;
@@ -66,6 +68,40 @@ namespace ExpenseGuardBackend.Repositories.Finances
 			financeToUpdate.Incomes = updateData.Incomes;
 
 			return financeToUpdate;
+		}
+
+		// todo test below method
+		public bool RemoveInvestmentDeposit(int investmentId, int financeId)
+		{
+			var finance = _finances.FirstOrDefault(x => x.Id == financeId);
+			if (finance is null)
+			{
+				return false;
+			}
+
+			var investment = finance.Investments.FirstOrDefault(x => x.Id == investmentId);
+			if (investment is null)
+			{
+				return false;
+			}
+
+			var currencyToUpdate = finance.CurrencySavings.FirstOrDefault(x => x.Currency.Code == investment.StartMoney.Currency.Code);
+			if (currencyToUpdate is null)
+			{
+				finance.CurrencySavings.Add(new Money()
+				{
+					Amount = 0,
+					Currency = currencyToUpdate.Currency
+				});
+			}
+			else
+			{
+				currencyToUpdate.Amount += investment.StartMoney.Amount;
+			}
+
+			finance.Investments.Remove(investment);
+			return true;
+
 		}
 
 		public bool Remove(int id)

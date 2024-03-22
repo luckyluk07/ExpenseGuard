@@ -3,6 +3,7 @@ using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Finances;
 using ExpenseGuardBackend.DTOs.Income;
+using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.DTOs.Money;
 using ExpenseGuardBackend.Models;
 
@@ -15,7 +16,8 @@ namespace ExpenseGuardBackend.Shared
 			return new FinanceDto(finance.Id,
 									finance.CurrencySavings.Select(x => MoneyToDto(x)).ToList(),
 									finance.Incomes.Select(x => IncomeToDto(x)).ToList(),
-									finance.Expenses.Select(x => ExpenseToDto(x)).ToList());
+									finance.Expenses.Select(x => ExpenseToDto(x)).ToList(),
+									finance.Investments.Select(x => InvestmentDepositToDto(x)).ToList());
 		}
 
 		public static CurrencyDto CurrencyToDto(Currency currency)
@@ -47,6 +49,19 @@ namespace ExpenseGuardBackend.Shared
 		public static CategoryDto CategoryToDto(Category category)
 		{
 			return new CategoryDto(category.Id, category.Name, category.Description);
+		}
+
+		public static InvestmentDepositDto InvestmentDepositToDto(InvestmentDeposit investmentDeposit)
+		{
+			return new InvestmentDepositDto(
+					investmentDeposit.Id,
+					investmentDeposit.Name,
+					investmentDeposit.StartDate,
+					investmentDeposit.EndDate,
+					MoneyToDto(investmentDeposit.StartMoney),
+					investmentDeposit.YearCapitalizationAmount,
+					investmentDeposit.InterestRate
+				);
 		}
 	}
 }

@@ -9,6 +9,7 @@ using ExpenseGuardBackend.Services.Currencies;
 using ExpenseGuardBackend.Services.Expenses;
 using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Services.Incomes;
+using ExpenseGuardBackend.Services.InvestmentDeposits;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Data Access
-builder.Services.AddSingleton<IExpenseRepository,  ExpenseRepository>();
+builder.Services.AddSingleton<IExpenseRepository, ExpenseRepository>();
 builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
 builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
 builder.Services.AddSingleton<ICurrencyRepository, CurrencyRepository>();
@@ -32,8 +33,9 @@ builder.Services.AddSingleton<IInvestmentDepositRepository, InvestmentDepositRep
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IIncomeService, IncomeService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICurrencyService,  CurrencyService>();
+builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IFinanceService, FinanceService>();
+builder.Services.AddScoped<IInvestmentDepositService, InvestmentDepositService>();
 
 var app = builder.Build();
 
