@@ -70,6 +70,18 @@ namespace ExpenseGuardBackend.Repositories.Finances
 			return financeToUpdate;
 		}
 
+		public bool AddInvestmentDeposit(InvestmentDeposit investmentDeposit, int financeId)
+		{
+			var finance = Get(financeId);
+			if (finance is null)
+			{
+				return false;
+			}
+
+			finance.Investments.Add(investmentDeposit);
+			return true;
+		}
+
 		// todo test below method
 		public bool RemoveInvestmentDeposit(int investmentId, int financeId)
 		{

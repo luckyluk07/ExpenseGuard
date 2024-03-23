@@ -7,5 +7,6 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 		InvestmentDepositDto? Get(int id);
 		List<InvestmentDepositDto> GetAll();
 		bool Remove(int id, int financeId);
+		InvestmentDepositDto Create(CreateInvestmentDepositDto createInvestmentDepositDto);
 	}
 }

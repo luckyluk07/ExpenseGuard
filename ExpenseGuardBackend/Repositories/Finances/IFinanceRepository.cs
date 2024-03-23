@@ -10,5 +10,6 @@ namespace ExpenseGuardBackend.Repositories.Finances
 		bool Remove(int id);
 		bool RemoveInvestmentDeposit(int investmentId, int financeId);
 		Finance? Update(Finance updateData, int id);
+		bool AddInvestmentDeposit(InvestmentDeposit investmentDeposit, int financeId);
 	}
 }
