@@ -3,7 +3,7 @@ using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.InvestmentDeposits;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.InvestmentDeposits
 {

@@ -1,27 +1,22 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Income;
-using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Repositories.Categories;
-using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
 using ExpenseGuardBackend.Services.Finances;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.Expenses
 {
 	public class ExpenseService : IExpenseService
     {
         private readonly IExpenseRepository _expenseRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly ICurrencyRepository _currencyRepository;
         private readonly IFinanceService _financeService;
+        private readonly EntityMapper _entityMapper;
 
-		public ExpenseService(IExpenseRepository expenseRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository, IFinanceService financeService)
+		public ExpenseService(IExpenseRepository expenseRepository, IFinanceService financeService, EntityMapper entityMapper)
 		{
 			_expenseRepository = expenseRepository;
-			_categoryRepository = categoryRepository;
-			_currencyRepository = currencyRepository;
 			_financeService = financeService;
+			_entityMapper = entityMapper;
 		}
 
 		public List<ExpenseDto> GetAll()
@@ -45,17 +40,7 @@ namespace ExpenseGuardBackend.Services.Expenses
 
         public ExpenseDto Create(CreateExpenseDto expense)
         {
-            var expenseToCreate = new Expense()
-            {
-                Name = expense.Name,
-                Category = _categoryRepository.Get(expense.CategoryId),
-				Money = new Money()
-				{
-					Amount = expense.Price,
-					Currency = _currencyRepository.Get(expense.CurrencyId)
-				},
-				SpendDate = expense.SpendDate,
-            };
+            var expenseToCreate = _entityMapper.CreateExpenseDtoToExpense(expense);
             var createdExpense = _expenseRepository.Create(expenseToCreate);
             var expenseDto = DtoMapper.ExpenseToDto(createdExpense);
 
@@ -66,17 +51,7 @@ namespace ExpenseGuardBackend.Services.Expenses
 
         public ExpenseDto? Update(UpdateExpenseDto expense, int id)
         {
-            var expenseToUpdate = new Expense()
-            {
-                Category = _categoryRepository.Get(expense.CategoryId),
-                Money = new Money()
-                {
-                    Amount = expense.Price,
-                    Currency = _currencyRepository.Get(expense.CurrencyId)
-                },
-                SpendDate = expense.SpendDate,
-            };
-
+            var expenseToUpdate = _entityMapper.UpdateExpenseDtoToExpense(expense);
             var updatedExpense = _expenseRepository.Update(expenseToUpdate, id);
             if (updatedExpense is null)
             {

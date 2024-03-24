@@ -5,7 +5,7 @@ using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
 using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.Incomes;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.Finances
 {

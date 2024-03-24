@@ -1,6 +1,6 @@
 ﻿using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.Repositories.Currencies;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.Currencies
 {

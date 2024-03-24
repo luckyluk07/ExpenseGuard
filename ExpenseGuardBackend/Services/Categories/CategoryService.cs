@@ -1,7 +1,7 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.Categories
 {

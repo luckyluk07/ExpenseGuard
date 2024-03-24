@@ -1,3 +1,4 @@
+using ExpenseGuardBackend.Mappers;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
@@ -36,6 +37,9 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IFinanceService, FinanceService>();
 builder.Services.AddScoped<IInvestmentDepositService, InvestmentDepositService>();
+
+// Shared
+builder.Services.AddScoped<EntityMapper, EntityMapper>();
 
 var app = builder.Build();
 

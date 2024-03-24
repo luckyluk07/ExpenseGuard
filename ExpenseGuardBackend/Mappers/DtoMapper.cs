@@ -7,7 +7,7 @@ using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.DTOs.Money;
 using ExpenseGuardBackend.Models;
 
-namespace ExpenseGuardBackend.Shared
+namespace ExpenseGuardBackend.Mappers
 {
 	public static class DtoMapper
 	{

@@ -28,7 +28,7 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 					Currency = _currencyRepository.Get(1)
 				},
 				ReceivedDate = DateTime.Now.AddDays(-5),
-				Category = _categoryRepository.Get(1)
+				Category = _categoryRepository.Get(0)
 			};
 			var income2 = new Income()
 			{
@@ -39,7 +39,7 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 					Currency = _currencyRepository.Get(1)
 				},
 				ReceivedDate = DateTime.UtcNow.AddDays(-10),
-				Category = _categoryRepository.Get(2)
+				Category = _categoryRepository.Get(1)
 			};
 			Create(income1);
 			Create(income2);

@@ -1,27 +1,22 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Income;
-using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Repositories.Categories;
-using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Incomes;
 using ExpenseGuardBackend.Services.Finances;
-using ExpenseGuardBackend.Shared;
+using ExpenseGuardBackend.Mappers;
 
 namespace ExpenseGuardBackend.Services.Incomes
 {
 	public class IncomeService : IIncomeService
     {
         private readonly IIncomeRepository _incomeRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly ICurrencyRepository _currencyRepository;
         private readonly IFinanceService _financeService;
+        private readonly EntityMapper _entityMapper;
 
-		public IncomeService(IIncomeRepository incomeRepository, ICategoryRepository categoryRepository, ICurrencyRepository currencyRepository, IFinanceService financeService)
+		public IncomeService(IIncomeRepository incomeRepository, IFinanceService financeService, EntityMapper entityMapper)
 		{
 			_incomeRepository = incomeRepository;
-			_categoryRepository = categoryRepository;
-			_currencyRepository = currencyRepository;
 			_financeService = financeService;
+			_entityMapper = entityMapper;
 		}
 
 		public List<IncomeDto> GetAll()
@@ -44,18 +39,7 @@ namespace ExpenseGuardBackend.Services.Incomes
 
         public IncomeDto Create(CreateIncomeDto income)
         {
-            var incomeToCreate = new Income()
-            {
-				Money = new Money()
-				{
-					Amount = income.Amount,
-					Currency = _currencyRepository.Get(income.CurrencyId)
-				},
-				Name = income.Name,
-                ReceivedDate = income.ReceivedDate,
-                Category = _categoryRepository.Get(income.CategoryId)
-            };
-
+            var incomeToCreate = _entityMapper.CreateIncomeDtoToIncome(income);
             var createdIncome = _incomeRepository.Create(incomeToCreate);
             var incomeDto = DtoMapper.IncomeToDto(createdIncome);
 
@@ -72,16 +56,7 @@ namespace ExpenseGuardBackend.Services.Incomes
 
         public IncomeDto? Update(UpdateIncomeDto income, int id)
         {
-            var incomeToUpdate = new Income()
-            {
-                Money = new Money()
-                {
-                    Amount = income.Amount,
-                    Currency = _currencyRepository.Get(income.CurrencyId)
-                },
-                ReceivedDate = income.ReceivedDate,
-                Category = _categoryRepository.Get(income.CategoryId)
-            };
+            var incomeToUpdate = _entityMapper.UpdateIncomeDtoToIncome(income);
             var updatedIncome = _incomeRepository.Update(incomeToUpdate, id);
             if (updatedIncome is null)
             {

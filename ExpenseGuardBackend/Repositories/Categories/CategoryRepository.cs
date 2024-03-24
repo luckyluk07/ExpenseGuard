@@ -8,7 +8,7 @@ namespace ExpenseGuardBackend.Repositories.Categories
 		private List<Category> _categories;
 		public CategoryRepository()
 		{
-			_lastUsedId = 1;
+			_lastUsedId = 0;
 			_categories = new List<Category>();
 			var category1 = new Category()
 			{
