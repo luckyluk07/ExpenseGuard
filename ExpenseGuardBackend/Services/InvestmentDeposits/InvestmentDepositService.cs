@@ -1,6 +1,4 @@
 ﻿using ExpenseGuardBackend.DTOs.InvestmentDeposits;
-using ExpenseGuardBackend.Models;
-using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.InvestmentDeposits;
 using ExpenseGuardBackend.Mappers;
@@ -11,14 +9,14 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 	{
 		private readonly IInvestmentDepositRepository _investmentDepositRepository;
 		private readonly IFinanceRepository _financeRepository;
-		private readonly ICurrencyRepository _currencyRepository;
+		private readonly EntityMapper _entityMapper;
 
 
-		public InvestmentDepositService(IInvestmentDepositRepository investmentDepositRepository, IFinanceRepository financeRepository, ICurrencyRepository currencyRepository)
+		public InvestmentDepositService(IInvestmentDepositRepository investmentDepositRepository, IFinanceRepository financeRepository, EntityMapper entityMapper)
 		{
 			_investmentDepositRepository = investmentDepositRepository;
 			_financeRepository = financeRepository;
-			_currencyRepository = currencyRepository;
+			_entityMapper = entityMapper;
 		}
 
 		public List<InvestmentDepositDto> GetAll()
@@ -38,19 +36,7 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 		public InvestmentDepositDto Create(CreateInvestmentDepositDto createInvestmentDepositDto)
 		{
 			// todo add entity model mapper
-			var investmentDeposit = new InvestmentDeposit()
-			{
-				YearCapitalizationAmount = createInvestmentDepositDto.YearCapitalizationAmount,
-				EndDate = createInvestmentDepositDto.EndDate,
-				InterestRate = createInvestmentDepositDto.InterestRate,
-				Name = createInvestmentDepositDto.Name,
-				StartDate = createInvestmentDepositDto.StartDate,
-				StartMoney = new Money()
-				{
-					Amount = createInvestmentDepositDto.StartMoney.Amount,
-					Currency = _currencyRepository.Get(createInvestmentDepositDto.StartMoney.CurrencyId)					
-				}
-			};
+			var investmentDeposit = _entityMapper.CreateInvestmentDepositDtoToInvestmentDeposit(createInvestmentDepositDto);
 			var createdInvestment = _investmentDepositRepository.Create(investmentDeposit);
 
 			_financeRepository.AddInvestmentDeposit(createdInvestment, createInvestmentDepositDto.FinanceId);

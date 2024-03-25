@@ -38,6 +38,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 22**: Add gets and delete service methods for investment deposit
 - **Day 23**: Add create service method and create controller for investment deposit
 - **Day 24**: Create entity mapper class and introduce it in income and expense services
+- **Day 25**: Continue adding usage of entity mapper, start drawing entities diagram
 
 ## Technical goals
 

@@ -13,15 +13,13 @@ namespace ExpenseGuardBackend.Services.Finances
     {
         private readonly IFinanceRepository _financeRepository;
         private readonly ICurrencyRepository _currencyRepository;
-        private readonly ICategoryRepository _categoryRepository;
         private readonly IIncomeRepository _incomeRepository;
         private readonly IExpenseRepository _expenseRepository;
 
-		public FinanceService(IFinanceRepository financeRepository, ICurrencyRepository currencyRepository, ICategoryRepository categoryRepository, IIncomeRepository incomeRepository, IExpenseRepository expenseRepository)
+		public FinanceService(IFinanceRepository financeRepository, ICurrencyRepository currencyRepository, IIncomeRepository incomeRepository, IExpenseRepository expenseRepository)
 		{
 			_financeRepository = financeRepository;
 			_currencyRepository = currencyRepository;
-			_categoryRepository = categoryRepository;
 			_incomeRepository = incomeRepository;
 			_expenseRepository = expenseRepository;
 		}

@@ -8,10 +8,12 @@ namespace ExpenseGuardBackend.Services.Categories
 	public class CategoryService : ICategoryService
 	{
 		private readonly ICategoryRepository _categoryRepository;
+		private readonly EntityMapper _entityMapper;
 
-		public CategoryService(ICategoryRepository categoryRepository)
+		public CategoryService(ICategoryRepository categoryRepository, EntityMapper entityMapper)
 		{
 			_categoryRepository = categoryRepository;
+			_entityMapper = entityMapper;
 		}
 
 		public List<CategoryDto> GetAll()
@@ -34,23 +36,14 @@ namespace ExpenseGuardBackend.Services.Categories
 
 		public CategoryDto Create(CreateCategoryDto createCategoryDto)
 		{
-			var category = new Category()
-			{
-				Name = createCategoryDto.Name,
-				Description = createCategoryDto.Description
-			};
-			
+			var category = _entityMapper.CreateCategoryDtoToCategory(createCategoryDto);		
 			var createdCategory = _categoryRepository.Create(category);
 			return DtoMapper.CategoryToDto(createdCategory);
 		}
 
 		public CategoryDto Update(UpdateCategoryDto updateCategoryDto, int id)
 		{
-			var category = new Category()
-			{
-				Name = updateCategoryDto.Name,
-				Description = updateCategoryDto.Description
-			};
+			var category = _entityMapper.UpdateCategoryDtoToCategory(updateCategoryDto);
 
 			var updatedCategory = _categoryRepository.Updated(category, id);
 			if (updatedCategory is null)

@@ -1,5 +1,7 @@
-﻿using ExpenseGuardBackend.DTOs.Expense;
+﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Income;
+using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
@@ -73,6 +75,41 @@ namespace ExpenseGuardBackend.Mappers
 					Currency = _currencyRepository.Get(updateExpenseDto.CurrencyId)
 				},
 				SpendDate = updateExpenseDto.SpendDate,
+			};
+		}
+
+		public Category CreateCategoryDtoToCategory(CreateCategoryDto createCategoryDto)
+		{
+			return new Category()
+			{
+				Name = createCategoryDto.Name,
+				Description = createCategoryDto.Description
+			};
+		}
+
+		public Category UpdateCategoryDtoToCategory(UpdateCategoryDto updateCategiryDto)
+		{
+			return new Category()
+			{
+				Name = updateCategiryDto.Name,
+				Description = updateCategiryDto.Description
+			};
+		}
+
+		public InvestmentDeposit CreateInvestmentDepositDtoToInvestmentDeposit(CreateInvestmentDepositDto createInvestmentDepositDto)
+		{
+			return new InvestmentDeposit()
+			{
+				YearCapitalizationAmount = createInvestmentDepositDto.YearCapitalizationAmount,
+				EndDate = createInvestmentDepositDto.EndDate,
+				InterestRate = createInvestmentDepositDto.InterestRate,
+				Name = createInvestmentDepositDto.Name,
+				StartDate = createInvestmentDepositDto.StartDate,
+				StartMoney = new Money()
+				{
+					Amount = createInvestmentDepositDto.StartMoney.Amount,
+					Currency = _currencyRepository.Get(createInvestmentDepositDto.StartMoney.CurrencyId)
+				}
 			};
 		}
 	}
