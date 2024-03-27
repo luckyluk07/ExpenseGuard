@@ -1,4 +1,5 @@
 using ExpenseGuardBackend.Mappers;
+using ExpenseGuardBackend.Repositories;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
 using ExpenseGuardBackend.Repositories.Expenses;
@@ -11,6 +12,7 @@ using ExpenseGuardBackend.Services.Expenses;
 using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Services.Incomes;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ExpenseGuardDbContext>(options =>
+	options.UseInMemoryDatabase("InMemoryDatabase"));
 
 // Data Access
 builder.Services.AddSingleton<IExpenseRepository, ExpenseRepository>();
