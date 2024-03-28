@@ -5,22 +5,19 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 	// todo test below
 	// todo add initial values
 	// todo replace that with repository
-	public class IncomeDataAccess : IIncomeRepository
+	public class IncomeRepository2 : IIncomeRepository
 	{
 		private readonly ExpenseGuardDbContext _context;
-		private int _lastAddedId;
 
-		public IncomeDataAccess(ExpenseGuardDbContext context)
+		public IncomeRepository2(ExpenseGuardDbContext context)
 		{
 			_context = context;
-			_lastAddedId = 1;
 		}
 
 		public Income Create(Income income)
 		{
 			var newIncome = new Income()
 			{
-				Id = _lastAddedId++,
 				Name = income.Name,
 				Money = income.Money,
 				ReceivedDate = income.ReceivedDate,
