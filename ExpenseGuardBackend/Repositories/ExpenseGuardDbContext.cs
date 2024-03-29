@@ -5,7 +5,11 @@ namespace ExpenseGuardBackend.Repositories
 {
     public class ExpenseGuardDbContext : DbContext
     {
-        public DbSet<Finance> Finances { get; set; }
+		public ExpenseGuardDbContext(DbContextOptions<ExpenseGuardDbContext> options): base(options)
+		{
+		}
+
+		public DbSet<Finance> Finances { get; set; }
         public DbSet<InvestmentDeposit> InvestmentsDeposits { get; set; }
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }

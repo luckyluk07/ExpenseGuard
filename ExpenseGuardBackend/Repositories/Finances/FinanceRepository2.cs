@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Finances
 {
@@ -47,6 +48,10 @@ namespace ExpenseGuardBackend.Repositories.Finances
 		public List<Finance> GetAll()
 		{
 			return _expenseGuardDbContext.Finances
+				.Include(x => x.Incomes)
+				.Include(x => x.Expenses)
+				.Include(x => x.CurrencySavings)
+				.Include(x => x.Investments)
 				.ToList();
 		}
 
