@@ -45,16 +45,17 @@ namespace ExpenseGuardBackend.Controllers
 			return Created($"{Url.Action(nameof(Create))}/{createdInvestment.Id}", createdInvestment);
 		}
 
-		[HttpDelete("{id}")]
-		public ActionResult<bool> Delete(int id, [FromHeader] int financeId)
-		{
-			var investmentRemoved = _investmentDepositService.Remove(id, financeId);
-			if (!investmentRemoved)
-			{
-				return NotFound();
-			}
+		// todo consider refactoring or change parameters
+		//[HttpDelete("{id}")]
+		//public ActionResult<bool> Delete(int id, [FromHeader] int financeId)
+		//{
+		//	var investmentRemoved = _investmentDepositService.Remove(id, financeId);
+		//	if (!investmentRemoved)
+		//	{
+		//		return NotFound();
+		//	}
 
-			return Ok(investmentRemoved);
-		}
+		//	return Ok(investmentRemoved);
+		//}
 	}
 }

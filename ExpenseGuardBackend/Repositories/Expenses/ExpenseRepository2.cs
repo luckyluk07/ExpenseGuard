@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Expenses
 {
@@ -39,13 +40,13 @@ namespace ExpenseGuardBackend.Repositories.Expenses
 
 		public Expense? Get(int id)
 		{
-			return _expenseGuardDbContext.Expenses
+			return GetFullExpenses()
 				.FirstOrDefault(x => x.Id == id);
 		}
 
 		public List<Expense> GetAll()
 		{
-			return _expenseGuardDbContext.Expenses
+			return GetFullExpenses()
 				.ToList();
 		}
 
@@ -64,6 +65,14 @@ namespace ExpenseGuardBackend.Repositories.Expenses
 			_expenseGuardDbContext.SaveChanges();
 
 			return expense;
+		}
+
+		private IEnumerable<Expense> GetFullExpenses()
+		{
+			return _expenseGuardDbContext.Expenses
+					.Include(x => x.Money)
+						.ThenInclude(x => x.Currency)
+					.Include(x => x.Category);
 		}
 	}
 }

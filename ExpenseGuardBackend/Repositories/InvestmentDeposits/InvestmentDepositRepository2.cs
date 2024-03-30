@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 {
@@ -29,13 +30,13 @@ namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 
 		public InvestmentDeposit? Get(int id)
 		{
-			return _expenseGuardDbContext.InvestmentsDeposits
+			return GetFullInvestmentsDeposits()
 				.FirstOrDefault(x => x.Id == id);
 		}
 
 		public List<InvestmentDeposit> GetAll()
 		{
-			return _expenseGuardDbContext.InvestmentsDeposits
+			return GetFullInvestmentsDeposits()
 				.ToList();
 		}
 
@@ -49,6 +50,13 @@ namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 				return true;
 			}
 			return false;
+		}
+
+		private IEnumerable<InvestmentDeposit> GetFullInvestmentsDeposits()
+		{
+			return _expenseGuardDbContext.InvestmentsDeposits
+				.Include(x => x.StartMoney)
+					.ThenInclude(x => x.Currency);
 		}
 	}
 }

@@ -30,13 +30,6 @@ builder.Services.AddDbContext<ExpenseGuardDbContext>(options =>
 
 
 // Data Access
-// todo remove legacy repositories
-//builder.Services.AddSingleton<IExpenseRepository, ExpenseRepository>();
-//builder.Services.AddSingleton<IIncomeRepository, IncomeRepository>();
-//builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
-//builder.Services.AddSingleton<ICurrencyRepository, CurrencyRepository>();
-//builder.Services.AddSingleton<IFinanceRepository, FinanceRepository>();
-//builder.Services.AddSingleton<IInvestmentDepositRepository, InvestmentDepositRepository>();
 
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository2>();
 builder.Services.AddScoped<IIncomeRepository, IncomeRepository2>();
@@ -95,7 +88,8 @@ static void SeedDatabase(IServiceProvider serviceProvider)
 				new Money { Id = 1, Amount = 10, CurrencyId = 1 },
 				new Money { Id = 2, Amount = 20, CurrencyId = 1 },
 				new Money { Id = 3, Amount = 50, CurrencyId = 1 },
-				new Money { Id = 4, Amount = 1000, CurrencyId = 1 }
+				new Money { Id = 4, Amount = 1000, CurrencyId = 1 },
+				new Money { Id = 5, Amount = 1234, CurrencyId = 1 }
 			);
 
 			context.Categories.AddRange(
@@ -113,6 +107,10 @@ static void SeedDatabase(IServiceProvider serviceProvider)
 
 			context.Expenses.Add(
 				new Expense { CategoryId = 1, FinanceId = 1, MoneyId = 1, Name = "Pizza ingredients", SpendDate = new DateTime() }
+			);
+
+			context.InvestmentsDeposits.Add(
+				new InvestmentDeposit { EndDate = new DateTime(), FinanceId = 1, InterestRate = 3, Name = "Oszczednosciowe PKO", StartDate = new DateTime(), StartMoneyId = 5, YearCapitalizationAmount = 2 }
 			);
 
 			context.SaveChanges();

@@ -41,17 +41,13 @@ namespace ExpenseGuardBackend.Repositories.Finances
 
 		public Finance? Get(int id)
 		{
-			return _expenseGuardDbContext.Finances
+			return GetFullFinances()
 				.FirstOrDefault(x => x.Id == id);
 		}
 
 		public List<Finance> GetAll()
 		{
-			return _expenseGuardDbContext.Finances
-				.Include(x => x.Incomes)
-				.Include(x => x.Expenses)
-				.Include(x => x.CurrencySavings)
-				.Include(x => x.Investments)
+			return GetFullFinances()
 				.ToList();
 		}
 
@@ -116,6 +112,23 @@ namespace ExpenseGuardBackend.Repositories.Finances
 			_expenseGuardDbContext.SaveChanges();
 
 			return financeToUpdate;
+		}
+
+		private IEnumerable<Finance> GetFullFinances()
+		{
+			return _expenseGuardDbContext.Finances
+				.Include(x => x.Incomes)
+					.ThenInclude(x => x.Money)
+					.ThenInclude(x => x.Currency)
+				.Include(x => x.Incomes)
+					.ThenInclude(x => x.Category)
+				.Include(x => x.Expenses)
+					.ThenInclude(x => x.Money)
+					.ThenInclude(x => x.Currency)
+				.Include(x => x.Expenses)
+					.ThenInclude(x => x.Category)
+				.Include(x => x.CurrencySavings)
+				.Include(x => x.Investments);
 		}
 	}
 }

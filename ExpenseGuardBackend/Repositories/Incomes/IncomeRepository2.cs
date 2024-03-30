@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Incomes
 {
@@ -42,12 +43,12 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 
 		public Income? Get(int id)
 		{
-			return _context.Incomes.FirstOrDefault(x => x.Id == id);
+			return GetFullIncomes().FirstOrDefault(x => x.Id == id);
 		}
 
 		public List<Income> GetAll()
 		{
-			return _context.Incomes.ToList();
+			return GetFullIncomes().ToList();
 		}
 
 		public Income? Update(Income income, int id)
@@ -63,6 +64,14 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 			incomeToUpdate.Category = income.Category;
 			_context.SaveChanges();
 			return incomeToUpdate;
+		}
+
+		public IEnumerable<Income> GetFullIncomes()
+		{
+			return _context.Incomes
+				.Include(x => x.Category)
+				.Include(x => x.Money)
+					.ThenInclude(x => x.Currency);
 		}
 	}
 }
