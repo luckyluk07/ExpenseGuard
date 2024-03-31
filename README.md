@@ -39,6 +39,12 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 23**: Add create service method and create controller for investment deposit
 - **Day 24**: Create entity mapper class and introduce it in income and expense services
 - **Day 25**: Continue adding usage of entity mapper, start drawing entities diagram
+- **Day 26**: Complete entities diagram, modify models to imitate relations
+- **Day 27**: Add ef core in memory db context
+- **Day 28**: Create repositories that use ef core
+- **Day 29**: Replace old repositories with new, start implementing data seeding
+- **Day 30**: Update new repositories, remove legacy repositories
+- **Day 31**: Rename repositories, small refactor
 
 ## Technical goals
 

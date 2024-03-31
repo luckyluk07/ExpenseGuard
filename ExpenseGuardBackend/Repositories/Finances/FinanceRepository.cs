@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Finances
 {
-	public class FinanceRepository2 : IFinanceRepository
+	public class FinanceRepository : IFinanceRepository
 	{
 		private readonly ExpenseGuardDbContext _expenseGuardDbContext;
 
-		public FinanceRepository2(ExpenseGuardDbContext expenseGuardDbContext)
+		public FinanceRepository(ExpenseGuardDbContext expenseGuardDbContext)
 		{
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}
@@ -128,7 +128,8 @@ namespace ExpenseGuardBackend.Repositories.Finances
 				.Include(x => x.Expenses)
 					.ThenInclude(x => x.Category)
 				.Include(x => x.CurrencySavings)
-				.Include(x => x.Investments);
+				.Include(x => x.Investments)
+					.ThenInclude(x => x.StartMoney);
 		}
 	}
 }

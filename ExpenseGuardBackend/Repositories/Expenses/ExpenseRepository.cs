@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Expenses
 {
-	public class ExpenseRepository2 : IExpenseRepository
+	public class ExpenseRepository : IExpenseRepository
 	{
 		private readonly ExpenseGuardDbContext _expenseGuardDbContext;
 
-		public ExpenseRepository2(ExpenseGuardDbContext expenseGuardDbContext)
+		public ExpenseRepository(ExpenseGuardDbContext expenseGuardDbContext)
 		{
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}

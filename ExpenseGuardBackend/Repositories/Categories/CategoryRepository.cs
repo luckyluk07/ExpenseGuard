@@ -2,11 +2,11 @@
 
 namespace ExpenseGuardBackend.Repositories.Categories
 {
-	public class CategoryRepository2 : ICategoryRepository
+	public class CategoryRepository : ICategoryRepository
 	{
 		private readonly ExpenseGuardDbContext _expenseGuardDbContext;
 
-		public CategoryRepository2(ExpenseGuardDbContext expenseGuardDbContext)
+		public CategoryRepository(ExpenseGuardDbContext expenseGuardDbContext)
 		{
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}

@@ -6,11 +6,11 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 	// todo test below
 	// todo add initial values
 	// todo replace that with repository
-	public class IncomeRepository2 : IIncomeRepository
+	public class IncomeRepository : IIncomeRepository
 	{
 		private readonly ExpenseGuardDbContext _context;
 
-		public IncomeRepository2(ExpenseGuardDbContext context)
+		public IncomeRepository(ExpenseGuardDbContext context)
 		{
 			_context = context;
 		}

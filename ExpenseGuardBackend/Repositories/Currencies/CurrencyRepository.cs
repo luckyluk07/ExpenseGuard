@@ -2,11 +2,11 @@
 
 namespace ExpenseGuardBackend.Repositories.Currencies
 {
-	public class CurrencyRepository2 : ICurrencyRepository
+	public class CurrencyRepository : ICurrencyRepository
 	{
 		private readonly ExpenseGuardDbContext _expenseGuardDbContext;
 
-		public CurrencyRepository2(ExpenseGuardDbContext expenseGuardDbContext)
+		public CurrencyRepository(ExpenseGuardDbContext expenseGuardDbContext)
 		{
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}

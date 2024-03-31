@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 {
-	public class InvestmentDepositRepository2 : IInvestmentDepositRepository
+	public class InvestmentDepositRepository : IInvestmentDepositRepository
 	{
 		private readonly ExpenseGuardDbContext _expenseGuardDbContext;
 
-		public InvestmentDepositRepository2(ExpenseGuardDbContext expenseGuardDbContext)
+		public InvestmentDepositRepository(ExpenseGuardDbContext expenseGuardDbContext)
 		{
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}
