@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
-	// todo test controller
 	[Route("api/[controller]")]
 	[ApiController]
 	public class InvestmentDepositController : ControllerBase

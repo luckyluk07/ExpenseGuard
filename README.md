@@ -45,6 +45,7 @@ Welcome to ExpenseGuard! This application is designed to help you efficiently ma
 - **Day 29**: Replace old repositories with new, start implementing data seeding
 - **Day 30**: Update new repositories, remove legacy repositories
 - **Day 31**: Rename repositories, small refactor
+- **Day 32**: Refactor code to remove in-code todos, test controllers, start planning UI
 
 ## Technical goals
 

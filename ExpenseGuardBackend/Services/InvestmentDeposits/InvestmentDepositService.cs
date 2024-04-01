@@ -32,10 +32,8 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 			return investment is not null ? DtoMapper.InvestmentDepositToDto(investment) : null;
 		}
 
-		// todo test below
 		public InvestmentDepositDto Create(CreateInvestmentDepositDto createInvestmentDepositDto)
 		{
-			// todo add entity model mapper
 			var investmentDeposit = _entityMapper.CreateInvestmentDepositDtoToInvestmentDeposit(createInvestmentDepositDto);
 			var createdInvestment = _investmentDepositRepository.Create(investmentDeposit);
 
@@ -44,7 +42,6 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 			return DtoMapper.InvestmentDepositToDto(createdInvestment);
 		}
 
-		// todo test below
 		public bool Remove(int id, int financeId)
 		{
 			var isDepositRemoved = _financeRepository.RemoveInvestmentDeposit(id, financeId);

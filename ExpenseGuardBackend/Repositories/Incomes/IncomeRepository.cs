@@ -3,9 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.Incomes
 {
-	// todo test below
-	// todo add initial values
-	// todo replace that with repository
 	public class IncomeRepository : IIncomeRepository
 	{
 		private readonly ExpenseGuardDbContext _context;

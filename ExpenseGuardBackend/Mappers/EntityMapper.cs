@@ -8,7 +8,6 @@ using ExpenseGuardBackend.Repositories.Currencies;
 
 namespace ExpenseGuardBackend.Mappers
 {
-	// todo fix possible null reference
 	public class EntityMapper
 	{
 		private readonly ICurrencyRepository _currencyRepository;
@@ -22,43 +21,79 @@ namespace ExpenseGuardBackend.Mappers
 
 		public Income CreateIncomeDtoToIncome(CreateIncomeDto createIncomeDto)
 		{
+			var currency = _currencyRepository.Get(createIncomeDto.CurrencyId);
+			var category = _categoryRepository.Get(createIncomeDto.CategoryId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+			else if (category is null)
+			{
+				throw new ArgumentNullException(nameof(category));
+			}
+
 			return new Income()
 			{
 				Money = new Money()
 				{
 					Amount = createIncomeDto.Amount,
-					Currency = _currencyRepository.Get(createIncomeDto.CurrencyId)
+					Currency = currency
 				},
 				Name = createIncomeDto.Name,
 				ReceivedDate = createIncomeDto.ReceivedDate,
-				Category = _categoryRepository.Get(createIncomeDto.CategoryId)
+				Category = category
 			};
 		}
 
 		public Income UpdateIncomeDtoToIncome(UpdateIncomeDto updateIncomeDto)
 		{
+			var currency = _currencyRepository.Get(updateIncomeDto.CurrencyId);
+			var category = _categoryRepository.Get(updateIncomeDto.CategoryId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+			else if (category is null)
+			{
+				throw new ArgumentNullException(nameof(category));
+			}
+
 			return new Income()
 			{
 				Money = new Money()
 				{
 					Amount = updateIncomeDto.Amount,
-					Currency = _currencyRepository.Get(updateIncomeDto.CurrencyId)
+					Currency = currency
 				},
 				ReceivedDate = updateIncomeDto.ReceivedDate,
-				Category = _categoryRepository.Get(updateIncomeDto.CategoryId)
+				Category = category
 			};
 		}
 
 		public Expense CreateExpenseDtoToExpense(CreateExpenseDto createExpenseDto)
 		{
+			var currency = _currencyRepository.Get(createExpenseDto.CurrencyId);
+			var category = _categoryRepository.Get(createExpenseDto.CategoryId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+			else if (category is null)
+			{
+				throw new ArgumentNullException(nameof(category));
+			}
+
 			return new Expense()
 			{
 				Name = createExpenseDto.Name,
-				Category = _categoryRepository.Get(createExpenseDto.CategoryId),
+				Category = category,
 				Money = new Money()
 				{
 					Amount = createExpenseDto.Price,
-					Currency = _currencyRepository.Get(createExpenseDto.CurrencyId)
+					Currency = currency
 				},
 				SpendDate = createExpenseDto.SpendDate,
 			};
@@ -66,13 +101,25 @@ namespace ExpenseGuardBackend.Mappers
 
 		public Expense UpdateExpenseDtoToExpense(UpdateExpenseDto updateExpenseDto)
 		{
+			var currency = _currencyRepository.Get(updateExpenseDto.CurrencyId);
+			var category = _categoryRepository.Get(updateExpenseDto.CategoryId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+			else if (category is null)
+			{
+				throw new ArgumentNullException(nameof(category));
+			}
+
 			return new Expense()
 			{
-				Category = _categoryRepository.Get(updateExpenseDto.CategoryId),
+				Category = category,
 				Money = new Money()
 				{
 					Amount = updateExpenseDto.Price,
-					Currency = _currencyRepository.Get(updateExpenseDto.CurrencyId)
+					Currency = currency
 				},
 				SpendDate = updateExpenseDto.SpendDate,
 			};
@@ -98,6 +145,13 @@ namespace ExpenseGuardBackend.Mappers
 
 		public InvestmentDeposit CreateInvestmentDepositDtoToInvestmentDeposit(CreateInvestmentDepositDto createInvestmentDepositDto)
 		{
+			var currency = _currencyRepository.Get(createInvestmentDepositDto.StartMoney.CurrencyId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+
 			return new InvestmentDeposit()
 			{
 				YearCapitalizationAmount = createInvestmentDepositDto.YearCapitalizationAmount,
@@ -108,7 +162,7 @@ namespace ExpenseGuardBackend.Mappers
 				StartMoney = new Money()
 				{
 					Amount = createInvestmentDepositDto.StartMoney.Amount,
-					Currency = _currencyRepository.Get(createInvestmentDepositDto.StartMoney.CurrencyId)
+					Currency = currency
 				}
 			};
 		}

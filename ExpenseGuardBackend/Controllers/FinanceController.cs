@@ -45,7 +45,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		// todo consider is it worth to have that endpoint
-		//[HttpPut("{id}")] //todo check update
+		//[HttpPut("{id}")]
 		//public ActionResult<Expense> Update([FromBody] UpdateFinanceDto updateFinanceDto, int id)
 		//{
 		//	var updatedFinance = _financeService.Update(updateFinanceDto, id);
