@@ -14,7 +14,8 @@ namespace ExpenseGuardBackend.Repositories
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
+		public DbSet<CompanyShare> CompanyShares { get; set; }
+		public DbSet<Currency> Currencies { get; set; }
         public DbSet<Money> Money { get; set; }
     }
 }

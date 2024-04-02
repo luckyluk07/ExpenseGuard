@@ -14,16 +14,9 @@ namespace ExpenseGuardBackend.Repositories.Expenses
 
 		public Expense Create(Expense expenseToAdd)
 		{
-			var newExpense = new Expense()
-			{
-				Name = expenseToAdd.Name,
-				SpendDate = expenseToAdd.SpendDate,
-				Category = expenseToAdd.Category,
-				Money = expenseToAdd.Money
-			};
-			_expenseGuardDbContext.Expenses.Add(newExpense);
+			var newExpense = _expenseGuardDbContext.Expenses.Add(expenseToAdd);
 			_expenseGuardDbContext.SaveChanges();
-			return newExpense;
+			return newExpense.Entity;
 		}
 
 		public bool Delete(int id)
