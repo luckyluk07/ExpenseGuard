@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.CompanyShares;
 using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Finances;
@@ -62,6 +63,16 @@ namespace ExpenseGuardBackend.Mappers
 					investmentDeposit.YearCapitalizationAmount,
 					investmentDeposit.InterestRate
 				);
+		}
+
+		public static CompanyShareDto CompanyShareToDto(CompanyShare companyShare)
+		{
+			return new CompanyShareDto(
+				companyShare.Id,
+				companyShare.Name,
+				companyShare.DateOfPurchase,
+				companyShare.Amount,
+				MoneyToDto(companyShare.Price));
 		}
 	}
 }

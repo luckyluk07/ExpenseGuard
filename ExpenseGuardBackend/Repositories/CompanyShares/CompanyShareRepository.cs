@@ -28,6 +28,23 @@ namespace ExpenseGuardBackend.Repositories.CompanyShares
 			return result.Entity;
 		}
 
+		public CompanyShare? Update(CompanyShare companyShare, int id)
+		{
+			var companyToUpdate = Get(id);
+			if (companyToUpdate is null)
+			{
+				return null;
+			}
+
+			companyToUpdate.Amount = companyShare.Amount;
+			companyToUpdate.DateOfPurchase = companyShare.DateOfPurchase;
+			companyToUpdate.Name = companyShare.Name;
+			companyToUpdate.Price = companyShare.Price;
+			_expenseGuardDbContext.SaveChanges();
+
+			return companyToUpdate;
+		}
+
 		public bool Remove(int id)
 		{
 			var toRemove = _expenseGuardDbContext.CompanyShares.FirstOrDefault(x => x.Id == id);

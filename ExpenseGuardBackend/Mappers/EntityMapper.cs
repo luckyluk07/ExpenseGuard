@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
+using ExpenseGuardBackend.DTOs.CompanyShares;
 using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.DTOs.InvestmentDeposits;
@@ -162,6 +163,50 @@ namespace ExpenseGuardBackend.Mappers
 				StartMoney = new Money()
 				{
 					Amount = createInvestmentDepositDto.StartMoney.Amount,
+					Currency = currency
+				}
+			};
+		}
+
+		public CompanyShare CreateCompanyShareDtoToCompanyShare(CreateCompanyShareDto createCompanyShareDto)
+		{
+			var currency = _currencyRepository.Get(createCompanyShareDto.CurrencyId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+
+			return new CompanyShare()
+			{
+				Name = createCompanyShareDto.Name,
+				Amount = createCompanyShareDto.SharesAmount,
+				DateOfPurchase = createCompanyShareDto.DateOfPurchase,
+				Price = new Money()
+				{
+					Amount = createCompanyShareDto.Price,
+					Currency = currency
+				}
+			};
+		}
+
+		public CompanyShare UpdateCompanyShareDtoToCompanyShare(UpdateCompanyShareDto updateCompanyShareDto)
+		{
+			var currency = _currencyRepository.Get(updateCompanyShareDto.CurrencyId);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+
+			return new CompanyShare()
+			{
+				Name = updateCompanyShareDto.Name,
+				Amount = updateCompanyShareDto.SharesAmount,
+				DateOfPurchase = updateCompanyShareDto.DateOfPurchase,
+				Price = new Money()
+				{
+					Amount = updateCompanyShareDto.Price,
 					Currency = currency
 				}
 			};

@@ -8,6 +8,7 @@ using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.Incomes;
 using ExpenseGuardBackend.Repositories.InvestmentDeposits;
 using ExpenseGuardBackend.Services.Categories;
+using ExpenseGuardBackend.Services.CompanyShares;
 using ExpenseGuardBackend.Services.Currencies;
 using ExpenseGuardBackend.Services.Expenses;
 using ExpenseGuardBackend.Services.Finances;
@@ -47,6 +48,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<IFinanceService, FinanceService>();
 builder.Services.AddScoped<IInvestmentDepositService, InvestmentDepositService>();
+builder.Services.AddScoped<ICompanyShareService, CompanyShareService>();
 
 // Shared
 builder.Services.AddScoped<EntityMapper, EntityMapper>();
