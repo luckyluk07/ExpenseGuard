@@ -16,10 +16,10 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<Expense>> Get()
+		public ActionResult<ExpensesDto> Get()
 		{
 			var expenses = _expenseService.GetAll();
-			return Ok(expenses);
+			return Ok(new ExpensesDto(expenses));
 		}
 
 		[HttpGet("{id}")]

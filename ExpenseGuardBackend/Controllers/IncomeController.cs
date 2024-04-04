@@ -16,9 +16,9 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<IncomeDto>> Get()
+		public ActionResult<IncomesDto> Get()
 		{
-			return Ok(_incomeService.GetAll());
+			return Ok(new IncomesDto(_incomeService.GetAll()));
 		}
 
 		[HttpGet("{id}")]

@@ -16,9 +16,9 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<InvestmentDepositDto>> GetAll()
+		public ActionResult<InvestmentDepositsDto> GetAll()
 		{
-			return Ok(_investmentDepositService.GetAll());
+			return Ok(new InvestmentDepositsDto(_investmentDepositService.GetAll()));
 		}
 
 		[HttpGet("{id}")]

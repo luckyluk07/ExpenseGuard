@@ -16,9 +16,9 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<CurrencyDto>> Get()
+		public ActionResult<CurrenciesDto> Get()
 		{
-			return Ok(_currencyService.GetCurrencies());
+			return Ok(new CurrenciesDto(_currencyService.GetCurrencies()));
 		}
 
 		[HttpGet("{id}")]

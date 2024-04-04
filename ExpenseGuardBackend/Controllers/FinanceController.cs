@@ -16,9 +16,9 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<FinanceDto>> Get() 
+		public ActionResult<FinancesDto> Get() 
 		{
-			return Ok(_financeService.GetFinances());
+			return Ok(new FinancesDto(_financeService.GetFinances()));
 		}
 
 		[HttpGet("{id}")]

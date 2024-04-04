@@ -16,9 +16,9 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<List<CategoryDto>> GetAll()
+		public ActionResult<CategoriesDto> GetAll()
 		{
-			return Ok(_categoryService.GetAll());
+			return Ok(new CategoriesDto(_categoryService.GetAll()));
 		}
 
 		[HttpGet("{id}")]
