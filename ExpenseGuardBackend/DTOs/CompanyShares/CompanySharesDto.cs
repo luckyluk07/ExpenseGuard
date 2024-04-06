@@ -2,6 +2,6 @@
 {
 	public record CompanySharesDto
 	(
-		List<CompanyShareDto> CompanyShares
+		IEnumerable<CompanyShareDto> CompanyShares
 	);
 }

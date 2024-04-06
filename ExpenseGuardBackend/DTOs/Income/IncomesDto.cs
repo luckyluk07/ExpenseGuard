@@ -2,6 +2,6 @@
 {
 	public record IncomesDto
 	(
-		List<IncomeDto> Incomes
+		IEnumerable<IncomeDto> Incomes
 	);
 }

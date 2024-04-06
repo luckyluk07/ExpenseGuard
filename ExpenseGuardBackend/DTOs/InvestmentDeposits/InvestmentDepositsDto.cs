@@ -2,6 +2,6 @@
 {
 	public record InvestmentDepositsDto
 	(
-		List<InvestmentDepositDto> InvestmentDeposits
+		IEnumerable<InvestmentDepositDto> InvestmentDeposits
 	);
 }

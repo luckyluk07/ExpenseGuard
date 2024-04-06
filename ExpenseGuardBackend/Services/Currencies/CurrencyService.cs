@@ -13,11 +13,10 @@ namespace ExpenseGuardBackend.Services.Currencies
 			_currencyRepository = currencyRepository;
 		}
 
-		public List<CurrencyDto> GetCurrencies()
+		public IEnumerable<CurrencyDto> GetCurrencies()
 		{
 			return _currencyRepository.Get()
-				.Select(DtoMapper.CurrencyToDto)
-				.ToList();
+				.Select(DtoMapper.CurrencyToDto);
 		}
 
 		public CurrencyDto? GetCurrency(int id)

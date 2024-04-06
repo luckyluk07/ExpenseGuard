@@ -4,7 +4,7 @@ namespace ExpenseGuardBackend.Services.Currencies
 {
 	public interface ICurrencyService
 	{
-		List<CurrencyDto> GetCurrencies();
+		IEnumerable<CurrencyDto> GetCurrencies();
 		CurrencyDto? GetCurrency(int id);
 	}
 }

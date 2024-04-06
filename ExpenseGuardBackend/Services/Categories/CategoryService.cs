@@ -16,12 +16,11 @@ namespace ExpenseGuardBackend.Services.Categories
 			_entityMapper = entityMapper;
 		}
 
-		public List<CategoryDto> GetAll()
+		public IEnumerable<CategoryDto> GetAll()
 		{
 			return _categoryRepository
 				.GetAll()
-				.Select(DtoMapper.CategoryToDto)
-				.ToList();
+				.Select(DtoMapper.CategoryToDto);
 		}
 
 		public CategoryDto? GetById(int id)

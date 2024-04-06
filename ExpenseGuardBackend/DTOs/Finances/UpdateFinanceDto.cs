@@ -5,7 +5,7 @@ namespace ExpenseGuardBackend.DTOs.Finances
 {
 	public record UpdateFinanceDto
 	(
-		List<IncomeDto> Incomes,
-		List<ExpenseDto> Expenses
+		IEnumerable<IncomeDto> Incomes,
+		IEnumerable<ExpenseDto> Expenses
 	);
 }

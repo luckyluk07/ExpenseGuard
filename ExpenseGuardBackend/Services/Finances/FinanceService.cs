@@ -24,13 +24,12 @@ namespace ExpenseGuardBackend.Services.Finances
 			_expenseRepository = expenseRepository;
 		}
 
-		public List<FinanceDto> GetFinances()
+		public IEnumerable<FinanceDto> GetFinances()
         {
             var finances = _financeRepository.GetAll();
 
             return finances
-                .Select(DtoMapper.FinanceToDto)
-                .ToList();
+                .Select(DtoMapper.FinanceToDto);
         }
 
         public FinanceDto? GetFinance(int id)

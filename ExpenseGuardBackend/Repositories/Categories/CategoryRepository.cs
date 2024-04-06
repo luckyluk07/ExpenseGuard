@@ -29,9 +29,9 @@ namespace ExpenseGuardBackend.Repositories.Categories
 				.FirstOrDefault(c => c.Id == id);
 		}
 
-		public List<Category> GetAll()
+		public IEnumerable<Category> GetAll()
 		{
-			return _expenseGuardDbContext.Categories.ToList();
+			return _expenseGuardDbContext.Categories;
 		}
 
 		public bool Remove(int id)

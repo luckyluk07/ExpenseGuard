@@ -7,7 +7,7 @@ namespace ExpenseGuardBackend.Repositories.Expenses
         Expense Create(Expense expenseToAdd);
         bool Delete(int id);
         Expense? Get(int id);
-        List<Expense> GetAll();
+		IEnumerable<Expense> GetAll();
         Expense? Update(Expense expenseToUpdate, int id);
     }
 }

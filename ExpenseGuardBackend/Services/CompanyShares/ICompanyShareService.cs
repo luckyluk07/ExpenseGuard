@@ -6,7 +6,7 @@ namespace ExpenseGuardBackend.Services.CompanyShares
 	{
 		CompanyShareDto? Create(CreateCompanyShareDto createCompanyShareDto);
 		CompanyShareDto? Get(int id);
-		List<CompanyShareDto> GetAll();
+		IEnumerable<CompanyShareDto> GetAll();
 		bool Remove(int id);
 		CompanyShareDto? Update(UpdateCompanyShareDto updateCompanyShareDto, int id);
 	}

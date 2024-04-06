@@ -19,12 +19,11 @@ namespace ExpenseGuardBackend.Services.Incomes
 			_entityMapper = entityMapper;
 		}
 
-		public List<IncomeDto> GetAll()
+		public IEnumerable<IncomeDto> GetAll()
         {
             var allIncomes = _incomeRepository.GetAll();
             return _incomeRepository.GetAll()
-                .Select(DtoMapper.IncomeToDto)
-                .ToList();
+                .Select(DtoMapper.IncomeToDto);
         }
 
         public IncomeDto? Get(int id)

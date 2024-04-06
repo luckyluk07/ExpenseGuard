@@ -19,11 +19,10 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 			_entityMapper = entityMapper;
 		}
 
-		public List<InvestmentDepositDto> GetAll()
+		public IEnumerable<InvestmentDepositDto> GetAll()
 		{
 			return _investmentDepositRepository.GetAll()
-				.Select(DtoMapper.InvestmentDepositToDto)
-				.ToList();
+				.Select(DtoMapper.InvestmentDepositToDto);
 		}
 
 		public InvestmentDepositDto? Get(int id)

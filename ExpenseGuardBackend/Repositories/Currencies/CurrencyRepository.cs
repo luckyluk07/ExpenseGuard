@@ -11,10 +11,9 @@ namespace ExpenseGuardBackend.Repositories.Currencies
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}
 
-		public List<Currency> Get()
+		public IEnumerable<Currency> Get()
 		{
-			return _expenseGuardDbContext.Currencies
-				.ToList();
+			return _expenseGuardDbContext.Currencies;
 		}
 
 		public Currency? Get(int id)

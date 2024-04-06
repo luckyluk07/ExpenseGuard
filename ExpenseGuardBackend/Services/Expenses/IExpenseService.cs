@@ -8,7 +8,7 @@ namespace ExpenseGuardBackend.Services.Expenses
         ExpenseDto Create(CreateExpenseDto expense);
         bool Delete(int id);
         ExpenseDto? Get(int id);
-        List<ExpenseDto> GetAll();
+		IEnumerable<ExpenseDto> GetAll();
         ExpenseDto? Update(UpdateExpenseDto expense, int id);
     }
 }

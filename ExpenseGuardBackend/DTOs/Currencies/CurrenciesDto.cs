@@ -2,6 +2,6 @@
 {
 	public record CurrenciesDto
 	(
-		List<CurrencyDto> Currencies
+		IEnumerable<CurrencyDto> Currencies
 	);
 }

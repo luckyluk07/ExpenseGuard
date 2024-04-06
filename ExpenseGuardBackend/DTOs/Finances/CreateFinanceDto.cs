@@ -4,6 +4,6 @@ namespace ExpenseGuardBackend.DTOs.Finances
 {
 	public record CreateFinanceDto
 	(
-		List<CreateMoneyDto> CurrencySavings
+		IEnumerable<CreateMoneyDto> CurrencySavings
 	);
 }

@@ -19,12 +19,11 @@ namespace ExpenseGuardBackend.Services.Expenses
 			_entityMapper = entityMapper;
 		}
 
-		public List<ExpenseDto> GetAll()
+		public IEnumerable<ExpenseDto> GetAll()
         {
             return _expenseRepository
                 .GetAll()
-                .Select(DtoMapper.ExpenseToDto)
-                .ToList();
+                .Select(DtoMapper.ExpenseToDto);
         }
 
         public ExpenseDto? Get(int id)

@@ -2,6 +2,6 @@
 {
 	public record CategoriesDto
 	(
-		List<CategoryDto> Categories
+		IEnumerable<CategoryDto> Categories
 	);
 }

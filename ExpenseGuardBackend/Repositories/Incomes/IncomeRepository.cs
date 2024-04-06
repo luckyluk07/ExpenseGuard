@@ -43,9 +43,9 @@ namespace ExpenseGuardBackend.Repositories.Incomes
 			return GetFullIncomes().FirstOrDefault(x => x.Id == id);
 		}
 
-		public List<Income> GetAll()
+		public IEnumerable<Income> GetAll()
 		{
-			return GetFullIncomes().ToList();
+			return GetFullIncomes();
 		}
 
 		public Income? Update(Income income, int id)

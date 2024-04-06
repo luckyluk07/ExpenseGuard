@@ -11,9 +11,9 @@ namespace ExpenseGuardBackend.Repositories.CompanyShares
 			_expenseGuardDbContext = expenseGuardDbContext;
 		}
 
-		public List<CompanyShare> GetAll()
+		public IEnumerable<CompanyShare> GetAll()
 		{
-			return _expenseGuardDbContext.CompanyShares.ToList();
+			return _expenseGuardDbContext.CompanyShares;
 		}
 
 		public CompanyShare? Get(int id)

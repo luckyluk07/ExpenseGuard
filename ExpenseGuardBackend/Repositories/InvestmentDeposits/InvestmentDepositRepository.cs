@@ -34,10 +34,9 @@ namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 				.FirstOrDefault(x => x.Id == id);
 		}
 
-		public List<InvestmentDeposit> GetAll()
+		public IEnumerable<InvestmentDeposit> GetAll()
 		{
-			return GetFullInvestmentsDeposits()
-				.ToList();
+			return GetFullInvestmentsDeposits();
 		}
 
 		public bool Remove(int id)

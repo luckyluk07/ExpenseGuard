@@ -4,7 +4,7 @@ namespace ExpenseGuardBackend.Repositories.Currencies
 {
 	public interface ICurrencyRepository
 	{
-		List<Currency> Get();
+		IEnumerable<Currency> Get();
 		Currency? Get(int id);
 	}
 }

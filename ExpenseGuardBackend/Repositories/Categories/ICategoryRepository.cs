@@ -6,7 +6,7 @@ namespace ExpenseGuardBackend.Repositories.Categories
 	{
 		Category Create(Category category);
 		Category? Get(int id);
-		List<Category> GetAll();
+		IEnumerable<Category> GetAll();
 		bool Remove(int id);
 		Category? Updated(Category category, int id);
 	}

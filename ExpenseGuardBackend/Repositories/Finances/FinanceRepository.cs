@@ -45,10 +45,9 @@ namespace ExpenseGuardBackend.Repositories.Finances
 				.FirstOrDefault(x => x.Id == id);
 		}
 
-		public List<Finance> GetAll()
+		public IEnumerable<Finance> GetAll()
 		{
-			return GetFullFinances()
-				.ToList();
+			return GetFullFinances();
 		}
 
 		public bool Remove(int id)

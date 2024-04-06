@@ -7,7 +7,7 @@ namespace ExpenseGuardBackend.Repositories.CompanyShares
 		CompanyShare? Create(CompanyShare companyShare);
 		CompanyShare? Update(CompanyShare companyShare, int id);
 		CompanyShare? Get(int id);
-		List<CompanyShare> GetAll();
+		IEnumerable<CompanyShare> GetAll();
 		bool Remove(int id);
 	}
 }

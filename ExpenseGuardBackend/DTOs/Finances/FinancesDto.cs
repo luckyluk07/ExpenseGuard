@@ -2,6 +2,6 @@
 {
 	public record FinancesDto
 	(
-		List<FinanceDto> Finances
+		IEnumerable<FinanceDto> Finances
 	);
 }

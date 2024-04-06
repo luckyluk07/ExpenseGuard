@@ -15,11 +15,10 @@ namespace ExpenseGuardBackend.Services.CompanyShares
 			_entityMapper = entityMapper;
 		}
 
-		public List<CompanyShareDto> GetAll()
+		public IEnumerable<CompanyShareDto> GetAll()
 		{
 			return _companyShareRepository.GetAll()
-				.Select(DtoMapper.CompanyShareToDto)
-				.ToList();
+				.Select(DtoMapper.CompanyShareToDto);
 		}
 
 		public CompanyShareDto? Get(int id)

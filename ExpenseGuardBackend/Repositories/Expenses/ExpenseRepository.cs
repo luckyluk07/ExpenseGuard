@@ -37,10 +37,9 @@ namespace ExpenseGuardBackend.Repositories.Expenses
 				.FirstOrDefault(x => x.Id == id);
 		}
 
-		public List<Expense> GetAll()
+		public IEnumerable<Expense> GetAll()
 		{
-			return GetFullExpenses()
-				.ToList();
+			return GetFullExpenses();
 		}
 
 		public Expense? Update(Expense expenseToUpdate, int id)

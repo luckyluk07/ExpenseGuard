@@ -7,7 +7,7 @@ namespace ExpenseGuardBackend.Services.Incomes
         IncomeDto Create(CreateIncomeDto income);
         bool Delete(int id);
         IncomeDto? Get(int id);
-        List<IncomeDto> GetAll();
+        IEnumerable<IncomeDto> GetAll();
         IncomeDto? Update(UpdateIncomeDto income, int id);
     }
 }
