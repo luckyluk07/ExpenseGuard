@@ -1,0 +1,9 @@
+.containerShape {
+ width: 500px;
+ border-radius: 10px;
+}
+
+.containerSkin {
+background-color: #edd182;
+border:3px solid #000;
+}
