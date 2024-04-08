@@ -6,6 +6,7 @@
 		DateTime DateOfPurchase,
 		decimal SharesAmount,
 	 	int Price,
-		int CurrencyId
+		int CurrencyId, 
+		int FinanceId
 	);
 }

@@ -7,5 +7,6 @@
         public ICollection<Income> Incomes { get; set; }
         public ICollection<Expense> Expenses { get; set; }
         public ICollection<InvestmentDeposit> Investments { get; set; }
+        public ICollection<CompanyShare> CompanyShares { get; set; }
     }
 }

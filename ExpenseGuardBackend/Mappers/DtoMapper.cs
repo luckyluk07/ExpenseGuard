@@ -11,14 +11,15 @@ using ExpenseGuardBackend.Models;
 namespace ExpenseGuardBackend.Mappers
 {
 	public static class DtoMapper
-	{
+	{ 
 		public static FinanceDto FinanceToDto(Finance finance)
 		{
 			return new FinanceDto(finance.Id,
-									finance.CurrencySavings.Select(x => MoneyToDto(x)).ToList(),
-									finance.Incomes.Select(x => IncomeToDto(x)).ToList(),
-									finance.Expenses.Select(x => ExpenseToDto(x)).ToList(),
-									finance.Investments.Select(x => InvestmentDepositToDto(x)).ToList());
+									finance.CurrencySavings.Select(MoneyToDto),
+									finance.Incomes.Select(IncomeToDto),
+									finance.Expenses.Select(ExpenseToDto),
+									finance.Investments.Select(InvestmentDepositToDto), 
+									finance.CompanyShares.Select(CompanyShareToDto));
 		}
 
 		public static CurrencyDto CurrencyToDto(Currency currency)

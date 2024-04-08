@@ -32,7 +32,8 @@ namespace ExpenseGuardBackend.Repositories.Finances
 				CurrencySavings = newFinance.CurrencySavings,
 				Expenses = new List<Expense>(),
 				Incomes = new List<Income>(),
-				Investments = new List<InvestmentDeposit>()
+				Investments = new List<InvestmentDeposit>(),
+				CompanyShares = new List<CompanyShare>()
 			};
 			_expenseGuardDbContext.Finances.Add(newFinance);
 			_expenseGuardDbContext.SaveChanges();
@@ -128,7 +129,10 @@ namespace ExpenseGuardBackend.Repositories.Finances
 					.ThenInclude(x => x.Category)
 				.Include(x => x.CurrencySavings)
 				.Include(x => x.Investments)
-					.ThenInclude(x => x.StartMoney);
+					.ThenInclude(x => x.StartMoney)
+				.Include(x => x.CompanyShares)
+					.ThenInclude(x => x.Price)
+					.ThenInclude(x => x.Currency);
 		}
 	}
 }

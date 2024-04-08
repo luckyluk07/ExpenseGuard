@@ -10,8 +10,7 @@
         public Money Price { get; set; }
         public int PriceId { get; set; }
 
-        // todo add below and modify methods
-        //public Finance finance { get; set; }
-        //public int FinanceId { get; set; }
+        public Finance Finance { get; set; }
+        public int FinanceId { get; set; }
     }
 }

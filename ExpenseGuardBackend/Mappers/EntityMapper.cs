@@ -6,6 +6,7 @@ using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories.Categories;
 using ExpenseGuardBackend.Repositories.Currencies;
+using ExpenseGuardBackend.Repositories.Finances;
 
 namespace ExpenseGuardBackend.Mappers
 {
@@ -13,11 +14,13 @@ namespace ExpenseGuardBackend.Mappers
 	{
 		private readonly ICurrencyRepository _currencyRepository;
 		private readonly ICategoryRepository _categoryRepository;
+		private readonly IFinanceRepository _financeRepository;
 
-		public EntityMapper(ICurrencyRepository currencyRepository, ICategoryRepository categoryRepository)
+		public EntityMapper(ICurrencyRepository currencyRepository, ICategoryRepository categoryRepository, IFinanceRepository financeRepository)
 		{
 			_currencyRepository = currencyRepository;
 			_categoryRepository = categoryRepository;
+			_financeRepository = financeRepository;
 		}
 
 		public Income CreateIncomeDtoToIncome(CreateIncomeDto createIncomeDto)
@@ -171,10 +174,15 @@ namespace ExpenseGuardBackend.Mappers
 		public CompanyShare CreateCompanyShareDtoToCompanyShare(CreateCompanyShareDto createCompanyShareDto)
 		{
 			var currency = _currencyRepository.Get(createCompanyShareDto.CurrencyId);
-
 			if (currency is null)
 			{
 				throw new ArgumentNullException(nameof(currency));
+			}
+
+			var finance = _financeRepository.Get(createCompanyShareDto.FinanceId);
+			if (finance is null)
+			{
+				throw new ArgumentNullException(nameof(finance));
 			}
 
 			return new CompanyShare()
@@ -186,7 +194,8 @@ namespace ExpenseGuardBackend.Mappers
 				{
 					Amount = createCompanyShareDto.Price,
 					Currency = currency
-				}
+				}, 
+				Finance = finance
 			};
 		}
 

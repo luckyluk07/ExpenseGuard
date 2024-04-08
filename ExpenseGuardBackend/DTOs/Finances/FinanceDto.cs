@@ -1,4 +1,5 @@
-﻿using ExpenseGuardBackend.DTOs.Expense;
+﻿using ExpenseGuardBackend.DTOs.CompanyShares;
+using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.DTOs.Money;
@@ -11,6 +12,7 @@ namespace ExpenseGuardBackend.DTOs.Finances
 		IEnumerable<MoneyDto> CurrencySavings,
 		IEnumerable<IncomeDto> Incomes,
 		IEnumerable<ExpenseDto> Expenses,
-		IEnumerable<InvestmentDepositDto> Investments
+		IEnumerable<InvestmentDepositDto> Investments,
+		IEnumerable<CompanyShareDto> CompanyShares
 	);
 }

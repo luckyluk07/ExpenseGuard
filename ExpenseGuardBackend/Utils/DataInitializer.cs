@@ -33,7 +33,7 @@ namespace ExpenseGuardBackend.Utils
 					);
 
 					context.Finances.Add(
-						new Finance { Id = 1, Incomes = new List<Income>(), Expenses = new List<Expense>(), Investments = new List<InvestmentDeposit>(), CurrencySavings = new List<Money>() }
+						new Finance { Id = 1, Incomes = new List<Income>(), Expenses = new List<Expense>(), Investments = new List<InvestmentDeposit>(), CurrencySavings = new List<Money>(), CompanyShares = new List<CompanyShare>() }
 					);
 
 					context.Incomes.Add(
