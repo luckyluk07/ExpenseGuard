@@ -1,0 +1,14 @@
+.buttonShape {
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.buttonSkin {
+    background-color: orange;
+    color: white;
+    border-color: brown;
+}
+
+.buttonContent {
+    font-size: 16px;
+}
