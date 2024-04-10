@@ -1,0 +1,10 @@
+.containerShapeInvestment {
+    width: 500px;
+    border-radius: 10px;
+}
+   
+.containerSkinInvestment {
+   background-color: purple;
+   border:3px solid #000;
+   color: white
+}
