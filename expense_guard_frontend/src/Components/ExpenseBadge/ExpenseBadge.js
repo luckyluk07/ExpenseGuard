@@ -1,12 +1,12 @@
 import React from 'react';
 import './ExpenseBadge.css'; 
 
-function ExpenseBadge(props) {
+function ExpenseBadge({name, money, description}) {
   return (
     <div className='containerSkin containerShape'>
-        <h3>{props.name}</h3>
-        <h4>{props.money.amount} {props.money.currency.code}</h4>
-        <p>{props.description}</p>
+        <h3>{name}</h3>
+        <h4>{money.amount} {money.currency.code}</h4>
+        <p>{description}</p>
     </div>
   );
 }

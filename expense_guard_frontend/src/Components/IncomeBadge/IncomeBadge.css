@@ -1,0 +1,9 @@
+.incomeBadgeContainerShape {
+    width: 500px;
+    border-radius: 10px;
+}
+   
+.incomeBadgeContainerSkin {
+    background-color: #78df8f;
+    border:3px solid #000;
+}
