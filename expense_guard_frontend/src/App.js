@@ -3,6 +3,7 @@ import ExpenseBadge from './Components/ExpenseBadge/ExpenseBadge';
 import Button from './Components/Common/Button/Button';
 import InvestmentDepositBadge from './Components/InvestmentDeposit/InvestmentDepositBadge';
 import IncomeBadge from './Components/IncomeBadge/IncomeBadge';
+import Dropdown from './Components/Forms/Dropdown/Dropdown';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <InvestmentDepositBadge name='PKO BP - konto dla nowych' startDate='17 April 2024' endDate='17 June 2024' startMoney={{amount: 200000, currency: {code: "PLN"}}} yearCapitalizationAmount={4} interestRate={6.0} />
         <h2>Income badge</h2>
         <IncomeBadge name='Salary' category={{name: 'job'}} money={{amount: 10000, currency: {code: "PLN"}}} receivedDate='10 April 2024'/>
+        <h2>Dropdown</h2>
+        <Dropdown options={[{name: 'option1'}, {name: 'option2'}, {name: 'option3'}]}/>
       </main>
     </div>
   );
