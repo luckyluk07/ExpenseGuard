@@ -4,6 +4,7 @@ import Button from './Components/Common/Button/Button';
 import InvestmentDepositBadge from './Components/InvestmentDeposit/InvestmentDepositBadge';
 import IncomeBadge from './Components/IncomeBadge/IncomeBadge';
 import Dropdown from './Components/Forms/Dropdown/Dropdown';
+import TextInput from './Components/Forms/TextInput/TextInput';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <IncomeBadge name='Salary' category={{name: 'job'}} money={{amount: 10000, currency: {code: "PLN"}}} receivedDate='10 April 2024'/>
         <h2>Dropdown</h2>
         <Dropdown options={[{name: 'option1'}, {name: 'option2'}, {name: 'option3'}]}/>
+        <h2>Text input component</h2>
+        <TextInput labelText={'Example text input'} inputId={'exampleId'} placeholder={'Type your example text...'}/>
       </main>
     </div>
   );
