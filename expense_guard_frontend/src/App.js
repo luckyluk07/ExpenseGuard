@@ -6,6 +6,7 @@ import IncomeBadge from './Components/IncomeBadge/IncomeBadge';
 import Dropdown from './Components/Forms/Dropdown/Dropdown';
 import TextInput from './Components/Forms/TextInput/TextInput';
 import Heading from './Components/Common/Heading/Heading';
+import Text from './Components/Common/Text/Text'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <TextInput labelText={'Example text input'} inputId={'exampleId'} placeholder={'Type your example text...'}/>
         <h2>Heading component</h2>
         <Heading text='Heading example text' size={1}/>
+        <h2>Text</h2>
+        <Text content='Examnple content of text' bold={true} fontSize={40}/>
       </main>
     </div>
   );
