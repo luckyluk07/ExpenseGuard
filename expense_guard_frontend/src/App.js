@@ -8,6 +8,7 @@ import TextInput from './Components/Forms/TextInput/TextInput';
 import Heading from './Components/Common/Heading/Heading';
 import Text from './Components/Common/Text/Text'
 import ActionCard from './Components/Finance/ActionCard/ActionCard';
+import CurrenciesTable from './Components/Finance/CurrenciesTable/CurrenciesTable';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           <Text content='Examnple content of text' bold={true} fontSize={40}/>
           <h2>Action card</h2>
           <ActionCard category='income' name='salary' amount={11_000} currency='PLN' />
+          <h2>Currencies table</h2>
+          <CurrenciesTable currencies={[{name: 'PLN', price: 4.59},{name: 'USD', price: 1.52},{name: 'EUR', price: 1.10}]}/>
         </div>
       </main>
     </div>
