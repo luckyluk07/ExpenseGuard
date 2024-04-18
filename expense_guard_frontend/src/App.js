@@ -9,6 +9,7 @@ import Heading from './Components/Common/Heading/Heading';
 import Text from './Components/Common/Text/Text'
 import ActionCard from './Components/Finance/ActionCard/ActionCard';
 import CurrenciesTable from './Components/Finance/CurrenciesTable/CurrenciesTable';
+import News from './Components/Finance/News/News';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
           <ActionCard category='income' name='salary' amount={11_000} currency='PLN' />
           <h2>Currencies table</h2>
           <CurrenciesTable currencies={[{name: 'PLN', price: 4.59},{name: 'USD', price: 1.52},{name: 'EUR', price: 1.10}]}/>
+          <h2>News/Ads</h2>
+          <News title={"Newest PKO BP discount"} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at sodales ante. Morbi eu pharetra enim. Integer sed porttitor felis. Quisque condimentum finibus quam, id consequat risus rutrum ac. Sed pretium, tellus vel venenatis vulputate, diam nibh viverra enim, vel tincidunt diam quam ut velit. In consequat porta elit, nec tristique lorem.'} linkTitle={'Go to website'}/>
         </div>
       </main>
     </div>
