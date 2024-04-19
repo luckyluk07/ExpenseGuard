@@ -10,6 +10,7 @@ import Text from './Components/Common/Text/Text'
 import ActionCard from './Components/Finance/ActionCard/ActionCard';
 import CurrenciesTable from './Components/Finance/CurrenciesTable/CurrenciesTable';
 import News from './Components/Finance/News/News';
+import DetailsModal from './Components/Finance/DetailsModal/DetailsModal';
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
           <CurrenciesTable currencies={[{name: 'PLN', price: 4.59},{name: 'USD', price: 1.52},{name: 'EUR', price: 1.10}]}/>
           <h2>News/Ads</h2>
           <News title={"Newest PKO BP discount"} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at sodales ante. Morbi eu pharetra enim. Integer sed porttitor felis. Quisque condimentum finibus quam, id consequat risus rutrum ac. Sed pretium, tellus vel venenatis vulputate, diam nibh viverra enim, vel tincidunt diam quam ut velit. In consequat porta elit, nec tristique lorem.'} linkTitle={'Go to website'}/>
+          <h2>Details Modal</h2>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+          </button>
+          <DetailsModal title={'Job salary'} description={'salary with bonuses'} price={15000} currency={'PLN'} date={'18 August 2024'}/>
         </div>
       </main>
     </div>
