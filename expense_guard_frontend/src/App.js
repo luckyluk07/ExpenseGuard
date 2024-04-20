@@ -11,6 +11,7 @@ import ActionCard from './Components/Finance/ActionCard/ActionCard';
 import CurrenciesTable from './Components/Finance/CurrenciesTable/CurrenciesTable';
 import News from './Components/Finance/News/News';
 import DetailsModal from './Components/Finance/DetailsModal/DetailsModal';
+import Pagination from './Components/Common/Pagination/Pagination';
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
             Launch demo modal
           </button>
           <DetailsModal title={'Job salary'} description={'salary with bonuses'} price={15000} currency={'PLN'} date={'18 August 2024'}/>
+          <h2>Pagination example</h2>
+          <Pagination pages={[{link:'#', label:'1'},{link:'#', label:'2'},{link:'#', label:'3'}]}/>
         </div>
       </main>
     </div>
