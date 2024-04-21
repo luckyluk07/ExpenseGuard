@@ -12,6 +12,7 @@ import CurrenciesTable from './Components/Finance/CurrenciesTable/CurrenciesTabl
 import News from './Components/Finance/News/News';
 import DetailsModal from './Components/Finance/DetailsModal/DetailsModal';
 import Pagination from './Components/Common/Pagination/Pagination';
+import ButtonGroup from './Components/Common/ButtonGroup/ButtonGroup';
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
           <DetailsModal title={'Job salary'} description={'salary with bonuses'} price={15000} currency={'PLN'} date={'18 August 2024'}/>
           <h2>Pagination example</h2>
           <Pagination pages={[{link:'#', label:'1'},{link:'#', label:'2'},{link:'#', label:'3'}]}/>
+          <h2>Button group example</h2>
+          <ButtonGroup buttons={[{label: 'first'},{label: 'second'}, {label: 'third'}]}/>
         </div>
       </main>
     </div>
