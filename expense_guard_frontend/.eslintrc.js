@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: ["airbnb", "plugin:prettier/recommended"],
   plugins: ["prettier"],
@@ -21,7 +22,13 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/prop-types": "off",
   },
 };

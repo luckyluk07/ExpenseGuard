@@ -14,10 +14,19 @@ import News from "./Components/Finance/News/News";
 import DetailsModal from "./Components/Finance/DetailsModal/DetailsModal";
 import Pagination from "./Components/Common/Pagination/Pagination";
 import ButtonGroup from "./Components/Common/ButtonGroup/ButtonGroup";
+import NavBar from "./Components/Common/NavBar/NavBar";
 
 function App() {
   return (
     <div className="App">
+      <NavBar
+        links={[
+          { name: "Incomes", url: "/Incomes" },
+          { name: "Expenses", url: "/Expenses" },
+          { name: "Investments", url: "/Investments" },
+          { name: "Messages", url: "/Messages" },
+        ]}
+      />
       <main>
         <div className="container">
           <h2>Expense badge example</h2>
