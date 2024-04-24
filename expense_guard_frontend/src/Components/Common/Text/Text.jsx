@@ -1,5 +1,5 @@
 import React from "react";
-import "./Text.css";
+import "./Text.scss";
 
 function Text({ content, fontSize, bold }) {
   return (

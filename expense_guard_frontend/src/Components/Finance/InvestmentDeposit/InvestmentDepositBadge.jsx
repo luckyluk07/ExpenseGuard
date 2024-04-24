@@ -1,5 +1,5 @@
 import React from "react";
-import "./InvestmentDepositBadge.css";
+import "./InvestmentDepositBadge.scss";
 
 function InvestmentDepositBadge({
   name,

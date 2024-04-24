@@ -1,5 +1,5 @@
 import React from "react";
-import "./ButtonGroup.css";
+import "./ButtonGroup.scss";
 
 function ButtonGroup({ buttons }) {
   return (

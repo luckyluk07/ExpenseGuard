@@ -1,5 +1,5 @@
 import React from "react";
-import "./Dropdown.css";
+import "./Dropdown.scss";
 
 function Dropdown({ options }) {
   return (
@@ -13,9 +13,9 @@ function Dropdown({ options }) {
         Dropdown button
       </button>
       <ul className="dropdown-menu">
-        {options.map((element, index) => (
-          <li key={index}>
-            <a className="dropdown-item" href="#">
+        {options.map((element) => (
+          <li key={`${element.name}`}>
+            <a className="dropdown-item" href={`/${element.name}`}>
               {element.name}
             </a>
           </li>

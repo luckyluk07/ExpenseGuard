@@ -1,5 +1,5 @@
 import React from "react";
-import "./ExpenseBadge.css";
+import "./ExpenseBadge.scss";
 
 function ExpenseBadge({ name, money, description }) {
   return (

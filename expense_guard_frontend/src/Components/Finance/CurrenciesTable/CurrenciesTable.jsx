@@ -1,5 +1,5 @@
 import React from "react";
-import "./CurrenciesTable.css";
+import "./CurrenciesTable.scss";
 
 function CurrenciesTable({ currencies }) {
   return (
