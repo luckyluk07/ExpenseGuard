@@ -1,5 +1,5 @@
 import React from "react";
-import "./InvestmentDepositBadge.scss";
+import styles from "./InvestmentDepositBadge.module.scss";
 
 function InvestmentDepositBadge({
   name,
@@ -10,7 +10,9 @@ function InvestmentDepositBadge({
   interestRate,
 }) {
   return (
-    <div className="containerSkinInvestment containerShapeInvestment">
+    <div
+      className={`${styles.containerSkinInvestment} ${styles.containerShapeInvestment}`}
+    >
       <h3>{name}</h3>
       <h4>
         Date range: {startDate} - {endDate}

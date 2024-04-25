@@ -1,9 +1,9 @@
 import React from "react";
-import "./ExpenseBadge.scss";
+import styles from "./ExpenseBadge.module.scss";
 
 function ExpenseBadge({ name, money, description }) {
   return (
-    <div className="containerSkin containerShape">
+    <div className={`${styles.containerSkin} ${styles.containerShape}`}>
       <h3>{name}</h3>
       <h4>
         {money.amount} {money.currency.code}

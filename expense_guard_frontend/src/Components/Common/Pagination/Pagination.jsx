@@ -1,12 +1,11 @@
 import React from "react";
-import "./Pagination.scss";
 
 function Pagination({ pages }) {
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" href="#">
+          <a className="page-link" href="/prev">
             Previous
           </a>
         </li>
@@ -20,7 +19,7 @@ function Pagination({ pages }) {
           );
         })}
         <li className="page-item">
-          <a className="page-link" href="#">
+          <a className="page-link" href="/next">
             Next
           </a>
         </li>

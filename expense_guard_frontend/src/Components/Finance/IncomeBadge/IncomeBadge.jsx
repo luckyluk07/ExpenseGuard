@@ -1,9 +1,11 @@
 import React from "react";
-import "./IncomeBadge.scss";
+import styles from "./IncomeBadge.module.scss";
 
 function IncomeBadge({ name, money, category, receivedDate }) {
   return (
-    <div className="incomeBadgeContainerShape incomeBadgeContainerSkin">
+    <div
+      className={`${styles.incomeBadgeContainerShape} ${styles.incomeBadgeContainerSkin}`}
+    >
       <h3>
         {name} {category.name} {receivedDate}
       </h3>

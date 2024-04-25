@@ -1,9 +1,13 @@
 import React from "react";
-import "./Button.scss";
+import styles from "./Button.module.scss";
 
 function Button({ text, onClick }) {
   return (
-    <button className="buttonShape buttonSkin buttonContent" onClick={onClick}>
+    <button
+      type="button"
+      className={`${styles.buttonShape} ${styles.buttonSkin} ${styles.buttonConent}`}
+      onClick={onClick}
+    >
       {text}
     </button>
   );

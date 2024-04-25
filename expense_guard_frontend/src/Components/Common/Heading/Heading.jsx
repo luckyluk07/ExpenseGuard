@@ -1,5 +1,4 @@
 import React from "react";
-import "./Heading.scss";
 
 function Heading({ size, text }) {
   const getHeadingClass = () => {

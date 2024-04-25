@@ -1,5 +1,4 @@
 import React from "react";
-import "./CurrenciesTable.scss";
 
 function CurrenciesTable({ currencies }) {
   return (

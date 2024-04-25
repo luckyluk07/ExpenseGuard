@@ -1,5 +1,4 @@
 import React from "react";
-import "./DetailsModal.scss";
 
 function DetailsModal({ title, description, price, currency, date }) {
   return (

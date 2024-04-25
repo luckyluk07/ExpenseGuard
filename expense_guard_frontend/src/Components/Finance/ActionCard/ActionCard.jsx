@@ -1,5 +1,4 @@
 import React from "react";
-import "./ActionCard.scss";
 
 import Heading from "../../Common/Heading/Heading";
 import Text from "../../Common/Text/Text";
