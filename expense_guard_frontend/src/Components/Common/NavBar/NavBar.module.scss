@@ -1,0 +1,20 @@
+.navigationLine {
+    background-color: gray;
+    width: 100%;
+    padding: 0px;
+}
+
+.navigationItem {
+    display: block;
+    height: 100%;
+    padding: 5px 20px;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.navigationItem:hover {
+    background-color: black;
+}

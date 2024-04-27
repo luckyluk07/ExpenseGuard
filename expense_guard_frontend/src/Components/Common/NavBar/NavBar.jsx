@@ -1,12 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./NavBar.module.scss";
 
 function NavBar({ links }) {
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className={`navbar navbar-expand-lg ${styles.navigationLine}`}>
       <div className="container-fluid">
         {/* todo change href */}
-        <NavLink to="/">Home</NavLink>
+        <div className={styles.navigationItem}>
+          <NavLink to="/">Home</NavLink>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,7 +24,11 @@ function NavBar({ links }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav">
             {links.map((link) => {
-              return <NavLink to={link.url}>{link.name}</NavLink>;
+              return (
+                <div className={styles.navigationItem}>
+                  <NavLink to={link.url}>{link.name}</NavLink>
+                </div>
+              );
             })}
           </div>
         </div>

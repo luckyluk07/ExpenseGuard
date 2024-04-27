@@ -7,6 +7,9 @@ import Expenses from "./Pages/Expenses";
 import Incomes from "./Pages/Incomes";
 import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
+import Profile from "./Pages/Profile";
+import News from "./Pages/News";
+import Investments from "./Pages/Investments";
 
 function App() {
   return (
@@ -14,9 +17,12 @@ function App() {
       <div className="App">
         <NavBar
           links={[
+            { name: "Profile", url: "/Profile" },
             { name: "Incomes", url: "/Incomes" },
             { name: "Expenses", url: "/Expenses" },
-            { name: "ComponentsPreview", url: "/ComponentsPreview" },
+            { name: "Investments", url: "/Investments" },
+            { name: "News", url: "/News" },
+            { name: "Components Preview", url: "/ComponentsPreview" },
           ]}
         />
         <main>
@@ -25,6 +31,9 @@ function App() {
             <Route path="ComponentsPreview" element={<ComponentsPreview />} />
             <Route path="Expenses" element={<Expenses />} />
             <Route path="Incomes" element={<Incomes />} />
+            <Route path="Profile" element={<Profile />} />
+            <Route path="News" element={<News />} />
+            <Route path="Investments" element={<Investments />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
