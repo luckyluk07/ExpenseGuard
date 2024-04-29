@@ -22,9 +22,9 @@ function App() {
             { name: "Incomes", url: "/Incomes" },
             { name: "Expenses", url: "/Expenses" },
             { name: "Investments", url: "/Investments" },
+            { name: "Company Shares", url: "/CompanyShares" },
             { name: "News", url: "/News" },
             { name: "Components Preview", url: "/ComponentsPreview" },
-            { name: "Company Shares", url: "/CompanyShares" },
           ]}
         />
         <main>

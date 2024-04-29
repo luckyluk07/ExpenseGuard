@@ -6,7 +6,6 @@ function NavBar({ links }) {
   return (
     <nav className={`navbar navbar-expand-lg ${styles.navigationLine}`}>
       <div className="container-fluid">
-        {/* todo change href */}
         <div className={styles.navigationItem}>
           <NavLink to="/">Home</NavLink>
         </div>
@@ -25,7 +24,7 @@ function NavBar({ links }) {
           <div className="navbar-nav">
             {links.map((link) => {
               return (
-                <div className={styles.navigationItem}>
+                <div key={link.name} className={styles.navigationItem}>
                   <NavLink to={link.url}>{link.name}</NavLink>
                 </div>
               );
