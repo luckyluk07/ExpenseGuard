@@ -11,6 +11,7 @@ import Profile from "./Pages/Profile";
 import News from "./Pages/News";
 import Investments from "./Pages/Investments";
 import CompanyShares from "./Pages/CompanyShares";
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="News" element={<News />} />
             <Route path="Investments" element={<Investments />} />
             <Route path="CompanyShares" element={<CompanyShares />} />
+            <Route path="Error" element={<ErrorPage />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
