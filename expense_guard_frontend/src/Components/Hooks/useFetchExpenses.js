@@ -6,6 +6,7 @@ function useFetchExpenses() {
   const [error, setError] = useState("");
   // const url = "/123112/1212";
   // todo remove mocked expenses
+  // todo maping form big letters to small letters - api model to frontend model
   const mockedExpenses = [
     {
       name: "Groceries",

@@ -1,0 +1,38 @@
+.modal-content {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1000;
+  
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+  
+      .modal-title {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+    }
+  
+    .modal-body {
+      font-size: 1rem;
+  
+      .investment-info {
+        font-weight: bold;
+      }
+  
+      .date-range {
+        margin-left: 10px;
+        color: #777;
+      }
+  
+      .resource-label {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+    }
+  }
+  

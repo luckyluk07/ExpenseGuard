@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./IncomesGrid.module.scss";
+import NoDataAvailable from "../../../Pages/NoDataAvailable";
 
 const RESOURCE_NUMBER = "Number";
 const RESOURCE_NAME = "Name";
@@ -27,19 +28,23 @@ function IncomesGrid({ incomes }) {
           {RESOURCE_RECEIVED}
         </div>
       </div>
-      {incomes.map((income, index) => {
-        return (
-          <div className="row">
-            <div className={`col ${styles.gridItem}`}>{index + 1}</div>
-            <div className={`col ${styles.gridItem}`}>{income.name}</div>
-            <div className={`col ${styles.gridItem}`}>{income.category}</div>
-            <div className={`col ${styles.gridItem}`}>{income.money}</div>
-            <div className={`col ${styles.gridItem}`}>
-              {income.receivedDate}
+      {!incomes ? (
+        <NoDataAvailable />
+      ) : (
+        incomes.map((income, index) => {
+          return (
+            <div className="row">
+              <div className={`col ${styles.gridItem}`}>{index + 1}</div>
+              <div className={`col ${styles.gridItem}`}>{income.name}</div>
+              <div className={`col ${styles.gridItem}`}>{income.category}</div>
+              <div className={`col ${styles.gridItem}`}>{income.money}</div>
+              <div className={`col ${styles.gridItem}`}>
+                {income.receivedDate}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 }

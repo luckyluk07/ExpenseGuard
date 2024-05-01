@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import InvestmentModal from "./InvestmentModal";
+import InvestmentModal from "../InvestmentModal/InvestmentModal";
 
 const RESOURCE_SEE_DETAILS_LABEL = "See details";
 

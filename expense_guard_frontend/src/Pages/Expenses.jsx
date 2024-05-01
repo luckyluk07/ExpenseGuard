@@ -7,7 +7,6 @@ export default function Expenses() {
   const response = useFetchExpenses();
   const navigate = useNavigate();
 
-  console.log("expenses", response);
   if (response.error) {
     navigate("/Error");
     return null;
