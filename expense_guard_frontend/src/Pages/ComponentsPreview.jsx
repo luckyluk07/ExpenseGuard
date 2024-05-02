@@ -9,7 +9,7 @@ import Pagination from "../Components/Common/Pagination/Pagination";
 import ActionCard from "../Components/Finance/ActionCard/ActionCard";
 import CurrenciesTable from "../Components/Finance/CurrenciesTable/CurrenciesTable";
 import DetailsModal from "../Components/Finance/DetailsModal/DetailsModal";
-import IncomeBadge from "../Components/Finance/IncomeBadge/IncomeBadge";
+import CompanyShareBadge from "../Components/Finance/CompanyShareBadge/CompanyShareBadge";
 import News from "../Components/Finance/News/News";
 import TextInput from "../Components/Forms/TextInput/TextInput";
 import Text from "../Components/Common/Text/Text";
@@ -40,11 +40,10 @@ export default function ComponentsPreview() {
         interestRate={6.0}
       />
       <h2>Income badge</h2>
-      <IncomeBadge
+      <CompanyShareBadge
         name="Salary"
-        category={{ name: "job" }}
         money={{ amount: 10000, currency: { code: "PLN" } }}
-        receivedDate="10 April 2024"
+        dateOfPurchase="10 April 2024"
       />
       <h2>Dropdown</h2>
       <Dropdown
