@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import InvestmentsList from "../Components/Finance/InvestmentsList/InvestmentsList";
 import useFetchInvestments from "../Components/Hooks/useFetchInvestments";
+import paths from "../Shared/routes";
 
 export default function Investments() {
   // todo list of some badges/news with button to open modal with details
@@ -9,7 +10,7 @@ export default function Investments() {
   const navigate = useNavigate();
 
   if (response.error) {
-    navigate("/Error");
+    navigate(paths.error);
     return null;
   }
   return (

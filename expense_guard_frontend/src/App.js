@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import paths from "./Shared/routes";
 import NavBar from "./Components/Common/NavBar/NavBar";
 import ComponentsPreview from "./Pages/ComponentsPreview";
 import Expenses from "./Pages/Expenses";
@@ -19,28 +20,31 @@ function App() {
       <div className="App">
         <NavBar
           links={[
-            { name: "Profile", url: "/Profile" },
-            { name: "Incomes", url: "/Incomes" },
-            { name: "Expenses", url: "/Expenses" },
-            { name: "Investments", url: "/Investments" },
-            { name: "Company Shares", url: "/CompanyShares" },
-            { name: "News", url: "/News" },
-            { name: "Components Preview", url: "/ComponentsPreview" },
+            { name: "Profile", url: paths.profile },
+            { name: "Incomes", url: paths.incomes },
+            { name: "Expenses", url: paths.expenses },
+            { name: "Investments", url: paths.investments },
+            { name: "Company Shares", url: paths.companyShares },
+            { name: "News", url: paths.news },
+            { name: "Components Preview", url: paths.componentsPreview },
           ]}
         />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="ComponentsPreview" element={<ComponentsPreview />} />
-            <Route path="Expenses" element={<Expenses />} />
-            <Route path="Incomes" element={<Incomes />} />
-            <Route path="Profile" element={<Profile />} />
-            <Route path="News" element={<News />} />
-            <Route path="Investments" element={<Investments />} />
-            <Route path="CompanyShares" element={<CompanyShares />} />
-            <Route path="Error" element={<ErrorPage />} />
+            <Route path={paths.home} element={<Home />} />
+            <Route
+              path={paths.componentsPreview}
+              element={<ComponentsPreview />}
+            />
+            <Route path={paths.expenses} element={<Expenses />} />
+            <Route path={paths.incomes} element={<Incomes />} />
+            <Route path={paths.profile} element={<Profile />} />
+            <Route path={paths.news} element={<News />} />
+            <Route path={paths.investments} element={<Investments />} />
+            <Route path={paths.companyShares} element={<CompanyShares />} />
+            <Route path={paths.error} element={<ErrorPage />} />
 
-            <Route path="*" element={<NotFound />} />
+            <Route path={paths.notFound} element={<NotFound />} />
           </Routes>
         </main>
       </div>
