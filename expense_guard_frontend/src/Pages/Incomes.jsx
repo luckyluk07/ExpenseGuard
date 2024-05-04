@@ -10,6 +10,7 @@ export default function Incomes() {
   const navigate = useNavigate();
 
   if (response.error) {
+    console.log(response.error);
     navigate(paths.error);
     return null;
   }

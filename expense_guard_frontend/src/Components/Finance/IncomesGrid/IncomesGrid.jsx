@@ -37,7 +37,9 @@ function IncomesGrid({ incomes }) {
               <div className={`col ${styles.gridItem}`}>{index + 1}</div>
               <div className={`col ${styles.gridItem}`}>{income.name}</div>
               <div className={`col ${styles.gridItem}`}>{income.category}</div>
-              <div className={`col ${styles.gridItem}`}>{income.money}</div>
+              <div className={`col ${styles.gridItem}`}>
+                {income.money} {income.currency}
+              </div>
               <div className={`col ${styles.gridItem}`}>
                 {income.receivedDate}
               </div>
