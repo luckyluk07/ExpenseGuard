@@ -28,17 +28,18 @@ function IncomesGrid({ incomes }) {
           {RESOURCE_RECEIVED}
         </div>
       </div>
-      {!incomes ? (
+      {!incomes || incomes.length === 0 ? (
         <NoDataAvailable />
       ) : (
         incomes.map((income, index) => {
+          console.log(income);
           return (
             <div className="row">
               <div className={`col ${styles.gridItem}`}>{index + 1}</div>
               <div className={`col ${styles.gridItem}`}>{income.name}</div>
               <div className={`col ${styles.gridItem}`}>{income.category}</div>
               <div className={`col ${styles.gridItem}`}>
-                {income.money} {income.currency}
+                {income.amount} {income.currency}
               </div>
               <div className={`col ${styles.gridItem}`}>
                 {income.receivedDate}

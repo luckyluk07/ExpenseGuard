@@ -5,7 +5,7 @@ import NoDataAvailable from "../../../Pages/NoDataAvailable";
 function InvestmentsList({ investments }) {
   return (
     <div>
-      {!investments ? (
+      {!investments || investments.length === 0 ? (
         <NoDataAvailable />
       ) : (
         investments.map((investment) => {

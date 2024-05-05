@@ -6,7 +6,7 @@ import NoDataAvailable from "../../../Pages/NoDataAvailable";
 function ExpenseList({ expenses }) {
   return (
     <div>
-      {!expenses ? (
+      {!expenses || expenses.length === 0 ? (
         <NoDataAvailable />
       ) : (
         expenses.map((expense) => {

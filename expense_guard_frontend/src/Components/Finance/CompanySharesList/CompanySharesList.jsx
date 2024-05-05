@@ -5,7 +5,7 @@ import CompanyShareBadge from "../CompanyShareBadge/CompanyShareBadge";
 function CompanySharesList({ companiesShares }) {
   return (
     <div>
-      {!companiesShares ? (
+      {!companiesShares || companiesShares.length === 0 ? (
         <NoDataAvailable />
       ) : (
         companiesShares.map((companyShare) => {
