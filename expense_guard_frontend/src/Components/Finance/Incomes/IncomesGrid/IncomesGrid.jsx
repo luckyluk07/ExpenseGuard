@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./IncomesGrid.module.scss";
-import NoDataAvailable from "../../../Pages/NoDataAvailable";
+import NoDataAvailable from "../../../../Pages/NoDataAvailable";
 
 const RESOURCE_NUMBER = "Number";
 const RESOURCE_NAME = "Name";

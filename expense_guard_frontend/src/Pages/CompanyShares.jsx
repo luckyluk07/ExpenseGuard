@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchCompanyShares from "../Components/Hooks/useFetchCompanyShares";
-import CompanySharesList from "../Components/Finance/CompanySharesList/CompanySharesList";
+import CompanySharesList from "../Components/Finance/CompanyShares/CompanySharesList/CompanySharesList";
 import paths from "../Shared/routes";
 
 export default function CompanyShares() {

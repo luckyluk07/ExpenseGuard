@@ -1,10 +1,12 @@
 import React from "react";
-import "./TextInput.scss";
+import styles from "./TextInput.module.scss";
 
 function TextInput({ labelText, inputId, placeholder }) {
   return (
     <div className="form-group">
-      <label htmlFor={inputId}>{labelText}</label>
+      <label htmlFor={inputId} className={`${styles.label}`}>
+        {labelText}
+      </label>
       <input
         type="text"
         className="form-control"

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ExpenseList.module.scss";
 import ExpenseBadge from "../ExpenseBadge/ExpenseBadge";
-import NoDataAvailable from "../../../Pages/NoDataAvailable";
+import NoDataAvailable from "../../../../Pages/NoDataAvailable";
 
 function ExpenseList({ expenses }) {
   return (

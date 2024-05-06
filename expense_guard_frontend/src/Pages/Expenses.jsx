@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ExpenseList from "../Components/Finance/ExpenseList/ExpenseList";
+import ExpenseList from "../Components/Finance/Expenses/ExpenseList/ExpenseList";
 import useFetchExpenses from "../Components/Hooks/useFetchExpenses";
 import paths from "../Shared/routes";
 

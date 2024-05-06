@@ -1,5 +1,5 @@
 import React from "react";
-import NoDataAvailable from "../../../Pages/NoDataAvailable";
+import NoDataAvailable from "../../../../Pages/NoDataAvailable";
 import CompanyShareBadge from "../CompanyShareBadge/CompanyShareBadge";
 
 function CompanySharesList({ companiesShares }) {

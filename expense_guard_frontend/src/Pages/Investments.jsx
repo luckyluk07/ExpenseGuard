@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import InvestmentsList from "../Components/Finance/InvestmentsList/InvestmentsList";
+import InvestmentsList from "../Components/Finance/Investments/InvestmentsList/InvestmentsList";
 import useFetchInvestments from "../Components/Hooks/useFetchInvestments";
 import paths from "../Shared/routes";
 

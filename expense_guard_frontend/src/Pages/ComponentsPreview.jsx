@@ -1,35 +1,18 @@
 import React from "react";
-import ExpenseBadge from "../Components/Finance/ExpenseBadge/ExpenseBadge";
-import InvestmentDepositBadge from "../Components/Finance/InvestmentDeposit/InvestmentDepositBadge";
-import Button from "../Components/Common/Button/Button";
+import InvestmentDepositBadge from "../Components/Finance/Investments/InvestmentDeposit/InvestmentDepositBadge";
 import ButtonGroup from "../Components/Common/ButtonGroup/ButtonGroup";
 import Dropdown from "../Components/Forms/Dropdown/Dropdown";
 import Heading from "../Components/Common/Heading/Heading";
 import Pagination from "../Components/Common/Pagination/Pagination";
-import ActionCard from "../Components/Finance/ActionCard/ActionCard";
 import CurrenciesTable from "../Components/Finance/CurrenciesTable/CurrenciesTable";
 import DetailsModal from "../Components/Finance/DetailsModal/DetailsModal";
-import CompanyShareBadge from "../Components/Finance/CompanyShareBadge/CompanyShareBadge";
-import News from "../Components/Finance/News/News";
+import CompanyShareBadge from "../Components/Finance/CompanyShares/CompanyShareBadge/CompanyShareBadge";
 import TextInput from "../Components/Forms/TextInput/TextInput";
 import Text from "../Components/Common/Text/Text";
 
 export default function ComponentsPreview() {
   return (
     <div className="container">
-      <h2>Expense badge example</h2>
-      <ExpenseBadge
-        name="Netflix subscription"
-        money={{ amount: 100, currency: { code: "PLN" } }}
-        description="Monthly Netflix subscription bill"
-      />
-      <h2>Button example</h2>
-      <Button
-        text="Button text"
-        onClick={() => {
-          console.log("button click");
-        }}
-      />
       <h2>Investment deposit badge</h2>
       <InvestmentDepositBadge
         name="PKO BP - konto dla nowych"
@@ -63,13 +46,6 @@ export default function ComponentsPreview() {
       <Heading text="Heading example text" size={1} />
       <h2>Text</h2>
       <Text content="Examnple content of text" bold fontSize={40} />
-      <h2>Action card</h2>
-      <ActionCard
-        category="income"
-        name="salary"
-        amount={11000}
-        currency="PLN"
-      />
       <h2>Currencies table</h2>
       <CurrenciesTable
         currencies={[
@@ -77,12 +53,6 @@ export default function ComponentsPreview() {
           { name: "USD", price: 1.52 },
           { name: "EUR", price: 1.1 },
         ]}
-      />
-      <h2>News/Ads</h2>
-      <News
-        title="Newest PKO BP discount"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at sodales ante. Morbi eu pharetra enim. Integer sed porttitor felis. Quisque condimentum finibus quam, id consequat risus rutrum ac. Sed pretium, tellus vel venenatis vulputate, diam nibh viverra enim, vel tincidunt diam quam ut velit. In consequat porta elit, nec tristique lorem."
-        linkTitle="Go to website"
       />
       <h2>Details Modal</h2>
       <button
