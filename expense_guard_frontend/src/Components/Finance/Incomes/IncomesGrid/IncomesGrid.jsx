@@ -32,7 +32,6 @@ function IncomesGrid({ incomes }) {
         <NoDataAvailable />
       ) : (
         incomes.map((income, index) => {
-          console.log(income);
           return (
             <div className="row">
               <div className={`col ${styles.gridItem}`}>{index + 1}</div>

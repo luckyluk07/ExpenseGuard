@@ -1,26 +1,22 @@
 import React from "react";
-import "./Dropdown.scss";
 
-function Dropdown({ options }) {
+function Dropdown({ options, name }) {
   return (
-    <div className="dropdown">
-      <button
-        className="btn btn-secondary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Dropdown button
-      </button>
-      <ul className="dropdown-menu">
-        {options.map((element) => (
-          <li key={`${element.name}`}>
-            <a className="dropdown-item" href={`/${element.name}`}>
-              {element.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <label htmlFor={name}>
+        Choose an option:
+        <select name={name} id={name}>
+          <option value="">--Please choose an option--</option>
+          {options &&
+            options.map((option) => {
+              return (
+                <option value={option.id} key={option.name}>
+                  {option.name}
+                </option>
+              );
+            })}
+        </select>
+      </label>
     </div>
   );
 }
