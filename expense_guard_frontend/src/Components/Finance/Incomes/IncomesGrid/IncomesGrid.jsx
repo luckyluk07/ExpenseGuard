@@ -33,7 +33,7 @@ function IncomesGrid({ incomes }) {
       ) : (
         incomes.map((income, index) => {
           return (
-            <div className="row">
+            <div className="row" key={income.name}>
               <div className={`col ${styles.gridItem}`}>{index + 1}</div>
               <div className={`col ${styles.gridItem}`}>{income.name}</div>
               <div className={`col ${styles.gridItem}`}>{income.category}</div>
