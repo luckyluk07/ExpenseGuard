@@ -3,6 +3,7 @@ import React from "react";
 function Dropdown({ options, name, value, onChange }) {
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
+    console.log("Selected value", selectedValue);
     onChange(selectedValue);
   };
 

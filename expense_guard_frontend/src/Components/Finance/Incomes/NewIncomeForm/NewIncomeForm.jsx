@@ -3,6 +3,9 @@ import TextInput from "../../../Forms/TextInput/TextInput";
 import useFetchCategories from "../../../Hooks/useFetchCategories";
 import Dropdown from "../../../Forms/Dropdown/Dropdown";
 import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
+import postApiRequest from "../../../Services/Api/makePostApiRequest";
+import apiUrls from "../../../../Shared/apiUrls";
+import DatePicker from "../../../Forms/DatePicker/DatePicker";
 
 function NewIncomeForm() {
   const { data: categories } = useFetchCategories();
@@ -10,12 +13,9 @@ function NewIncomeForm() {
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState(
-    categories.length === 0 ? undefined : categories[0],
-  );
-  const [currency, setCurrency] = useState(
-    currencies.length === 0 ? undefined : currencies[0],
-  );
+  const [category, setCategory] = useState(undefined);
+  const [currency, setCurrency] = useState(undefined);
+  const [date, setDate] = useState(new Date());
 
   return (
     <div className="container my-5">
@@ -50,9 +50,25 @@ function NewIncomeForm() {
               setCurrency(option);
             }}
           />
-          <button type="submit">Submit</button>
+          <DatePicker value={date} onChange={(newDate) => setDate(newDate)} />
+          <button
+            type="submit"
+            onClick={(event) => {
+              const data = {
+                name,
+                receivedDate: date,
+                amount,
+                currencyId: currency,
+                categoryId: category,
+                financeId: 1,
+              };
+              postApiRequest(apiUrls.postIncome, data);
+              event.preventDefault();
+            }}
+          >
+            Submit
+          </button>
         </form>
-        {/* TODO fix selecting currency */}
       </div>
     </div>
   );
