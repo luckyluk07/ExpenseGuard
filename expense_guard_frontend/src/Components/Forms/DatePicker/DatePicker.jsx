@@ -1,6 +1,6 @@
 import React from "react";
 
-function DatePicker({ value, onChange }) {
+function DatePicker({ value, onChange, label }) {
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     onChange(selectedValue);
@@ -9,7 +9,7 @@ function DatePicker({ value, onChange }) {
   return (
     <div>
       <label htmlFor="start">
-        Received Date:
+        {label}
         <input
           type="date"
           id="start"

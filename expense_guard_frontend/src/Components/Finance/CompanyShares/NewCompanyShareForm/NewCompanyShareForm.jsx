@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import TextInput from "../../../Forms/TextInput/TextInput";
-import useFetchCategories from "../../../Hooks/useFetchCategories";
 import Dropdown from "../../../Forms/Dropdown/Dropdown";
 import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
 
-function NewIncomeForm() {
-  const { data: categories } = useFetchCategories();
+function NewCompanyShareForm() {
   const { data: currencies } = useFetchCurrencies();
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState(undefined);
+  const [price, setPrice] = useState(0);
   const [currency, setCurrency] = useState(undefined);
   const [date, setDate] = useState(new Date());
 
@@ -29,18 +27,16 @@ function NewIncomeForm() {
             onChange={(newName) => setName(newName)}
           />
           <TextInput
-            labelText="Amount"
+            labelText="Shares amount"
             placeholder="eg. 255.5"
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
-          <Dropdown
-            options={categories}
-            name="incomeCategory"
-            value={category}
-            onChange={(option) => {
-              setCategory(option);
-            }}
+          <TextInput
+            labelText="Price"
+            placeholder="eg. 255.5"
+            value={price}
+            onChange={(newAmount) => setPrice(newAmount)}
           />
           <Dropdown
             options={currencies}
@@ -51,7 +47,7 @@ function NewIncomeForm() {
             }}
           />
           <DatePicker
-            label="Received date"
+            label="Date of purchase"
             value={date}
             onChange={(newDate) => setDate(newDate)}
           />
@@ -60,13 +56,13 @@ function NewIncomeForm() {
             onClick={(event) => {
               const data = {
                 name,
-                receivedDate: date,
-                amount,
+                dateOfPurchase: date,
+                sharesAmount: amount,
+                price,
                 currencyId: currency,
-                categoryId: category,
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postIncome, data);
+              postApiRequest(apiUrls.postCompanyShares, data);
               event.preventDefault();
             }}
           >
@@ -78,4 +74,4 @@ function NewIncomeForm() {
   );
 }
 
-export default NewIncomeForm;
+export default NewCompanyShareForm;

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ExpenseList from "../Components/Finance/Expenses/ExpenseList/ExpenseList";
 import useFetchExpenses from "../Components/Hooks/useFetchExpenses";
 import paths from "../Shared/routes";
+import NewExpenseForm from "../Components/Finance/Expenses/NewExpenseForm/NewExpenseForm";
 
 export default function Expenses() {
   const response = useFetchExpenses();
@@ -15,6 +16,7 @@ export default function Expenses() {
   return (
     <div>
       <h1>Expenses</h1>
+      <NewExpenseForm />
       <ExpenseList expenses={response.data} />
     </div>
   );

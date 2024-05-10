@@ -7,7 +7,7 @@ import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
 
-function NewIncomeForm() {
+function NewExpenseForm() {
   const { data: categories } = useFetchCategories();
   const { data: currencies } = useFetchCurrencies();
 
@@ -29,14 +29,14 @@ function NewIncomeForm() {
             onChange={(newName) => setName(newName)}
           />
           <TextInput
-            labelText="Amount"
+            labelText="Price"
             placeholder="eg. 255.5"
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
           <Dropdown
             options={categories}
-            name="incomeCategory"
+            name="expenseCategory"
             value={category}
             onChange={(option) => {
               setCategory(option);
@@ -44,14 +44,14 @@ function NewIncomeForm() {
           />
           <Dropdown
             options={currencies}
-            name="incomeCurrency"
+            name="expenseCurrency"
             value={currency}
             onChange={(option) => {
               setCurrency(option);
             }}
           />
           <DatePicker
-            label="Received date"
+            label="Spend date"
             value={date}
             onChange={(newDate) => setDate(newDate)}
           />
@@ -60,13 +60,13 @@ function NewIncomeForm() {
             onClick={(event) => {
               const data = {
                 name,
-                receivedDate: date,
-                amount,
+                spendDate: date,
+                price: amount,
                 currencyId: currency,
                 categoryId: category,
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postIncome, data);
+              postApiRequest(apiUrls.postExpense, data);
               event.preventDefault();
             }}
           >
@@ -78,4 +78,4 @@ function NewIncomeForm() {
   );
 }
 
-export default NewIncomeForm;
+export default NewExpenseForm;

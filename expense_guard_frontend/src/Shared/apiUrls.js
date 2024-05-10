@@ -9,6 +9,9 @@ const apiUrls = {
   getInvestmentsDeposits: `${base}/InvestmentDeposit`,
 
   postIncome: `${base}/Income`,
+  postExpense: `${base}/Expense`,
+  postInvestment: `${base}/InvestmentDeposit`,
+  postCompanyShares: `${base}/CompanyShare`,
 
   deleteIncome: `${base}/Income`,
 };

@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import TextInput from "../../../Forms/TextInput/TextInput";
-import useFetchCategories from "../../../Hooks/useFetchCategories";
 import Dropdown from "../../../Forms/Dropdown/Dropdown";
 import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
 
-function NewIncomeForm() {
-  const { data: categories } = useFetchCategories();
+function NewInvestmentForm() {
   const { data: currencies } = useFetchCurrencies();
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState(undefined);
   const [currency, setCurrency] = useState(undefined);
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [yearCapitalizationAmount, setYearCapizalizationAmount] = useState(0);
+  const [interstRate, setInterestRate] = useState(0);
 
   return (
     <div className="container my-5">
@@ -29,44 +29,57 @@ function NewIncomeForm() {
             onChange={(newName) => setName(newName)}
           />
           <TextInput
-            labelText="Amount"
+            labelText="Price"
             placeholder="eg. 255.5"
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
-          <Dropdown
-            options={categories}
-            name="incomeCategory"
-            value={category}
-            onChange={(option) => {
-              setCategory(option);
-            }}
+          <TextInput
+            labelText="Year capitalization amount"
+            placeholder="eg. 3"
+            value={yearCapitalizationAmount}
+            onChange={(newAmount) => setYearCapizalizationAmount(newAmount)}
+          />
+          <TextInput
+            labelText="Interest rate"
+            placeholder="eg. 255.5"
+            value={interstRate}
+            onChange={(newAmount) => setInterestRate(newAmount)}
           />
           <Dropdown
             options={currencies}
-            name="incomeCurrency"
+            name="investmentCurrency"
             value={currency}
             onChange={(option) => {
               setCurrency(option);
             }}
           />
           <DatePicker
-            label="Received date"
-            value={date}
-            onChange={(newDate) => setDate(newDate)}
+            label="Start date"
+            value={startDate}
+            onChange={(newDate) => setStartDate(newDate)}
+          />
+          <DatePicker
+            label="End date"
+            value={endDate}
+            onChange={(newDate) => setEndDate(newDate)}
           />
           <button
             type="submit"
             onClick={(event) => {
               const data = {
                 name,
-                receivedDate: date,
-                amount,
-                currencyId: currency,
-                categoryId: category,
+                startDate,
+                endDate,
+                yearCapitalizationAmount,
+                interestRate: interstRate,
+                startMoney: {
+                  amount,
+                  currencyId: currency,
+                },
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postIncome, data);
+              postApiRequest(apiUrls.postInvestment, data);
               event.preventDefault();
             }}
           >
@@ -78,4 +91,4 @@ function NewIncomeForm() {
   );
 }
 
-export default NewIncomeForm;
+export default NewInvestmentForm;
