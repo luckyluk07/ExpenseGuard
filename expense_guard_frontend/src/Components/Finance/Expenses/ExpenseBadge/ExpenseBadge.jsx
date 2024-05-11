@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ExpenseBadge.module.scss";
+import Button from "../../../Common/Button/Button";
 
 function ExpenseBadge({ name, money, description, classname }) {
   return (
@@ -11,6 +12,9 @@ function ExpenseBadge({ name, money, description, classname }) {
         {money.amount} {money.currency.code}
       </h4>
       <p>{description}</p>
+      <div>
+        <Button text="Update" />
+      </div>
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./IncomesGrid.module.scss";
 import NoDataAvailable from "../../../../Pages/NoDataAvailable";
+import Button from "../../../Common/Button/Button";
 
 const RESOURCE_NUMBER = "Number";
 const RESOURCE_NAME = "Name";
 const RESOURCE_CATEGORY = "Category";
 const RESOURCE_MONEY = "Money";
 const RESOURCE_RECEIVED = "Received";
+const RESOURCE_UPDATE = "Update";
 
 function IncomesGrid({ incomes }) {
   return (
@@ -27,6 +29,9 @@ function IncomesGrid({ incomes }) {
         <div className={`col ${styles.headerItem} ${styles.gridItem}`}>
           {RESOURCE_RECEIVED}
         </div>
+        <div className={`col ${styles.headerItem} ${styles.gridItem}`}>
+          {RESOURCE_UPDATE}
+        </div>
       </div>
       {!incomes || incomes.length === 0 ? (
         <NoDataAvailable />
@@ -42,6 +47,9 @@ function IncomesGrid({ incomes }) {
               </div>
               <div className={`col ${styles.gridItem}`}>
                 {income.receivedDate}
+              </div>
+              <div className="col">
+                <Button text="Update" />
               </div>
             </div>
           );

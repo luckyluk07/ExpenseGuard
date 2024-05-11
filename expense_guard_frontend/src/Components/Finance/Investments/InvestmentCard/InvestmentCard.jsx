@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import InvestmentModal from "../InvestmentModal/InvestmentModal";
+import Button from "../../../Common/Button/Button";
 
 const RESOURCE_SEE_DETAILS_LABEL = "See details";
 
@@ -22,6 +23,7 @@ function InvestmentCard({ investment }) {
         >
           {RESOURCE_SEE_DETAILS_LABEL}
         </button>
+        <Button text="Update" />
       </div>
 
       {showModal &&
