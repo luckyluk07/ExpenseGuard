@@ -24,7 +24,8 @@ namespace ExpenseGuardBackend.Utils
 						new Money { Id = 2, Amount = 20, CurrencyId = 1 },
 						new Money { Id = 3, Amount = 50, CurrencyId = 1 },
 						new Money { Id = 4, Amount = 1000, CurrencyId = 1 },
-						new Money { Id = 5, Amount = 1234, CurrencyId = 1 }
+						new Money { Id = 5, Amount = 1234, CurrencyId = 1 },
+						new Money { Id = 6, Amount = 1000, CurrencyId = 2}
 					);
 
 					context.Categories.AddRange(
@@ -47,6 +48,15 @@ namespace ExpenseGuardBackend.Utils
 					context.InvestmentsDeposits.Add(
 						new InvestmentDeposit { EndDate = new DateTime(), FinanceId = 1, InterestRate = 3, Name = "Oszczednosciowe PKO", StartDate = new DateTime(), StartMoneyId = 5, YearCapitalizationAmount = 2 }
 					);
+
+					context.CompanyShares.Add(
+						new CompanyShare { 
+							FinanceId = 1,
+							DateOfPurchase= new DateTime(),
+							Amount = 1000,
+							Name = "S&P 500",
+							PriceId = 6 }
+						);
 
 					context.SaveChanges();
 				}

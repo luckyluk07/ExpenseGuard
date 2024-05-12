@@ -1,4 +1,5 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories.CompanyShares
 {
@@ -13,12 +14,12 @@ namespace ExpenseGuardBackend.Repositories.CompanyShares
 
 		public IEnumerable<CompanyShare> GetAll()
 		{
-			return _expenseGuardDbContext.CompanyShares;
+			return GetFullCompanyShares();
 		}
 
 		public CompanyShare? Get(int id)
 		{
-			return _expenseGuardDbContext.CompanyShares.FirstOrDefault(x => x.Id == id);
+			return GetFullCompanyShares().FirstOrDefault(x => x.Id == id);
 		}
 
 		public CompanyShare? Create(CompanyShare companyShare)
@@ -55,6 +56,13 @@ namespace ExpenseGuardBackend.Repositories.CompanyShares
 			_expenseGuardDbContext.CompanyShares.Remove(toRemove);
 			_expenseGuardDbContext.SaveChanges();
 			return true;
+		}
+
+		public IEnumerable<CompanyShare> GetFullCompanyShares()
+		{
+			return _expenseGuardDbContext.CompanyShares
+				.Include(x => x.Price)
+					.ThenInclude(x => x.Currency);
 		}
 	}
 }

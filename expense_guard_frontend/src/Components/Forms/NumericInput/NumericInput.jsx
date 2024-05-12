@@ -1,7 +1,16 @@
 import React from "react";
 import formStyles from "../formStyles.module.scss";
 
-function TextInput({ labelText, inputId, placeholder, value, onChange }) {
+function NumericInput({
+  labelText,
+  inputId,
+  placeholder,
+  value,
+  onChange,
+  step,
+  min,
+  max,
+}) {
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     onChange(selectedValue);
@@ -12,8 +21,11 @@ function TextInput({ labelText, inputId, placeholder, value, onChange }) {
         {labelText}
       </label>
       <input
-        type="text"
+        type="number"
         className="form-control"
+        min={min}
+        max={max}
+        step={step}
         id={inputId}
         value={value}
         onChange={handleSelectChange}
@@ -24,4 +36,4 @@ function TextInput({ labelText, inputId, placeholder, value, onChange }) {
   );
 }
 
-export default TextInput;
+export default NumericInput;

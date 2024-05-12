@@ -9,13 +9,14 @@ function useFetchCompanyShares() {
     const fetchData = async () => {
       try {
         const apiResponse = await getAllApiRequest(apiUrls.getCompanyShares);
+        console.log(apiResponse.companyShares);
         const mappedData = apiResponse.companyShares
           ? apiResponse.companyShares.map((element) => ({
               name: element.name,
               amount: element.amount,
               money: {
-                amount: element.money.amount,
-                currency: element.money.currency,
+                amount: element.price.amount,
+                currency: element.price.currency,
               },
               dateOfPurchase: element.dateOfPurchase,
             }))

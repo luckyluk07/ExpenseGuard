@@ -5,6 +5,7 @@ import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../../Forms/NumericInput/NumericInput";
 
 function NewInvestmentForm() {
   const { data: currencies } = useFetchCurrencies();
@@ -28,21 +29,27 @@ function NewInvestmentForm() {
             value={name}
             onChange={(newName) => setName(newName)}
           />
-          <TextInput
+          <NumericInput
             labelText="Price"
             placeholder="eg. 255.5"
+            min={0}
+            step={0.01}
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
-          <TextInput
+          <NumericInput
             labelText="Year capitalization amount"
             placeholder="eg. 3"
+            min={0}
+            step={1}
             value={yearCapitalizationAmount}
             onChange={(newAmount) => setYearCapizalizationAmount(newAmount)}
           />
-          <TextInput
+          <NumericInput
             labelText="Interest rate"
             placeholder="eg. 255.5"
+            min={0}
+            step={0.01}
             value={interstRate}
             onChange={(newAmount) => setInterestRate(newAmount)}
           />

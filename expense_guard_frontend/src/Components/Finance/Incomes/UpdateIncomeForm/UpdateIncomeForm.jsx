@@ -6,6 +6,7 @@ import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../../Forms/NumericInput/NumericInput";
 
 function UpdateIncomeForm() {
   const { data: categories } = useFetchCategories();
@@ -28,9 +29,11 @@ function UpdateIncomeForm() {
             value={name}
             onChange={(newName) => setName(newName)}
           />
-          <TextInput
+          <NumericInput
             labelText="Amount"
             placeholder="eg. 255.5"
+            min={0}
+            step={0.01}
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />

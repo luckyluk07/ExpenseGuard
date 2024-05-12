@@ -1,4 +1,5 @@
 import React from "react";
+import formStyles from "../formStyles.module.scss";
 
 function DatePicker({ value, onChange, label }) {
   const handleSelectChange = (event) => {
@@ -8,7 +9,7 @@ function DatePicker({ value, onChange, label }) {
 
   return (
     <div>
-      <label htmlFor="start">
+      <label htmlFor="start" className={`${formStyles.label}`}>
         {label}
         <input
           type="date"

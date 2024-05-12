@@ -5,6 +5,7 @@ import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../../Forms/NumericInput/NumericInput";
 
 function UpdateCompanyShareForm() {
   const { data: currencies } = useFetchCurrencies();
@@ -26,15 +27,19 @@ function UpdateCompanyShareForm() {
             value={name}
             onChange={(newName) => setName(newName)}
           />
-          <TextInput
+          <NumericInput
             labelText="Shares amount"
             placeholder="eg. 255.5"
+            min={0}
+            step={0.01}
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
-          <TextInput
+          <NumericInput
             labelText="Price"
             placeholder="eg. 255.5"
+            min={0}
+            step={0.01}
             value={price}
             onChange={(newAmount) => setPrice(newAmount)}
           />

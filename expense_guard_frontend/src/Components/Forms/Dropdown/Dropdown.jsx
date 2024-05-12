@@ -1,15 +1,15 @@
 import React from "react";
+import formStyles from "../formStyles.module.scss";
 
 function Dropdown({ options, name, value, onChange }) {
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-    console.log("Selected value", selectedValue);
     onChange(selectedValue);
   };
 
   return (
     <div>
-      <label htmlFor={name}>
+      <label htmlFor={name} className={`${formStyles.label}`}>
         Choose an option:
         <select
           name={name}

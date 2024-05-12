@@ -12,6 +12,7 @@ export default function CompanyShares() {
   const navigate = useNavigate();
 
   if (response.error) {
+    alert(response.error);
     navigate(paths.error);
     return null;
   }
