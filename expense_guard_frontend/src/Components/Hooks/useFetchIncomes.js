@@ -10,6 +10,7 @@ function useFetchIncomes() {
       try {
         const apiResponse = await getAllApiRequest(apiUrls.getIncomes);
         const mappedData = apiResponse.incomes.map((element) => ({
+          id: element.id,
           name: element.name,
           category: element.category.name,
           receivedDate: element.receivedDate,

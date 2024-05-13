@@ -8,7 +8,7 @@ namespace ExpenseGuardBackend.Repositories.Finances
 		Finance? Get(int id);
 		IEnumerable<Finance> GetAll();
 		bool Remove(int id);
-		bool RemoveInvestmentDeposit(int investmentId, int financeId);
+		bool RemoveInvestmentDeposit(int investmentId);
 		Finance? Update(Finance updateData, int id);
 		bool AddInvestmentDeposit(InvestmentDeposit investmentDeposit, int financeId);
 	}

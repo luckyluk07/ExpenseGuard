@@ -97,6 +97,11 @@ namespace ExpenseGuardBackend.Repositories.Finances
 			return true;
 		}
 
+		public bool RemoveInvestmentDeposit(int investmentId)
+		{
+			throw new NotImplementedException();
+		}
+
 		public Finance? Update(Finance updateData, int id)
 		{
 			var financeToUpdate = Get(id);

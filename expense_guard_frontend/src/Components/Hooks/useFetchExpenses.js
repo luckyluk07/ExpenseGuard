@@ -11,6 +11,7 @@ function useFetchExpenses() {
         const apiResponse = await getAllApiRequest(apiUrls.getExpenses);
         const mappedData = apiResponse.expenses
           ? apiResponse.expenses.map((element) => ({
+              id: element.id,
               name: element.name,
               category: element.category,
               money: element.money,

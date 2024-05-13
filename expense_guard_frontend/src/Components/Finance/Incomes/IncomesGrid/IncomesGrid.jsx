@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./IncomesGrid.module.scss";
 import NoDataAvailable from "../../../../Pages/NoDataAvailable";
 import Button from "../../../Common/Button/Button";
+import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
+import apiUrls from "../../../../Shared/apiUrls";
 
 const RESOURCE_NUMBER = "Number";
 const RESOURCE_NAME = "Name";
@@ -9,6 +11,7 @@ const RESOURCE_CATEGORY = "Category";
 const RESOURCE_MONEY = "Money";
 const RESOURCE_RECEIVED = "Received";
 const RESOURCE_UPDATE = "Update";
+const RESOURCE_DELETE = "Delete";
 
 function IncomesGrid({ incomes }) {
   return (
@@ -32,6 +35,9 @@ function IncomesGrid({ incomes }) {
         <div className={`col ${styles.headerItem} ${styles.gridItem}`}>
           {RESOURCE_UPDATE}
         </div>
+        <div className={`col ${styles.headerItem} ${styles.gridItem}`}>
+          {RESOURCE_DELETE}
+        </div>
       </div>
       {!incomes || incomes.length === 0 ? (
         <NoDataAvailable />
@@ -50,6 +56,14 @@ function IncomesGrid({ incomes }) {
               </div>
               <div className="col">
                 <Button text="Update" />
+              </div>
+              <div className="col">
+                <Button
+                  text="Delete"
+                  onClick={() =>
+                    deleteApiRequest(apiUrls.deleteIncome(income.id))
+                  }
+                />
               </div>
             </div>
           );

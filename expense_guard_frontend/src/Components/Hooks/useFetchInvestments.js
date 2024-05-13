@@ -12,6 +12,7 @@ function useFetchInvestments() {
         const apiResponse = await getAllApiRequest(url);
         const mappedData = apiResponse.investmentDeposits
           ? apiResponse.investmentDeposits.map((element) => ({
+              id: element.id,
               name: element.name,
               startDate: element.startDate,
               endDate: element.endDate,
@@ -23,6 +24,7 @@ function useFetchInvestments() {
               yearCapitalizationAmount: element.yearCapitalizationAmount,
             }))
           : [];
+        console.log(mappedData);
         setData(mappedData);
         setError("");
       } catch (err) {

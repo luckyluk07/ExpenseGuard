@@ -12,6 +12,7 @@ function ExpenseList({ expenses }) {
         expenses.map((expense) => {
           return (
             <ExpenseBadge
+              id={expense.id}
               name={expense.name}
               description={expense.description}
               money={expense.money}

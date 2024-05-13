@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./InvestmentModal.module.scss";
+import Button from "../../../Common/Button/Button";
+import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
+import apiUrls from "../../../../Shared/apiUrls";
 
 const RESOURCE_INTEREST_RATE_TEXT = "Interest rate";
 const RESOURCE_YEAR_TEXT = "year";
@@ -55,6 +58,14 @@ function InvestmentModal({ investment, onClose }) {
             {investment.description}
           </span>
         </p>
+        <div>
+          <Button
+            text="Delete"
+            onClick={() =>
+              deleteApiRequest(apiUrls.deleteInvestment(investment.id))
+            }
+          />
+        </div>
       </div>
     </div>
   );

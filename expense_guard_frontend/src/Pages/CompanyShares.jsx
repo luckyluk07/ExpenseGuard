@@ -6,13 +6,10 @@ import paths from "../Shared/routes";
 import NewCompanyShareForm from "../Components/Finance/CompanyShares/NewCompanyShareForm/NewCompanyShareForm";
 
 export default function CompanyShares() {
-  // todo remove mocked data
-  // todo fix fetching data - error on backend site
   const response = useFetchCompanyShares();
   const navigate = useNavigate();
 
   if (response.error) {
-    alert(response.error);
     navigate(paths.error);
     return null;
   }

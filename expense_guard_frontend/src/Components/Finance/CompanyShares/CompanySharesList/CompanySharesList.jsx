@@ -11,6 +11,7 @@ function CompanySharesList({ companiesShares }) {
         companiesShares.map((companyShare) => {
           return (
             <CompanyShareBadge
+              id={companyShare.id}
               name={companyShare.name}
               money={companyShare.money}
               amount={companyShare.amount}

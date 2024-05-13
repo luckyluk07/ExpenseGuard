@@ -41,13 +41,8 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 			return DtoMapper.InvestmentDepositToDto(createdInvestment);
 		}
 
-		public bool Remove(int id, int financeId)
+		public bool Remove(int id)
 		{
-			var isDepositRemoved = _financeRepository.RemoveInvestmentDeposit(id, financeId);
-			if (!isDepositRemoved)
-			{
-				return false;
-			}
 			return _investmentDepositRepository.Remove(id);
 		}
 	}

@@ -13,7 +13,10 @@ const apiUrls = {
   postInvestment: `${base}/InvestmentDeposit`,
   postCompanyShares: `${base}/CompanyShare`,
 
-  deleteIncome: `${base}/Income`,
+  deleteIncome: (id) => `${base}/Income/${id}`,
+  deleteExpense: (id) => `${base}/Expense/${id}`,
+  deleteInvestment: (id) => `${base}/InvestmentDeposit/${id}`,
+  deleteCompanyShares: (id) => `${base}/CompanyShare/${id}`,
 };
 
 export default apiUrls;
