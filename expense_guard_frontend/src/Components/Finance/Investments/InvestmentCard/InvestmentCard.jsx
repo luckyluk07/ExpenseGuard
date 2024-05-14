@@ -40,7 +40,7 @@ function InvestmentCard({ investment }) {
             investment={investment}
             onClose={() => setShowModal(false)}
           />,
-          document.body,
+          document.getElementById("portal"),
         )}
     </div>
   );

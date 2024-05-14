@@ -19,7 +19,7 @@ function NewCompanyShareForm() {
   return (
     <div className="container my-5">
       <h3>New income form</h3>
-      <div className="w-50">
+      <div className="w-50 mx-auto p-3 border border-dark rounded">
         <form>
           <TextInput
             labelText="Name"
