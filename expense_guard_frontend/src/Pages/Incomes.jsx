@@ -7,7 +7,6 @@ import NewIncomeForm from "../Components/Finance/Incomes/NewIncomeForm/NewIncome
 import Button from "../Components/Common/Button/Button";
 
 export default function Incomes() {
-  // todo remove mocked data
   const response = useFetchIncomes();
   const navigate = useNavigate();
   const [formVisibility, setFormVisibility] = useState(false);

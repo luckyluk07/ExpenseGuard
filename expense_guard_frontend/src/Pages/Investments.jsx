@@ -7,7 +7,6 @@ import NewInvestmentForm from "../Components/Finance/Investments/NewInvestmentFo
 import Button from "../Components/Common/Button/Button";
 
 export default function Investments() {
-  // todo list of some badges/news with button to open modal with details
   const response = useFetchInvestments();
   const navigate = useNavigate();
   const [formVisibility, setFormVisibility] = useState(false);
