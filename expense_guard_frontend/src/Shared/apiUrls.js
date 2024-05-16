@@ -13,6 +13,11 @@ const apiUrls = {
   postInvestment: `${base}/InvestmentDeposit`,
   postCompanyShares: `${base}/CompanyShare`,
 
+  updateIncome: (id) => `${base}/Income/${id}`,
+  updateExpense: (id) => `${base}/Expense/${id}`,
+  updateInvestment: (id) => `${base}/InvestmentDeposit/${id}`,
+  updateCompanyShares: (id) => `${base}/CompanyShare/${id}`,
+
   deleteIncome: (id) => `${base}/Income/${id}`,
   deleteExpense: (id) => `${base}/Expense/${id}`,
   deleteInvestment: (id) => `${base}/InvestmentDeposit/${id}`,

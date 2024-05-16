@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
-import styles from "../../../styles/Modal.module.scss";
-import UpdateInvestmentForm from "../UpdateInvestmentForm/UpdateInvestmentForm";
+import styles from "../../styles/Modal.module.scss";
+import UpdateExpenseForm from "./UpdateExpenseForm";
 
-function UpdateInvestmentModal({ investment, onClose }) {
+function UpdateExpenseModal({ expense, onClose }) {
+  console.log("update expense modal", expense);
   return (
     <div
       className={styles["overlay-styles"]}
@@ -20,7 +21,7 @@ function UpdateInvestmentModal({ investment, onClose }) {
         }}
       >
         <div className={styles["modal-header"]}>
-          <h5 className={styles["modal-title"]}>{investment.name}</h5>
+          <h5 className={styles["modal-title"]}>{expense.name}</h5>
           <button
             onClick={onClose}
             type="button"
@@ -29,11 +30,11 @@ function UpdateInvestmentModal({ investment, onClose }) {
           />
         </div>
         <div className={styles["modal-body"]}>
-          <UpdateInvestmentForm />
+          <UpdateExpenseForm onClose={onClose} id={expense.id} />
         </div>
       </div>
     </div>
   );
 }
 
-export default UpdateInvestmentModal;
+export default UpdateExpenseModal;

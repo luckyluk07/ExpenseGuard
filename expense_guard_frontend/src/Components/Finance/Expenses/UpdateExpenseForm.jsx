@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import useFetchCategories from "../../../Hooks/useFetchCategories";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import useFetchCategories from "../../Hooks/useFetchCategories";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
+import updateApiRequest from "../../Services/Api/updateApiRequest";
 
-function UpdateExpenseForm() {
+function UpdateExpenseForm({ onClose, id }) {
+  console.log("IDDD", id);
   const { data: categories } = useFetchCategories();
   const { data: currencies } = useFetchCurrencies();
 
-  const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState(undefined);
   const [currency, setCurrency] = useState(undefined);
@@ -23,12 +22,6 @@ function UpdateExpenseForm() {
       <h3>New income form</h3>
       <div className="w-50">
         <form>
-          <TextInput
-            labelText="Name"
-            placeholder="eg. Salary"
-            value={name}
-            onChange={(newName) => setName(newName)}
-          />
           <NumericInput
             labelText="Price"
             placeholder="eg. 255.5"
@@ -62,15 +55,14 @@ function UpdateExpenseForm() {
             type="submit"
             onClick={(event) => {
               const data = {
-                name,
                 spendDate: date,
                 price: amount,
                 currencyId: currency,
                 categoryId: category,
-                financeId: 1,
               };
-              postApiRequest(apiUrls.postExpense, data);
+              updateApiRequest(apiUrls.updateExpense(id), data);
               event.preventDefault();
+              onClose();
             }}
           >
             Submit

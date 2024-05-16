@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import TextInput from "../../../Forms/TextInput/TextInput";
 import Dropdown from "../../../Forms/Dropdown/Dropdown";
 import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
 import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import updateApiRequest from "../../../Services/Api/updateApiRequest";
 
 function UpdateInvestmentForm() {
   const { data: currencies } = useFetchCurrencies();
@@ -86,7 +86,7 @@ function UpdateInvestmentForm() {
                 },
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postInvestment, data);
+              updateApiRequest(apiUrls.updateInvestment, data);
               event.preventDefault();
             }}
           >
