@@ -1,20 +1,27 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import TextInput from "../../Forms/TextInput/TextInput";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
+import updateApiRequest from "../../Services/Api/updateApiRequest";
 
-function UpdateCompanyShareForm() {
+function UpdateCompanyShareForm({
+  id,
+  shareName,
+  shareAmount,
+  sharePrice,
+  shareCurrency,
+  shareDate,
+}) {
   const { data: currencies } = useFetchCurrencies();
 
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [currency, setCurrency] = useState(undefined);
-  const [date, setDate] = useState(new Date());
+  const [name, setName] = useState(shareName);
+  const [amount, setAmount] = useState(shareAmount);
+  const [price, setPrice] = useState(sharePrice);
+  const [currency, setCurrency] = useState(shareCurrency);
+  const [date, setDate] = useState(shareDate);
 
   return (
     <div className="container my-5">
@@ -51,6 +58,7 @@ function UpdateCompanyShareForm() {
               setCurrency(option);
             }}
           />
+
           <DatePicker
             label="Date of purchase"
             value={date}
@@ -65,9 +73,8 @@ function UpdateCompanyShareForm() {
                 sharesAmount: amount,
                 price,
                 currencyId: currency,
-                financeId: 1,
               };
-              postApiRequest(apiUrls.postCompanyShares, data);
+              updateApiRequest(apiUrls.updateCompanyShares(id), data);
               event.preventDefault();
             }}
           >

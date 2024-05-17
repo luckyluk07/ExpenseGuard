@@ -6,15 +6,23 @@ import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateExpenseModal from "../UpdateExpenseModal";
 
-function ExpenseBadge({ id, name, money, description, classname }) {
+function ExpenseBadge({
+  id,
+  name,
+  money,
+  spendDate,
+  category,
+  description,
+  classname,
+}) {
   const [showModal, setShowModal] = useState(false);
-  console.log("Id", id);
   return (
     <div>
       <div
         className={`${styles.containerSkin} ${styles.containerShape} ${classname}`}
       >
         <h3>{name}</h3>
+        <h5> {category.name}</h5>
         <h4>
           {money.amount} {money.currency.code}
         </h4>
@@ -30,7 +38,12 @@ function ExpenseBadge({ id, name, money, description, classname }) {
       {showModal &&
         createPortal(
           <UpdateExpenseModal
-            expense={{ name, id }}
+            id={id}
+            name={name}
+            amount={money.amount}
+            currency={money.currency.id}
+            category={category.id}
+            spendDate={spendDate}
             onClose={() => setShowModal(false)}
           />,
           document.getElementById("portal"),

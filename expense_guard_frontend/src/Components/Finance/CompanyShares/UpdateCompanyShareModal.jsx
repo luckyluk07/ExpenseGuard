@@ -2,15 +2,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
 import styles from "../../styles/Modal.module.scss";
-import UpdateExpenseForm from "./UpdateExpenseForm";
+import UpdateCompanyShareForm from "./UpdateCompanyShareForm";
 
-function UpdateExpenseModal({
+function UpdateCompanyShareModal({
   id,
-  spendDate,
-  name,
-  amount,
-  currency,
-  category,
+  shareName,
+  shareAmount,
+  sharePrice,
+  shareCurrency,
+  shareDate,
   onClose,
 }) {
   return (
@@ -28,7 +28,7 @@ function UpdateExpenseModal({
         }}
       >
         <div className={styles["modal-header"]}>
-          <h5 className={styles["modal-title"]}>{name}</h5>
+          <h5 className={styles["modal-title"]}>{shareName}</h5>
           <button
             onClick={onClose}
             type="button"
@@ -37,13 +37,14 @@ function UpdateExpenseModal({
           />
         </div>
         <div className={styles["modal-body"]}>
-          <UpdateExpenseForm
+          <UpdateCompanyShareForm
             onClose={onClose}
             id={id}
-            price={amount}
-            currencyId={currency}
-            categoryId={category}
-            spendDate={spendDate}
+            shareName={shareName}
+            shareAmount={shareAmount}
+            sharePrice={sharePrice}
+            shareCurrency={shareCurrency}
+            shareDate={shareDate}
           />
         </div>
       </div>
@@ -51,4 +52,4 @@ function UpdateExpenseModal({
   );
 }
 
-export default UpdateExpenseModal;
+export default UpdateCompanyShareModal;

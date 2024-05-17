@@ -13,9 +13,11 @@ function useFetchIncomes() {
           id: element.id,
           name: element.name,
           category: element.category.name,
+          categoryId: element.category.id,
           receivedDate: element.receivedDate,
           amount: element.money.amount,
           currency: element.money.currency.code,
+          currencyId: element.money.currency.id,
         }));
         setData(mappedData);
         setError("");

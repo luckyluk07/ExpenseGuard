@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
-import styles from "../../../styles/Modal.module.scss";
-import UpdateIncomeForm from "../UpdateIncomeForm/UpdateIncomeForm";
+import styles from "../../styles/Modal.module.scss";
+import UpdateIncomeForm from "./UpdateIncomeForm";
 
-function UpdateIncomeModal({ investment, onClose }) {
+function UpdateIncomeModal({ income, onClose }) {
   return (
     <div
       className={styles["overlay-styles"]}
@@ -20,7 +20,7 @@ function UpdateIncomeModal({ investment, onClose }) {
         }}
       >
         <div className={styles["modal-header"]}>
-          <h5 className={styles["modal-title"]}>{investment.name}</h5>
+          <h5 className={styles["modal-title"]}>{income.name}</h5>
           <button
             onClick={onClose}
             type="button"
@@ -29,7 +29,7 @@ function UpdateIncomeModal({ investment, onClose }) {
           />
         </div>
         <div className={styles["modal-body"]}>
-          <UpdateIncomeForm />
+          <UpdateIncomeForm income={income} />
         </div>
       </div>
     </div>

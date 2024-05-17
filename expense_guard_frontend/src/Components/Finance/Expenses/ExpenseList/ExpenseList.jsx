@@ -14,8 +14,10 @@ function ExpenseList({ expenses }) {
             <ExpenseBadge
               id={expense.id}
               name={expense.name}
+              category={expense.category}
               description={expense.description}
               money={expense.money}
+              spendDate={expense.spendDate}
               classname={styles.badgeMargins}
             />
           );

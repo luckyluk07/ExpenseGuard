@@ -1,6 +1,7 @@
-async function updateApiRequest(url) {
+async function updateApiRequest(url, body) {
   const response = await fetch(url, {
     method: "PUT",
+    body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },

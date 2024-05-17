@@ -7,15 +7,21 @@ import DatePicker from "../../Forms/DatePicker/DatePicker";
 import NumericInput from "../../Forms/NumericInput/NumericInput";
 import updateApiRequest from "../../Services/Api/updateApiRequest";
 
-function UpdateExpenseForm({ onClose, id }) {
-  console.log("IDDD", id);
+function UpdateExpenseForm({
+  onClose,
+  id,
+  price,
+  currencyId,
+  categoryId,
+  spendDate,
+}) {
   const { data: categories } = useFetchCategories();
   const { data: currencies } = useFetchCurrencies();
 
-  const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState(undefined);
-  const [currency, setCurrency] = useState(undefined);
-  const [date, setDate] = useState(new Date());
+  const [amount, setAmount] = useState(price);
+  const [category, setCategory] = useState(categoryId);
+  const [currency, setCurrency] = useState(currencyId);
+  const [date, setDate] = useState(spendDate);
 
   return (
     <div className="container my-5">
