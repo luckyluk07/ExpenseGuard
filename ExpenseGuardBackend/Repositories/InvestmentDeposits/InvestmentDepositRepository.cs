@@ -51,6 +51,25 @@ namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 			return false;
 		}
 
+		public InvestmentDeposit? Update(InvestmentDeposit investmentDepositToUpdate, int id)
+		{
+			var investmentToUpdate = Get(id);
+			if (investmentToUpdate is null)
+			{
+				return null;
+			}
+
+			investmentToUpdate.Name = investmentDepositToUpdate.Name;
+			investmentToUpdate.StartDate = investmentDepositToUpdate.StartDate;
+			investmentToUpdate.EndDate = investmentDepositToUpdate.EndDate;
+			investmentToUpdate.StartMoney = investmentDepositToUpdate.StartMoney;
+			investmentToUpdate.YearCapitalizationAmount = investmentDepositToUpdate.YearCapitalizationAmount;
+			investmentToUpdate.InterestRate = investmentDepositToUpdate.InterestRate;
+
+			_expenseGuardDbContext.SaveChanges();
+			return investmentToUpdate;
+		}
+
 		private IEnumerable<InvestmentDeposit> GetFullInvestmentsDeposits()
 		{
 			return _expenseGuardDbContext.InvestmentsDeposits

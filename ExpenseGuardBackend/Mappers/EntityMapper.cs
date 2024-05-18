@@ -171,6 +171,30 @@ namespace ExpenseGuardBackend.Mappers
 			};
 		}
 
+		public InvestmentDeposit UpdateInvestmentDepositDtoToInvestmentDeposit(UpdateInvestmentDepositDto updateInvestmentDepositDto)
+		{
+			var currency = _currencyRepository.Get(updateInvestmentDepositDto.StartMoney.Currency.Id);
+
+			if (currency is null)
+			{
+				throw new ArgumentNullException(nameof(currency));
+			}
+
+			return new InvestmentDeposit()
+			{
+				YearCapitalizationAmount = updateInvestmentDepositDto.YearCapitalizationAmount,
+				EndDate = updateInvestmentDepositDto.EndDate,
+				InterestRate = updateInvestmentDepositDto.InterestRate,
+				Name = updateInvestmentDepositDto.Name,
+				StartDate = updateInvestmentDepositDto.StartDate,
+				StartMoney = new Money()
+				{
+					Amount = updateInvestmentDepositDto.StartMoney.Amount,
+					Currency = currency
+				}
+			};
+		}
+
 		public CompanyShare CreateCompanyShareDtoToCompanyShare(CreateCompanyShareDto createCompanyShareDto)
 		{
 			var currency = _currencyRepository.Get(createCompanyShareDto.CurrencyId);

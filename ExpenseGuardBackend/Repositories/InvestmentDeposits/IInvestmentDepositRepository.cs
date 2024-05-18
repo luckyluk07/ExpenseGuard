@@ -8,5 +8,6 @@ namespace ExpenseGuardBackend.Repositories.InvestmentDeposits
 		InvestmentDeposit? Get(int id);
 		IEnumerable<InvestmentDeposit> GetAll();
 		bool Remove(int id);
+		InvestmentDeposit? Update(InvestmentDeposit investmentDepositToUpdate, int id);
 	}
 }

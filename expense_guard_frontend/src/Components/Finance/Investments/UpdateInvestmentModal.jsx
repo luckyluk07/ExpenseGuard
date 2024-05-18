@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
-import styles from "../../../styles/Modal.module.scss";
-import UpdateInvestmentForm from "../UpdateInvestmentForm/UpdateInvestmentForm";
+import styles from "../../styles/Modal.module.scss";
+import UpdateInvestmentForm from "./UpdateInvestmentForm";
 
 function UpdateInvestmentModal({ investment, onClose }) {
   return (
@@ -29,7 +29,7 @@ function UpdateInvestmentModal({ investment, onClose }) {
           />
         </div>
         <div className={styles["modal-body"]}>
-          <UpdateInvestmentForm />
+          <UpdateInvestmentForm investment={investment} />
         </div>
       </div>
     </div>

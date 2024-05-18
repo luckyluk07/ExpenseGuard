@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
-import updateApiRequest from "../../../Services/Api/updateApiRequest";
+import TextInput from "../../Forms/TextInput/TextInput";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
+import updateApiRequest from "../../Services/Api/updateApiRequest";
 
-function UpdateInvestmentForm() {
+function UpdateInvestmentForm({ investment }) {
   const { data: currencies } = useFetchCurrencies();
 
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState(0);
-  const [currency, setCurrency] = useState(undefined);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [yearCapitalizationAmount, setYearCapizalizationAmount] = useState(0);
-  const [interstRate, setInterestRate] = useState(0);
+  const [name, setName] = useState(investment.name);
+  const [amount, setAmount] = useState(investment.startMoney.amount);
+  const [currency, setCurrency] = useState(investment.startMoney.currencyId);
+  const [startDate, setStartDate] = useState(investment.startDate);
+  const [endDate, setEndDate] = useState(investment.endDate);
+  const [yearCapitalizationAmount, setYearCapizalizationAmount] = useState(
+    investment.yearCapitalizationAmount,
+  );
+  const [interstRate, setInterestRate] = useState(investment.interestRate);
 
   return (
     <div className="container my-5">
@@ -84,9 +86,8 @@ function UpdateInvestmentForm() {
                   amount,
                   currencyId: currency,
                 },
-                financeId: 1,
               };
-              updateApiRequest(apiUrls.updateInvestment, data);
+              updateApiRequest(apiUrls.updateInvestment(investment.id), data);
               event.preventDefault();
             }}
           >

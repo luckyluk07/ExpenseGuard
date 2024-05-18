@@ -4,11 +4,13 @@ import InvestmentModal from "../InvestmentModal/InvestmentModal";
 import Button from "../../../Common/Button/Button";
 import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
+import UpdateInvestmentModal from "../UpdateInvestmentModal";
 
 const RESOURCE_SEE_DETAILS_LABEL = "See details";
 
 function InvestmentCard({ investment }) {
   const [showModal, setShowModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
   return (
     <div className="card w-25 m-auto mb-2">
       <div className="card-body">
@@ -25,7 +27,7 @@ function InvestmentCard({ investment }) {
         >
           {RESOURCE_SEE_DETAILS_LABEL}
         </button>
-        <Button text="Update" />
+        <Button text="Update" onClick={() => setShowUpdateModal(true)} />
         <Button
           text="Delete"
           onClick={() =>
@@ -39,6 +41,14 @@ function InvestmentCard({ investment }) {
           <InvestmentModal
             investment={investment}
             onClose={() => setShowModal(false)}
+          />,
+          document.getElementById("portal"),
+        )}
+      {showUpdateModal &&
+        createPortal(
+          <UpdateInvestmentModal
+            investment={investment}
+            onClose={() => setShowUpdateModal(false)}
           />,
           document.getElementById("portal"),
         )}

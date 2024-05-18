@@ -1,4 +1,5 @@
-﻿using ExpenseGuardBackend.DTOs.InvestmentDeposits;
+﻿using ExpenseGuardBackend.DTOs.CompanyShares;
+using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,17 @@ namespace ExpenseGuardBackend.Controllers
 				return BadRequest();
 			}
 			return Created($"{Url.Action(nameof(Create))}/{createdInvestment.Id}", createdInvestment);
+		}
+
+		[HttpPut("{id}")]
+		public ActionResult<InvestmentDepositDto> Update(UpdateInvestmentDepositDto updateInvestmentDepositDto, int id)
+		{
+			var updatedInvestmentDeposit = _investmentDepositService.Update(updateInvestmentDepositDto, id);
+			if (updatedInvestmentDeposit is null)
+			{
+				return NotFound();
+			}
+			return Ok(updatedInvestmentDeposit);
 		}
 
 		// todo consider refactoring or change parameters

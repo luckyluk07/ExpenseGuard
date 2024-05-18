@@ -2,6 +2,7 @@
 using ExpenseGuardBackend.Repositories.Finances;
 using ExpenseGuardBackend.Repositories.InvestmentDeposits;
 using ExpenseGuardBackend.Mappers;
+using ExpenseGuardBackend.DTOs.CompanyShares;
 
 namespace ExpenseGuardBackend.Services.InvestmentDeposits
 {
@@ -44,6 +45,21 @@ namespace ExpenseGuardBackend.Services.InvestmentDeposits
 		public bool Remove(int id)
 		{
 			return _investmentDepositRepository.Remove(id);
+		}
+
+		public InvestmentDepositDto? Update(UpdateInvestmentDepositDto updateInvestmentDepositDto, int id)
+		{
+			if (Get(id) is null)
+			{
+				return null;
+			}
+			var companyShareToUpdate = _entityMapper.UpdateInvestmentDepositDtoToInvestmentDeposit(updateInvestmentDepositDto);
+			var result = _investmentDepositRepository.Update(companyShareToUpdate, id);
+			if (result is null)
+			{
+				return null;
+			}
+			return DtoMapper.InvestmentDepositToDto(result);
 		}
 	}
 }

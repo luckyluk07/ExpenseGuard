@@ -19,6 +19,7 @@ function useFetchInvestments() {
               startMoney: {
                 amount: element.startMoney.amount,
                 currency: element.startMoney.currency.code,
+                currencyId: element.startMoney.currency.id,
               },
               interestRate: element.interestRate,
               yearCapitalizationAmount: element.yearCapitalizationAmount,
