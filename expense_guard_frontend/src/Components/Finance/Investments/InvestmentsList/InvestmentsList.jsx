@@ -10,8 +10,8 @@ function InvestmentsList({ investments }) {
       ) : (
         investments.map((investment) => {
           return (
-            <div>
-              <InvestmentCard key={investment.name} investment={investment} />
+            <div key={investment.name}>
+              <InvestmentCard investment={investment} />
             </div>
           );
         })

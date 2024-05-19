@@ -59,14 +59,14 @@ function UpdateExpenseForm({
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
-                spendDate: date,
+                spendDate: new Date(date),
                 price: amount,
                 currencyId: currency,
                 categoryId: category,
               };
-              updateApiRequest(apiUrls.updateExpense(id), data);
+              await updateApiRequest(apiUrls.updateExpense(id), data);
               event.preventDefault();
               onClose();
             }}

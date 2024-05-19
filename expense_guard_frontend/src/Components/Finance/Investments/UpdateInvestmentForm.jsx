@@ -66,7 +66,9 @@ function UpdateInvestmentForm({ investment }) {
           <DatePicker
             label="Start date"
             value={startDate}
-            onChange={(newDate) => setStartDate(newDate)}
+            onChange={(newDate) => {
+              setStartDate(newDate);
+            }}
           />
           <DatePicker
             label="End date"
@@ -75,11 +77,11 @@ function UpdateInvestmentForm({ investment }) {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
                 name,
-                startDate,
-                endDate,
+                startDate: new Date(startDate),
+                endDate: new Date(endDate),
                 yearCapitalizationAmount,
                 interestRate: interstRate,
                 startMoney: {
@@ -87,7 +89,10 @@ function UpdateInvestmentForm({ investment }) {
                   currencyId: currency,
                 },
               };
-              updateApiRequest(apiUrls.updateInvestment(investment.id), data);
+              await updateApiRequest(
+                apiUrls.updateInvestment(investment.id),
+                data,
+              );
               event.preventDefault();
             }}
           >

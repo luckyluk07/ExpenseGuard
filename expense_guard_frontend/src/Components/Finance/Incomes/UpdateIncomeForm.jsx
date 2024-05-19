@@ -52,14 +52,14 @@ function UpdateIncomeForm({ income }) {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
-                receivedDate: date,
+                receivedDate: new Date(date),
                 amount,
                 currencyId: currency,
                 categoryId: category,
               };
-              updateApiRequest(apiUrls.updateIncome(income.id), data);
+              await updateApiRequest(apiUrls.updateIncome(income.id), data);
               event.preventDefault();
             }}
           >

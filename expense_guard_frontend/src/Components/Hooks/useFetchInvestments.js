@@ -25,7 +25,6 @@ function useFetchInvestments() {
               yearCapitalizationAmount: element.yearCapitalizationAmount,
             }))
           : [];
-        console.log(mappedData);
         setData(mappedData);
         setError("");
       } catch (err) {

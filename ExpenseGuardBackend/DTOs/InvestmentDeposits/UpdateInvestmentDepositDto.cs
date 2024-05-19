@@ -4,11 +4,10 @@ namespace ExpenseGuardBackend.DTOs.InvestmentDeposits
 {
 	public record UpdateInvestmentDepositDto
 	(
-		// todo fix update indestment bad request
 		string Name,
 		DateTime StartDate,
 		DateTime EndDate,
-		MoneyDto StartMoney,
+		CreateMoneyDto StartMoney,
 		int YearCapitalizationAmount,
 		decimal InterestRate
 	);

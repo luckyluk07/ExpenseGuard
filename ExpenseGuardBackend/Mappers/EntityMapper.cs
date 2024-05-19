@@ -173,7 +173,7 @@ namespace ExpenseGuardBackend.Mappers
 
 		public InvestmentDeposit UpdateInvestmentDepositDtoToInvestmentDeposit(UpdateInvestmentDepositDto updateInvestmentDepositDto)
 		{
-			var currency = _currencyRepository.Get(updateInvestmentDepositDto.StartMoney.Currency.Id);
+			var currency = _currencyRepository.Get(updateInvestmentDepositDto.StartMoney.CurrencyId);
 
 			if (currency is null)
 			{
@@ -243,6 +243,13 @@ namespace ExpenseGuardBackend.Mappers
 					Currency = currency
 				}
 			};
+		}
+
+		private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+		{
+			var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+			return dateTime;
 		}
 	}
 }

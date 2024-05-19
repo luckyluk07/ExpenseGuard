@@ -12,7 +12,7 @@ function InvestmentCard({ investment }) {
   const [showModal, setShowModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   return (
-    <div className="card w-25 m-auto mb-2">
+    <div className="card w-25 m-auto mb-2" key={investment.id}>
       <div className="card-body">
         <h5 className="card-title">{investment.name}</h5>
         <p className="card-text">

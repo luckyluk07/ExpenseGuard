@@ -66,15 +66,15 @@ function UpdateCompanyShareForm({
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
                 name,
-                dateOfPurchase: date,
+                dateOfPurchase: new Date(date),
                 sharesAmount: amount,
                 price,
                 currencyId: currency,
               };
-              updateApiRequest(apiUrls.updateCompanyShares(id), data);
+              await updateApiRequest(apiUrls.updateCompanyShares(id), data);
               event.preventDefault();
             }}
           >

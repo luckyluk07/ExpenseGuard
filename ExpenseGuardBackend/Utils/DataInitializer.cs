@@ -38,21 +38,21 @@ namespace ExpenseGuardBackend.Utils
 					);
 
 					context.Incomes.Add(
-						new Income { CategoryId = 1, FinanceId = 1, MoneyId = 4, Name = "Sold Pizza", ReceivedDate = new DateTime() }
+						new Income { CategoryId = 1, FinanceId = 1, MoneyId = 4, Name = "Sold Pizza", ReceivedDate = DateTime.Now }
 					);
 
 					context.Expenses.Add(
-						new Expense { CategoryId = 1, FinanceId = 1, MoneyId = 1, Name = "Pizza ingredients", SpendDate = new DateTime() }
+						new Expense { CategoryId = 1, FinanceId = 1, MoneyId = 1, Name = "Pizza ingredients", SpendDate = DateTime.Now }
 					);
 
 					context.InvestmentsDeposits.Add(
-						new InvestmentDeposit { EndDate = new DateTime(), FinanceId = 1, InterestRate = 3, Name = "Oszczednosciowe PKO", StartDate = new DateTime(), StartMoneyId = 5, YearCapitalizationAmount = 2 }
+						new InvestmentDeposit { EndDate = DateTime.Now, FinanceId = 1, InterestRate = 3, Name = "Oszczednosciowe PKO", StartDate = DateTime.Now.AddDays(180), StartMoneyId = 5, YearCapitalizationAmount = 2 }
 					);
 
 					context.CompanyShares.Add(
 						new CompanyShare { 
 							FinanceId = 1,
-							DateOfPurchase= new DateTime(),
+							DateOfPurchase= DateTime.Now,
 							Amount = 1000,
 							Name = "S&P 500",
 							PriceId = 6 }

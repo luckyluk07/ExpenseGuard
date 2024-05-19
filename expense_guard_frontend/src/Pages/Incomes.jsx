@@ -12,7 +12,6 @@ export default function Incomes() {
   const [formVisibility, setFormVisibility] = useState(false);
 
   if (response.error) {
-    console.log(response.error);
     navigate(paths.error);
     return null;
   }

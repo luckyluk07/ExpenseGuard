@@ -1,5 +1,4 @@
-﻿using ExpenseGuardBackend.DTOs.CompanyShares;
-using ExpenseGuardBackend.DTOs.InvestmentDeposits;
+﻿using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +45,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public ActionResult<InvestmentDepositDto> Update(UpdateInvestmentDepositDto updateInvestmentDepositDto, int id)
+		public ActionResult<InvestmentDepositDto> Update([FromBody] UpdateInvestmentDepositDto updateInvestmentDepositDto, int id)
 		{
 			var updatedInvestmentDeposit = _investmentDepositService.Update(updateInvestmentDepositDto, id);
 			if (updatedInvestmentDeposit is null)
@@ -56,7 +55,6 @@ namespace ExpenseGuardBackend.Controllers
 			return Ok(updatedInvestmentDeposit);
 		}
 
-		// todo consider refactoring or change parameters
 		[HttpDelete("{id}")]
 		public ActionResult<bool> Delete(int id)
 		{
