@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchCompanyShares from "../Components/Hooks/useFetchCompanyShares";
 import CompanySharesList from "../Components/Finance/CompanyShares/CompanySharesList/CompanySharesList";
@@ -10,6 +10,11 @@ export default function CompanyShares() {
   const response = useFetchCompanyShares();
   const navigate = useNavigate();
   const [formVisibility, setFormVisibility] = useState(false);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    setData(response.data);
+  }, response);
 
   if (response.error) {
     navigate(paths.error);
@@ -28,10 +33,26 @@ export default function CompanyShares() {
       )}
       {formVisibility && (
         <dev>
-          <NewCompanyShareForm />
+          <NewCompanyShareForm
+            onDone={(element) => {
+              const newObject = {
+                id: element.id,
+                name: element.name,
+                dateOfPurchase: element.dateOfPurchase,
+                amount: element.amount,
+                price: {
+                  money: {
+                    amount: element.price.amount,
+                    currency: element.price.currency,
+                  },
+                },
+              };
+              setData((prevData) => [...prevData, newObject]);
+            }}
+          />
         </dev>
       )}
-      <CompanySharesList companiesShares={response.data} />
+      <CompanySharesList companiesShares={data} />
     </div>
   );
 }

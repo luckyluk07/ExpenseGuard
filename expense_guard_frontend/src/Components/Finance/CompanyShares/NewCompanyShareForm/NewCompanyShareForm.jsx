@@ -7,7 +7,7 @@ import apiUrls from "../../../../Shared/apiUrls";
 import DatePicker from "../../../Forms/DatePicker/DatePicker";
 import NumericInput from "../../../Forms/NumericInput/NumericInput";
 
-function NewCompanyShareForm() {
+function NewCompanyShareForm({ onDone }) {
   const { data: currencies } = useFetchCurrencies();
 
   const [name, setName] = useState("");
@@ -68,6 +68,7 @@ function NewCompanyShareForm() {
                 financeId: 1,
               };
               postApiRequest(apiUrls.postCompanyShares, data);
+              onDone();
               event.preventDefault();
             }}
           >
