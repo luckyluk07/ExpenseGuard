@@ -1,6 +1,5 @@
 async function postApiRequest(url, data) {
   try {
-    console.log("Request url", url);
     const response = await fetch(url, {
       method: "POST",
       headers: {

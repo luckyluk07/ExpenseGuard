@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchCompanyShares from "../Components/Hooks/useFetchCompanyShares";
-import CompanySharesList from "../Components/Finance/CompanyShares/CompanySharesList/CompanySharesList";
+import CompanySharesList from "../Components/Finance/CompanyShares/CompanySharesList";
 import paths from "../Shared/routes";
-import NewCompanyShareForm from "../Components/Finance/CompanyShares/NewCompanyShareForm/NewCompanyShareForm";
+import NewCompanyShareForm from "../Components/Finance/CompanyShares/NewCompanyShareForm";
 import Button from "../Components/Common/Button/Button";
 
 export default function CompanyShares() {
@@ -14,7 +14,7 @@ export default function CompanyShares() {
 
   useEffect(() => {
     setData(response.data);
-  }, response);
+  }, [response]);
 
   if (response.error) {
     navigate(paths.error);

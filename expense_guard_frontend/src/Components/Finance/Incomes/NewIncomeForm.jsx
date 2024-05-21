@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import useFetchCategories from "../../../Hooks/useFetchCategories";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import TextInput from "../../Forms/TextInput/TextInput";
+import useFetchCategories from "../../Hooks/useFetchCategories";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import postApiRequest from "../../Services/Api/makePostApiRequest";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
 
-function NewExpenseForm() {
+function NewIncomeForm({ onDone }) {
   const { data: categories } = useFetchCategories();
   const { data: currencies } = useFetchCurrencies();
 
@@ -30,7 +30,7 @@ function NewExpenseForm() {
             onChange={(newName) => setName(newName)}
           />
           <NumericInput
-            labelText="Price"
+            labelText="Amount"
             placeholder="eg. 255.5"
             min={0}
             step={0.01}
@@ -39,7 +39,7 @@ function NewExpenseForm() {
           />
           <Dropdown
             options={categories}
-            name="expenseCategory"
+            name="incomeCategory"
             value={category}
             onChange={(option) => {
               setCategory(option);
@@ -47,14 +47,14 @@ function NewExpenseForm() {
           />
           <Dropdown
             options={currencies}
-            name="expenseCurrency"
+            name="incomeCurrency"
             value={currency}
             onChange={(option) => {
               setCurrency(option);
             }}
           />
           <DatePicker
-            label="Spend date"
+            label="Received date"
             value={date}
             onChange={(newDate) => setDate(newDate)}
           />
@@ -63,13 +63,14 @@ function NewExpenseForm() {
             onClick={(event) => {
               const data = {
                 name,
-                spendDate: date,
-                price: amount,
+                receivedDate: date,
+                amount,
                 currencyId: currency,
                 categoryId: category,
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postExpense, data);
+              postApiRequest(apiUrls.postIncome, data);
+              onDone(data);
               event.preventDefault();
             }}
           >
@@ -81,4 +82,4 @@ function NewExpenseForm() {
   );
 }
 
-export default NewExpenseForm;
+export default NewIncomeForm;

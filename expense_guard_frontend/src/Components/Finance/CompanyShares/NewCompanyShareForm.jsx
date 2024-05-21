@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import TextInput from "../../Forms/TextInput/TextInput";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import postApiRequest from "../../Services/Api/makePostApiRequest";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
 
 function NewCompanyShareForm({ onDone }) {
   const { data: currencies } = useFetchCurrencies();
@@ -58,7 +58,7 @@ function NewCompanyShareForm({ onDone }) {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
                 name,
                 dateOfPurchase: date,
@@ -67,8 +67,11 @@ function NewCompanyShareForm({ onDone }) {
                 currencyId: currency,
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postCompanyShares, data);
-              onDone();
+              const responseObject = await postApiRequest(
+                apiUrls.postCompanyShares,
+                data,
+              );
+              onDone(responseObject);
               event.preventDefault();
             }}
           >

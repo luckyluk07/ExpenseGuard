@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IncomesGrid from "../Components/Finance/Incomes/IncomesGrid/IncomesGrid";
 import useFetchIncomes from "../Components/Hooks/useFetchIncomes";
 import paths from "../Shared/routes";
-import NewIncomeForm from "../Components/Finance/Incomes/NewIncomeForm/NewIncomeForm";
+import NewIncomeForm from "../Components/Finance/Incomes/NewIncomeForm";
 import Button from "../Components/Common/Button/Button";
 
 export default function Incomes() {
   const response = useFetchIncomes();
   const navigate = useNavigate();
   const [formVisibility, setFormVisibility] = useState(false);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    setData(response.data);
+  }, [response]);
 
   if (response.error) {
     navigate(paths.error);
@@ -29,10 +34,22 @@ export default function Incomes() {
       )}
       {formVisibility && (
         <dev>
-          <NewIncomeForm />
+          <NewIncomeForm
+            onDone={(element) => {
+              const newElement = {
+                name: element.name,
+                receivedDate: element.date,
+                amount: element.amount,
+                currencyId: element.currencyId,
+                categoryId: element.categoryId,
+                financeId: 1,
+              };
+              setData((prevValue) => [...prevValue, newElement]);
+            }}
+          />
         </dev>
       )}
-      <IncomesGrid incomes={response.data} />
+      <IncomesGrid incomes={data} />
     </div>
   );
 }
