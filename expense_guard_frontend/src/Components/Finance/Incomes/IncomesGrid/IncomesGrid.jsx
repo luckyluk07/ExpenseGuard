@@ -6,6 +6,7 @@ import Button from "../../../Common/Button/Button";
 import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateIncomeModal from "../UpdateIncomeModal";
+import { toGermanFormat } from "../../../Services/General/DateFormatter";
 
 const RESOURCE_NUMBER = "Number";
 const RESOURCE_NAME = "Name";
@@ -59,7 +60,7 @@ function IncomesGrid({ incomes }) {
                   {income.amount} {income.currency}
                 </div>
                 <div className={`col ${styles.gridItem}`}>
-                  {income.receivedDate}
+                  {toGermanFormat(income.receivedDate)}
                 </div>
                 <div className="col">
                   <Button

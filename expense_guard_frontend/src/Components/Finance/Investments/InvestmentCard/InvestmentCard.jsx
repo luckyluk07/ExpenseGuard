@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import InvestmentModal from "../InvestmentModal/InvestmentModal";
+import InvestmentModal from "../InvestmentModal";
 import Button from "../../../Common/Button/Button";
 import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateInvestmentModal from "../UpdateInvestmentModal";
+import { toGermanFormat } from "../../../Services/General/DateFormatter";
 
 const RESOURCE_SEE_DETAILS_LABEL = "See details";
 
@@ -16,7 +17,7 @@ function InvestmentCard({ investment }) {
       <div className="card-body">
         <h5 className="card-title">{investment.name}</h5>
         <p className="card-text">
-          {`${investment.startDate}-${investment.endDate}: ${investment.startMoney.amount} ${investment.startMoney.currency}`}
+          {`${toGermanFormat(investment.startDate)}-${toGermanFormat(investment.endDate)}: ${investment.startMoney.amount} ${investment.startMoney.currency}`}
         </p>
         <button
           type="button"

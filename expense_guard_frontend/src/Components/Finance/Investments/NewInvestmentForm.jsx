@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import TextInput from "../../../Forms/TextInput/TextInput";
-import Dropdown from "../../../Forms/Dropdown/Dropdown";
-import useFetchCurrencies from "../../../Hooks/useFetchCurrencies";
-import postApiRequest from "../../../Services/Api/makePostApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
-import DatePicker from "../../../Forms/DatePicker/DatePicker";
-import NumericInput from "../../../Forms/NumericInput/NumericInput";
+import TextInput from "../../Forms/TextInput/TextInput";
+import Dropdown from "../../Forms/Dropdown/Dropdown";
+import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
+import postApiRequest from "../../Services/Api/makePostApiRequest";
+import apiUrls from "../../../Shared/apiUrls";
+import DatePicker from "../../Forms/DatePicker/DatePicker";
+import NumericInput from "../../Forms/NumericInput/NumericInput";
 
-function NewInvestmentForm() {
+function NewInvestmentForm({ onDone }) {
   const { data: currencies } = useFetchCurrencies();
 
   const [name, setName] = useState("");
@@ -73,7 +73,7 @@ function NewInvestmentForm() {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
                 name,
                 startDate,
@@ -86,7 +86,11 @@ function NewInvestmentForm() {
                 },
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postInvestment, data);
+              const responseObject = await postApiRequest(
+                apiUrls.postInvestment,
+                data,
+              );
+              onDone(responseObject);
               event.preventDefault();
             }}
           >

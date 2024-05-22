@@ -38,7 +38,7 @@ export default function Incomes() {
             onDone={(element) => {
               const newElement = {
                 name: element.name,
-                receivedDate: element.date,
+                receivedDate: element.receivedDate,
                 amount: element.amount,
                 currencyId: element.currencyId,
                 categoryId: element.categoryId,

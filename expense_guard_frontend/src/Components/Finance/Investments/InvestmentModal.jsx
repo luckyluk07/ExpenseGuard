@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
-import styles from "../../../styles/Modal.module.scss";
-import Button from "../../../Common/Button/Button";
-import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
-import apiUrls from "../../../../Shared/apiUrls";
+import styles from "../../styles/Modal.module.scss";
+import Button from "../../Common/Button/Button";
+import deleteApiRequest from "../../Services/Api/deleteApiRequest";
+import apiUrls from "../../../Shared/apiUrls";
+import { toGermanFormat } from "../../Services/General/DateFormatter";
 
 const RESOURCE_INTEREST_RATE_TEXT = "Interest rate";
 const RESOURCE_YEAR_TEXT = "year";
@@ -41,7 +42,7 @@ function InvestmentModal({ investment, onClose }) {
               {`${investment.startMoney.amount} ${investment.startMoney.currency}`}
             </span>
             <span className={styles["date-range"]}>
-              {`${investment.startDate}-${investment.endDate}`}
+              {`${toGermanFormat(investment.startDate)}-${toGermanFormat(investment.endDate)}`}
             </span>
           </p>
           <p>

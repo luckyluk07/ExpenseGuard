@@ -5,6 +5,7 @@ import Button from "../../../Common/Button/Button";
 import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateCompanyShareModal from "../UpdateCompanyShareModal";
+import { toGermanFormat } from "../../../Services/General/DateFormatter";
 
 const RESOURCE_AMOUNT_TEXT = "Amount";
 
@@ -16,7 +17,7 @@ function CompanyShareBadge({ id, name, money, amount, dateOfPurchase }) {
         className={`${styles.incomeBadgeContainerShape} ${styles.incomeBadgeContainerSkin} m-auto my-2`}
       >
         <h3>
-          {name} {dateOfPurchase}
+          {name} {toGermanFormat(dateOfPurchase)}
         </h3>
         <h4>
           {RESOURCE_AMOUNT_TEXT}: {amount}

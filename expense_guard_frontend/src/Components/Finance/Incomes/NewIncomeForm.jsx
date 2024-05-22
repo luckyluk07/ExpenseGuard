@@ -69,8 +69,8 @@ function NewIncomeForm({ onDone }) {
                 categoryId: category,
                 financeId: 1,
               };
-              postApiRequest(apiUrls.postIncome, data);
-              onDone(data);
+              const responseObject = postApiRequest(apiUrls.postIncome, data);
+              onDone(responseObject);
               event.preventDefault();
             }}
           >

@@ -1,5 +1,4 @@
 import React from "react";
-import InvestmentDepositBadge from "../Components/Finance/Investments/InvestmentDeposit/InvestmentDepositBadge";
 import ButtonGroup from "../Components/Common/ButtonGroup/ButtonGroup";
 import Dropdown from "../Components/Forms/Dropdown/Dropdown";
 import Heading from "../Components/Common/Heading/Heading";
@@ -13,15 +12,6 @@ import Text from "../Components/Common/Text/Text";
 export default function ComponentsPreview() {
   return (
     <div className="container">
-      <h2>Investment deposit badge</h2>
-      <InvestmentDepositBadge
-        name="PKO BP - konto dla nowych"
-        startDate="17 April 2024"
-        endDate="17 June 2024"
-        startMoney={{ amount: 200000, currency: { code: "PLN" } }}
-        yearCapitalizationAmount={4}
-        interestRate={6.0}
-      />
       <h2>Income badge</h2>
       <CompanyShareBadge
         name="Salary"
