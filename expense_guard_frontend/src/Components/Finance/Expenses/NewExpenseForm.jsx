@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import TextInput from "../../Forms/TextInput/TextInput";
-import useFetchCategories from "../../Hooks/useFetchCategories";
 import Dropdown from "../../Forms/Dropdown/Dropdown";
 import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
 import postApiRequest from "../../Services/Api/makePostApiRequest";
 import apiUrls from "../../../Shared/apiUrls";
 import DatePicker from "../../Forms/DatePicker/DatePicker";
 import NumericInput from "../../Forms/NumericInput/NumericInput";
+import CategoryPicker from "../Categories/CategoryPicker";
 
 function NewExpenseForm({ onDone }) {
-  const { data: categories } = useFetchCategories();
   const { data: currencies } = useFetchCurrencies();
 
   const [name, setName] = useState("");
@@ -37,14 +36,18 @@ function NewExpenseForm({ onDone }) {
             value={amount}
             onChange={(newAmount) => setAmount(newAmount)}
           />
-          <Dropdown
+          <CategoryPicker
+            onDone={(categ) => setCategory(categ)}
+            categ={category}
+          />
+          {/* <Dropdown
             options={categories}
             name="expenseCategory"
             value={category}
             onChange={(option) => {
               setCategory(option);
             }}
-          />
+          /> */}
           <Dropdown
             options={currencies}
             name="expenseCurrency"
