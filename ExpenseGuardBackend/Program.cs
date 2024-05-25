@@ -15,6 +15,7 @@ using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Services.Incomes;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
 using ExpenseGuardBackend.Utils;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -66,6 +67,28 @@ builder.Services.AddScoped<ICompanyShareService, CompanyShareService>();
 // Shared
 builder.Services.AddScoped<EntityMapper, EntityMapper>();
 
+// TODO ensure is it needed https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio
+//builder.Services.Configure<IdentityOptions>(options =>
+//{
+//	// Password settings.
+//	options.Password.RequireDigit = true;
+//	options.Password.RequireLowercase = true;
+//	options.Password.RequireNonAlphanumeric = true;
+//	options.Password.RequireUppercase = true;
+//	options.Password.RequiredLength = 6;
+//	options.Password.RequiredUniqueChars = 1;
+
+//	// Lockout settings.
+//	options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+//	options.Lockout.MaxFailedAccessAttempts = 5;
+//	options.Lockout.AllowedForNewUsers = true;
+
+//	// User settings.
+//	options.User.AllowedUserNameCharacters =
+//	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+//	options.User.RequireUniqueEmail = false;
+//});
+
 var app = builder.Build();
 
 // Seed the database with initial data
@@ -82,6 +105,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
