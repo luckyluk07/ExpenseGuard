@@ -9,7 +9,7 @@ namespace ExpenseGuardBackend.DTOs.Accounts
 		public string Email { get; set; }
         public string Password { get; set; }
         public string RepeatPassword { get; set; }
-		IEnumerable<CreateMoneyDto> CurrencySavings
+		public IEnumerable<CreateMoneyDto> CurrencySavings { get; set; }
 
 	}
 }

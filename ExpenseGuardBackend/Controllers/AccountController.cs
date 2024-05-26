@@ -16,7 +16,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPost]
-		public async ActionResult Register(string email, string username, string password)
+		public async Task<ActionResult> Register(string email, string username, string password)
 		{
 			var user = new IdentityUser { UserName = username, Email = email };
 			var createdUser = await _userManager.CreateAsync(user, password);

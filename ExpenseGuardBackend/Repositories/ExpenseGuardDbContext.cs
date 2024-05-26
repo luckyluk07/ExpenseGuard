@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories
 {
-    public class ExpenseGuardDbContext : DbContext
-    {
+	public class ExpenseGuardDbContext : DbContext
+	{
 		public ExpenseGuardDbContext(DbContextOptions<ExpenseGuardDbContext> options): base(options)
 		{
 		}
