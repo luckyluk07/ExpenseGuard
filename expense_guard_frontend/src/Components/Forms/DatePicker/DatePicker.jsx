@@ -22,7 +22,6 @@ function DatePicker({ value, onChange, label }) {
     return [year, month, day].join("-");
   };
 
-  // todo fix passing date to API
   return (
     <div>
       <label htmlFor="start" className={`${formStyles.label}`}>

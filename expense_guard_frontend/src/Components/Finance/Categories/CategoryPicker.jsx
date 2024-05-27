@@ -6,7 +6,6 @@ import Dropdown from "../../Forms/Dropdown/Dropdown";
 import Button from "../../Common/Button/Button";
 import apiUrls from "../../../Shared/apiUrls";
 
-// todo it should be category dropdown, toggle - radio button, text inputs
 function CategoryPicker({ onDone, categ }) {
   const { data: fetchedCategories } = useFetchCategories();
   const [categories, setCategories] = useState();
@@ -52,6 +51,8 @@ function CategoryPicker({ onDone, categ }) {
                 description: responseObject.description,
               };
               setCategories((prevValue) => [...prevValue, newCategory]);
+              onDone(responseObject.id);
+              setNewCategoryDispaly((prev) => !prev);
               event.preventDefault();
             }}
           />
