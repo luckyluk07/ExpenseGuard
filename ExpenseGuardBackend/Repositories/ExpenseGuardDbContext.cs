@@ -1,9 +1,10 @@
 ﻿using ExpenseGuardBackend.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories
 {
-	public class ExpenseGuardDbContext : DbContext
+	public class ExpenseGuardDbContext : IdentityDbContext
 	{
 		public ExpenseGuardDbContext(DbContextOptions<ExpenseGuardDbContext> options): base(options)
 		{

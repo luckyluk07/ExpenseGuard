@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ExpenseGuardBackend.DTOs.Accounts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
@@ -8,24 +9,24 @@ namespace ExpenseGuardBackend.Controllers
 	public class AccountController : ControllerBase
 	{
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-		public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+		private readonly RoleManager<IdentityRole> _roleManager;
+		public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;
+			_roleManager = roleManager;
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> Register(string email, string username, string password)
+		public async Task<ActionResult> Register([FromBody] RegisterDataDto body)
 		{
-			var user = new IdentityUser { UserName = username, Email = email };
-			var createdUser = await _userManager.CreateAsync(user, password);
-			if (createdUser.Succeeded)
+			var user = new IdentityUser { UserName = body.Email, Email = body.Email };
+			if (body.Password != body.RepeatPassword)
 			{
-				await _signInManager.SignInAsync(user, isPersistent: false);
+				return BadRequest();
 			}
+			var createdUser = await _userManager.CreateAsync(user, body.Password);
 
-			return Ok();
+			return Ok(createdUser);
 		}
 	}
 }
