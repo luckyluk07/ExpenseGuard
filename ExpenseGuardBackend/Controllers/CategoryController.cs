@@ -1,5 +1,6 @@
 ﻿using ExpenseGuardBackend.DTOs.Categories;
 using ExpenseGuardBackend.Services.Categories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
