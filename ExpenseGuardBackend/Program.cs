@@ -1,3 +1,4 @@
+using System.Text;
 using ExpenseGuardBackend.Mappers;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Repositories;
@@ -15,9 +16,14 @@ using ExpenseGuardBackend.Services.Expenses;
 using ExpenseGuardBackend.Services.Finances;
 using ExpenseGuardBackend.Services.Incomes;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
+using ExpenseGuardBackend.Swagger;
 using ExpenseGuardBackend.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -41,6 +47,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
 builder.Services.AddDbContext<ExpenseGuardDbContext>(options =>
 	options.UseInMemoryDatabase("InMemoryDatabase"));
@@ -70,6 +77,27 @@ builder.Services.AddScoped<EntityMapper, EntityMapper>();
 
 builder.Services.AddIdentity<User, IdentityRole>()
 				.AddEntityFrameworkStores<ExpenseGuardDbContext>();
+
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+	o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+	{
+		ValidIssuer = builder.Configuration["Jwt:Issuer"],
+		ValidAudience = builder.Configuration["Jwt:Audience"],
+		IssuerSigningKey = new SymmetricSecurityKey
+		(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = false,
+		ValidateIssuerSigningKey = true
+	};
+});
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

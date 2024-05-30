@@ -11,16 +11,13 @@ namespace ExpenseGuardBackend.Controllers
 	{
         private readonly UserManager<IdentityUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
-		private readonly SignInManager<IdentityUser> _signInManager;
-		public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
+		public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
-			_signInManager = signInManager;
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
 		public async Task<ActionResult> Register([FromBody] RegisterDataDto body)
 		{
 			var user = new IdentityUser { UserName = body.Email, Email = body.Email };
@@ -31,7 +28,6 @@ namespace ExpenseGuardBackend.Controllers
 			var createdUser = await _userManager.CreateAsync(user, body.Password);
 			if (createdUser.Succeeded)
 			{
-				await _signInManager.SignInAsync(user, false);
 				return Ok(createdUser);
 			}
 
@@ -39,23 +35,15 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
 		public async Task<ActionResult> Login([FromBody] LoginDataDto body)
 		{
-			var result = await _signInManager.PasswordSignInAsync(body.Email, body.Password, false, lockoutOnFailure: false);
-			if (result.Succeeded)
+			var user = await _userManager.FindByEmailAsync(body.Email);
+			var hashedPassword = _userManager.PasswordHasher.HashPassword(user, body.Password);
+			if (user.PasswordHash == hashedPassword) 
 			{
-				return Ok(result);
+				return Ok();
 			}
 			return BadRequest();
-		}
-
-		[HttpPost]
-		public async Task<ActionResult> Logout()
-		{
-			await _signInManager.SignOutAsync();
-
-			return Ok();
 		}
 	}
 }
