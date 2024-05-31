@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseGuardBackend.Repositories
 {
-	public class ExpenseGuardDbContext : IdentityDbContext
+	public class ExpenseGuardDbContext : IdentityDbContext<User>
 	{
 		public ExpenseGuardDbContext(DbContextOptions<ExpenseGuardDbContext> options): base(options)
 		{

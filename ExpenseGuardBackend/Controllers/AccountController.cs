@@ -1,5 +1,5 @@
 ﻿using ExpenseGuardBackend.DTOs.Accounts;
-using Microsoft.AspNetCore.Authorization;
+using ExpenseGuardBackend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +9,18 @@ namespace ExpenseGuardBackend.Controllers
 	[ApiController]
 	public class AccountController : ControllerBase
 	{
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
-		public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+		public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
 		}
 
-		[HttpPost]
+		[HttpPost("register")]
 		public async Task<ActionResult> Register([FromBody] RegisterDataDto body)
 		{
-			var user = new IdentityUser { UserName = body.Email, Email = body.Email };
+			var user = new User { UserName = body.Email, Email = body.Email };
 			if (body.Password != body.RepeatPassword)
 			{
 				return BadRequest();
@@ -34,12 +34,13 @@ namespace ExpenseGuardBackend.Controllers
 			return BadRequest();
 		}
 
-		[HttpPost]
+		[HttpPost("login")]
 		public async Task<ActionResult> Login([FromBody] LoginDataDto body)
 		{
+			//todo add generating tokens
 			var user = await _userManager.FindByEmailAsync(body.Email);
-			var hashedPassword = _userManager.PasswordHasher.HashPassword(user, body.Password);
-			if (user.PasswordHash == hashedPassword) 
+			var isPasswordValid = await _userManager.CheckPasswordAsync(user, body.Password);
+			if (isPasswordValid)
 			{
 				return Ok();
 			}

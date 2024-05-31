@@ -2,7 +2,7 @@
 
 namespace ExpenseGuardBackend.Models
 {
-	public class User : IdentityUser<string>
+	public class User : IdentityUser
 	{
         public int FinanceId { get; set; }
     }
