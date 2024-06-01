@@ -1,12 +1,14 @@
 ﻿using ExpenseGuardBackend.DTOs.Expense;
 using ExpenseGuardBackend.Models;
 using ExpenseGuardBackend.Services.Expenses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
     [Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class ExpenseController : ControllerBase
 	{
 		private readonly IExpenseService _expenseService;

@@ -1,11 +1,13 @@
 ﻿using ExpenseGuardBackend.DTOs.InvestmentDeposits;
 using ExpenseGuardBackend.Services.InvestmentDeposits;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class InvestmentDepositController : ControllerBase
 	{
 		private readonly IInvestmentDepositService _investmentDepositService;

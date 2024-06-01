@@ -1,11 +1,13 @@
 ﻿using ExpenseGuardBackend.DTOs.Finances;
 using ExpenseGuardBackend.Services.Finances;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class FinanceController : ControllerBase
 	{
 		private readonly IFinanceService _financeService;

@@ -1,11 +1,13 @@
 ﻿using ExpenseGuardBackend.DTOs.Currencies;
 using ExpenseGuardBackend.Services.Currencies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class CurrencyController : ControllerBase
 	{
 		private readonly ICurrencyService _currencyService;

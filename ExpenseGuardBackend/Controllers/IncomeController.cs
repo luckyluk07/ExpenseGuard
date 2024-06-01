@@ -1,11 +1,13 @@
 ﻿using ExpenseGuardBackend.DTOs.Income;
 using ExpenseGuardBackend.Services.Incomes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
     [Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class IncomeController : ControllerBase
 	{
 		private readonly IIncomeService _incomeService;

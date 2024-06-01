@@ -1,12 +1,13 @@
 ﻿using ExpenseGuardBackend.DTOs.CompanyShares;
-using ExpenseGuardBackend.DTOs.Finances;
 using ExpenseGuardBackend.Services.CompanyShares;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class CompanyShareController : ControllerBase
 	{
 		private readonly ICompanyShareService _companyShareService;
