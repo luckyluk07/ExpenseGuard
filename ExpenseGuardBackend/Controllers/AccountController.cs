@@ -7,6 +7,7 @@ using ExpenseGuardBackend.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ExpenseGuardBackend.Controllers
@@ -18,12 +19,13 @@ namespace ExpenseGuardBackend.Controllers
 	{
         private readonly UserManager<User> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
-		private readonly IConfiguration _configuration;
-		public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+		private readonly JwtSettings _jwtSettings;
+
+		public AccountController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IOptions<JwtSettings> jwtSettings)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
-			_configuration = configuration;
+			_jwtSettings = jwtSettings.Value;
 		}
 
 		[HttpPost("register")]
@@ -47,7 +49,6 @@ namespace ExpenseGuardBackend.Controllers
 		[HttpPost("login")]
 		public async Task<ActionResult> Login([FromBody] LoginDataDto body)
 		{
-			//todo add generating tokens
 			var user = await _userManager.FindByEmailAsync(body.Email);
 			var isPasswordValid = await _userManager.CheckPasswordAsync(user, body.Password);
 			if (isPasswordValid)
@@ -60,21 +61,20 @@ namespace ExpenseGuardBackend.Controllers
 
 		private string GenerateToken(User user)
 		{
-			var jwtSettings = (JwtSettings)_configuration.GetSection("Jwt");
-			var key = Encoding.ASCII.GetBytes(jwtSettings.Key);
+			var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
-				Subject = new ClaimsIdentity(new[]
-				{
+				Subject = new ClaimsIdentity(
+				[
 				new Claim("Id", Guid.NewGuid().ToString()),
 				new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
 				new Claim(JwtRegisteredClaimNames.Email, user.UserName),
 				new Claim(JwtRegisteredClaimNames.Jti,
 				Guid.NewGuid().ToString())
-			}),
+			]),
 				Expires = DateTime.UtcNow.AddMinutes(5),
-				Issuer = jwtSettings.Issuer,
-				Audience = jwtSettings.Audience,
+				Issuer = _jwtSettings.Issuer,
+				Audience = _jwtSettings.Audience,
 				SigningCredentials = new SigningCredentials
 				(new SymmetricSecurityKey(key),
 				SecurityAlgorithms.HmacSha512Signature)
