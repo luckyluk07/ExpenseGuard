@@ -8,7 +8,7 @@ namespace ExpenseGuardBackend.Controllers
 {
     [Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	public class ExpenseController : ControllerBase
 	{
 		private readonly IExpenseService _expenseService;

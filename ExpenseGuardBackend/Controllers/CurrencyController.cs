@@ -7,7 +7,7 @@ namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	public class CurrencyController : ControllerBase
 	{
 		private readonly ICurrencyService _currencyService;

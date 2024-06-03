@@ -28,7 +28,7 @@ namespace ExpenseGuardBackend.Controllers
 			_jwtSettings = jwtSettings.Value;
 		}
 
-		[HttpPost("register")]
+		[HttpPost("Register")]
 		public async Task<ActionResult> Register([FromBody] RegisterDataDto body)
 		{
 			var user = new User { UserName = body.Email, Email = body.Email };
@@ -46,7 +46,7 @@ namespace ExpenseGuardBackend.Controllers
 			return BadRequest();
 		}
 
-		[HttpPost("login")]
+		[HttpPost("Login")]
 		public async Task<ActionResult> Login([FromBody] LoginDataDto body)
 		{
 			var user = await _userManager.FindByEmailAsync(body.Email);
@@ -54,7 +54,7 @@ namespace ExpenseGuardBackend.Controllers
 			if (isPasswordValid)
 			{
 				var token = GenerateToken(user);
-				return Ok();
+				return Ok(token);
 			}
 			return BadRequest();
 		}

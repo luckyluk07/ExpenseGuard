@@ -7,7 +7,7 @@ namespace ExpenseGuardBackend.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	public class CompanyShareController : ControllerBase
 	{
 		private readonly ICompanyShareService _companyShareService;

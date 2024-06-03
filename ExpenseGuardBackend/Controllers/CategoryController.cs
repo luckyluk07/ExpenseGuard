@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseGuardBackend.Controllers
 {
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
 	public class CategoryController : ControllerBase
 	{
 		private readonly ICategoryService _categoryService;
