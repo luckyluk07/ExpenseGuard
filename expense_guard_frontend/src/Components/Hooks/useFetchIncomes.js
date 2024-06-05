@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import getAllApiRequest from "../Services/Api/getAllApiRequest";
+import { getAllApiRequest } from "../Services/Api/getAllApiRequest";
 import apiUrls from "../../Shared/apiUrls";
 
 function useFetchIncomes() {

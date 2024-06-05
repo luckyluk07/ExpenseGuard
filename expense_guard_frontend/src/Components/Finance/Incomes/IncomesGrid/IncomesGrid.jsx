@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import styles from "./IncomesGrid.module.scss";
 import NoDataAvailable from "../../../../Pages/NoDataAvailable";
 import Button from "../../../Common/Button/Button";
-import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
+import { deleteApiRequest } from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateIncomeModal from "../UpdateIncomeModal";
 import { toGermanFormat } from "../../../Services/General/DateFormatter";

@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "../../styles/Modal.module.scss";
 import Button from "../../Common/Button/Button";
-import deleteApiRequest from "../../Services/Api/deleteApiRequest";
+import { deleteApiRequest } from "../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../Shared/apiUrls";
 import { toGermanFormat } from "../../Services/General/DateFormatter";
 

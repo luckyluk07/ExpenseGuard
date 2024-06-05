@@ -12,6 +12,8 @@ import News from "./Pages/News";
 import Investments from "./Pages/Investments";
 import CompanyShares from "./Pages/CompanyShares";
 import ErrorPage from "./Pages/ErrorPage";
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             { name: "Investments", url: paths.investments },
             { name: "Company Shares", url: paths.companyShares },
             { name: "News", url: paths.news },
+            { name: "Login", url: paths.login },
+            { name: "Register", url: paths.register },
           ]}
         />
         <main>
@@ -36,6 +40,8 @@ function App() {
             <Route path={paths.news} element={<News />} />
             <Route path={paths.investments} element={<Investments />} />
             <Route path={paths.companyShares} element={<CompanyShares />} />
+            <Route path={paths.login} element={<LoginPage />} />
+            <Route path={paths.register} element={<RegisterPage />} />
             <Route path={paths.error} element={<ErrorPage />} />
 
             <Route path={paths.notFound} element={<NotFound />} />

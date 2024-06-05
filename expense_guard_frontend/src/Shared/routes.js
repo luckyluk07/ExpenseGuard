@@ -7,6 +7,8 @@ const paths = {
   investments: "/Investments",
   companyShares: "/CompanyShares",
   error: "/Error",
+  login: "/Login",
+  register: "/Register",
   notFound: "*",
 };
 

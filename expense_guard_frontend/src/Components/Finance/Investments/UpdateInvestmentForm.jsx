@@ -5,7 +5,7 @@ import useFetchCurrencies from "../../Hooks/useFetchCurrencies";
 import apiUrls from "../../../Shared/apiUrls";
 import DatePicker from "../../Forms/DatePicker/DatePicker";
 import NumericInput from "../../Forms/NumericInput/NumericInput";
-import updateApiRequest from "../../Services/Api/updateApiRequest";
+import { updateApiRequest } from "../../Services/Api/updateApiRequest";
 
 function UpdateInvestmentForm({ investment }) {
   const { data: currencies } = useFetchCurrencies();

@@ -1,6 +1,9 @@
 const base = "https://localhost:7057/api";
 
 const apiUrls = {
+  register: `${base}/Account/Register`,
+  login: `${base}/Account/Login`,
+
   getCategories: `${base}/Category`,
   getCurrencies: `${base}/Currency`,
   getIncomes: `${base}/Income`,

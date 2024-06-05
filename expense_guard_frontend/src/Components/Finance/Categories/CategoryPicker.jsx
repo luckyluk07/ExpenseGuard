@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetchCategories from "../../Hooks/useFetchCategories";
-import postApiRequest from "../../Services/Api/makePostApiRequest";
+import { postApiRequest } from "../../Services/Api/makePostApiRequest";
 import TextInput from "../../Forms/TextInput/TextInput";
 import Dropdown from "../../Forms/Dropdown/Dropdown";
 import Button from "../../Common/Button/Button";

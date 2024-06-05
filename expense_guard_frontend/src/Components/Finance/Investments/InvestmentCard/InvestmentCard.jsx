@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import InvestmentModal from "../InvestmentModal";
 import Button from "../../../Common/Button/Button";
-import deleteApiRequest from "../../../Services/Api/deleteApiRequest";
+import { deleteApiRequest } from "../../../Services/Api/deleteApiRequest";
 import apiUrls from "../../../../Shared/apiUrls";
 import UpdateInvestmentModal from "../UpdateInvestmentModal";
 import { toGermanFormat } from "../../../Services/General/DateFormatter";
