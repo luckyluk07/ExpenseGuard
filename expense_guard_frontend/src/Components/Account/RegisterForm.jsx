@@ -34,7 +34,7 @@ function RegisterForm({ onDone }) {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               if (password !== repeatedPassword) {
                 return;
               }
@@ -43,7 +43,10 @@ function RegisterForm({ onDone }) {
                 password,
                 repeatPassword: repeatedPassword,
               };
-              const responseObject = postApiRequest(apiUrls.register, data);
+              const responseObject = await postApiRequest(
+                apiUrls.register,
+                data,
+              );
               onDone(responseObject);
               event.preventDefault();
             }}

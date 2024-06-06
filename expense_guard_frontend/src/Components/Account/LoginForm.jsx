@@ -19,7 +19,7 @@ function LoginForm({ onDone }) {
             value={email}
             onChange={(newName) => setEmail(newName)}
           />
-          <PasswordInput // todo variant of textInput with password
+          <PasswordInput
             labelText="Password"
             placeholder=""
             value={password}
@@ -27,12 +27,12 @@ function LoginForm({ onDone }) {
           />
           <button
             type="submit"
-            onClick={(event) => {
+            onClick={async (event) => {
               const data = {
                 email,
                 password,
               };
-              const responseObject = postApiRequest(apiUrls.login, data);
+              const responseObject = await postApiRequest(apiUrls.login, data);
               onDone(responseObject);
               event.preventDefault();
             }}
