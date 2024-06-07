@@ -1,74 +1,64 @@
 # ExpenseGuard
 
-Welcome to ExpenseGuard! This application is designed to help you efficiently manage your expenses, allowing you to track your spending, categorize transactions, and gain insights into your financial habits.
+Welcome to ExpenseGuard! This application is designed to help you efficiently manage your expenses, allowing you to track your spending, categorize transactions, and gain insights into your financial habits. This project is being developed as part of the 100-commits challenge.
 
-## Features
+Unfortunately, due to reasons beyond my control, I was not fully available during this time and could not complete the MVP as planned. On the positive side, I created a basic, nearly functional frontend and backend. This project allowed me to review .NET technologies and learn a lot about React.
+
+In the future, I plan to complete this project and use it as a foundational project to apply concepts learned from courses and tutorials.
 
 ### DONE:
 
+- **Expense Tracking**: Easily add, edit, and delete expenses to keep track of your spending.
+- **Income Tracking**: Easily add, edit, and delete income to keep track of your budget.
+- **Investments Tracking**: Monitoring of investment deposits and company shares.
+
 ### TODO:
 
-- **Expense Tracking**: Easily add, edit and delete expenses to keep track of your spending.
-- **Income Tracking**: Easily add, edit and delete income to keep track of your budget
-- **Reporting**: Generate insightful reports and visualizations to analyze your spending patterns.
+- **Docker**: Create a Docker file to make it easier to install and run the app.
+- **Authorization and Authentication**: Implement authorization and authentication on the frontend (currently working on the backend).
 
-## Journal of work
+## Journal of Work
 
-- **Day 1**: Init backend solution, start writing readme, start planning models and functions
-- **Day 2**: Create "in-code" repository for expanses and connect it with controller using DI
-- **Day 3**: Create crud controller and service for expenses
-- **Day 4**: Create "in-code" repository for incomes
-- **Day 5**: Create crud controller and service for incomes
-- **Day 6**: Add dtos for expense controller
-- **Day 7**: Add dtos for income controller, remove Cloning of expenses and incomes
-- **Day 8**: Add category model with repository, implement gets and delete controller and service methods
-- **Day 9**: Implement create and update for categories controller and service
-- **Day 10**: Implement usage of new Category class instead of category as string in other classes
-- **Day 11**: Restructure folders structure
-- **Day 12**: Add get method for currencies controller, services and repository
-- **Day 13**: Introduce Money class, add usage of it in other classes
-- **Day 14**: Init React project
-- **Day 15**: Fix returning new resource location from post methods
-- **Day 16**: Add finance repository and model
-- **Day 17**: Add gets and delete for finance controller and service
-- **Day 18**: Create DTO mapper static class
-- **Day 19**: Add create and update for finance controller and service
-- **Day 20**: Update money in finance on adding incomes and expenses
-- **Day 21**: Add investment deposit repository and model, init unit test project
-- **Day 22**: Add gets and delete service methods for investment deposit
-- **Day 23**: Add create service method and create controller for investment deposit
-- **Day 24**: Create entity mapper class and introduce it in income and expense services
-- **Day 25**: Continue adding usage of entity mapper, start drawing entities diagram
-- **Day 26**: Complete entities diagram, modify models to imitate relations
-- **Day 27**: Add ef core in memory db context
-- **Day 28**: Create repositories that use ef core
-- **Day 29**: Replace old repositories with new, start implementing data seeding
-- **Day 30**: Update new repositories, remove legacy repositories
-- **Day 31**: Rename repositories, small refactor
-- **Day 32**: Refactor code to remove in-code todos, test controllers, start planning UI
+- **Day 1**: Initialized backend solution, started writing README, began planning models and functions.
+- **Day 2**: Created "in-code" repository for expenses and connected it with the controller using dependency injection (DI).
+- **Day 3**: Created CRUD controller and service for expenses.
+- **Day 4**: Created "in-code" repository for incomes.
+- **Day 5**: Created CRUD controller and service for incomes.
+- **Day 6**: Added DTOs for expense controller.
+- **Day 7**: Added DTOs for income controller, removed cloning of expenses and incomes.
+- **Day 8**: Added category model with repository, implemented GET and DELETE controller and service methods.
+- **Day 9**: Implemented CREATE and UPDATE for categories controller and service.
+- **Day 10**: Replaced category string in other classes with new Category class.
+- **Day 11**: Restructured folder structure.
+- **Day 12**: Added GET method for currencies controller, services, and repository.
+- **Day 13**: Introduced Money class, integrated it into other classes.
+- **Day 14**: Initialized React project.
+- **Day 15**: Fixed returning new resource location from POST methods.
+- **Day 16**: Added finance repository and model.
+- **Day 17**: Added GET and DELETE for finance controller and service.
+- **Day 18**: Created DTO mapper static class.
+- **Day 19**: Added CREATE and UPDATE for finance controller and service.
+- **Day 20**: Updated money in finance on adding incomes and expenses.
+- **Day 21**: Added investment deposit repository and model, initialized unit test project.
+- **Day 22**: Added GET and DELETE service methods for investment deposit.
+- **Day 23**: Added CREATE service method and created controller for investment deposit.
+- **Day 24**: Created entity mapper class and introduced it in income and expense services.
+- **Day 25**: Continued adding usage of entity mapper, started drawing entities diagram.
+- **Day 26**: Completed entities diagram, modified models to mimic relations.
+- **Day 27**: Added EF Core in-memory DB context.
+- **Day 28**: Created repositories using EF Core.
+- **Day 29**: Replaced old repositories with new, started implementing data seeding.
+- **Day 30**: Updated new repositories, removed legacy repositories.
+- **Day 31**: Renamed repositories, small refactor.
+- **Day 32**: Refactored code to remove in-code TODOs, tested controllers, started planning UI.
+- **Rest**: Lost track of specific days...
 
-## Technical goals
+## Technical Goals
 
-- Beside working and good looking software my goal in that project is to extend my knowledge about backend clean architecture and frontend technologies like React.
-- Start from the simplest architecture(single project and directires eg. services, controllers, models etc) and then convert it into clean architecture
-- Getting familiar with best practices and clean code
+- Besides creating functional and attractive software, my goal for this project is to extend my knowledge of backend clean architecture and frontend technologies like React.
+- Start with the simplest architecture (single project with directories for services, controllers, models, etc.) and then evolve it into a clean architecture.
+- Familiarize myself with best practices and clean code principles.
 
 ## Installation
 
-To be continued
-
-## Usage
-
-To be continued
-
-## Contributing
-
-To be continued
-
-## Support
-
-To be continued
-
-## License
-
-To be continued
+Don't bother installing it yet. It's still a work in progress and not completed.
