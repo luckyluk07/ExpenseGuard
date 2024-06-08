@@ -28,13 +28,13 @@ function LoginForm({ onDone }) {
           <button
             type="submit"
             onClick={async (event) => {
+              event.preventDefault();
               const data = {
                 email,
                 password,
               };
               const responseObject = await postApiRequest(apiUrls.login, data);
               onDone(responseObject);
-              event.preventDefault();
             }}
           >
             Submit

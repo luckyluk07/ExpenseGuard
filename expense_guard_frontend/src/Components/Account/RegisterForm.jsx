@@ -20,7 +20,7 @@ function RegisterForm({ onDone }) {
             value={email}
             onChange={(newName) => setEmail(newName)}
           />
-          <PasswordInput // todo variant of textInput with password
+          <PasswordInput
             labelText="Password"
             placeholder=""
             value={password}
@@ -35,6 +35,7 @@ function RegisterForm({ onDone }) {
           <button
             type="submit"
             onClick={async (event) => {
+              event.preventDefault();
               if (password !== repeatedPassword) {
                 return;
               }
@@ -48,7 +49,6 @@ function RegisterForm({ onDone }) {
                 data,
               );
               onDone(responseObject);
-              event.preventDefault();
             }}
           >
             Submit

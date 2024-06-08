@@ -29,7 +29,7 @@ namespace ExpenseGuardBackend.Controllers
 		}
 
 		[HttpPost("Register")]
-		public async Task<ActionResult> Register([FromBody] RegisterDataDto body)
+		public async Task<ActionResult<JwtTokenDto>> Register([FromBody] RegisterDataDto body)
 		{
 			var user = new User { UserName = body.Email, Email = body.Email };
 			if (body.Password != body.RepeatPassword)
@@ -40,21 +40,23 @@ namespace ExpenseGuardBackend.Controllers
 			if (createdUser.Succeeded)
 			{
 				var token = GenerateToken(user);
-				return Ok(token);
+				var dto = new JwtTokenDto(token);
+				return Ok(dto);
 			}
 
 			return BadRequest();
 		}
 
 		[HttpPost("Login")]
-		public async Task<ActionResult> Login([FromBody] LoginDataDto body)
+		public async Task<ActionResult<JwtTokenDto>> Login([FromBody] LoginDataDto body)
 		{
 			var user = await _userManager.FindByEmailAsync(body.Email);
 			var isPasswordValid = await _userManager.CheckPasswordAsync(user, body.Password);
 			if (isPasswordValid)
 			{
 				var token = GenerateToken(user);
-				return Ok(token);
+				var dto = new JwtTokenDto(token);
+				return Ok(dto);
 			}
 			return BadRequest();
 		}

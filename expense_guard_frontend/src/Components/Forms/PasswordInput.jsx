@@ -19,6 +19,7 @@ function PasswordInput({ labelText, inputId, placeholder, value, onChange }) {
         onChange={handleSelectChange}
         aria-describedby={inputId}
         placeholder={placeholder}
+        autoComplete="off"
       />
     </div>
   );
